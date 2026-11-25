@@ -650,36 +650,12 @@
   background: linear-gradient(90deg, #ff6b2b, #943414);
 }
 
-.thermal-banner__media {
-  position: relative;
-  min-height: 340px;
-  overflow: hidden;
-  background: #040706;
-}
-
-.burner-canvas {
-  width: 100%;
-  height: 100%;
-  min-height: 340px;
-  display: block;
-}
-
-.thermal-banner__badge {
-  position: absolute;
-  bottom: 1.25rem;
-  left: 1.25rem;
-  right: 1.25rem;
-  padding: 0.85rem 1.1rem;
-  border-radius: 14px;
-  background: rgba(6, 10, 8, 0.78);
-  border: 1px solid rgba(16, 240, 160, 0.3);
-  backdrop-filter: blur(12px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+.thermal-banner__metrics {
+  padding: clamp(2rem, 4vw, 3.25rem);
+  background: radial-gradient(circle at 85% 20%, rgba(16, 240, 160, 0.1), transparent 65%), #09110d;
+  border-left: 1px solid rgba(244, 242, 236, 0.08);
+  display: grid;
+  align-content: center;
 }
 
 /* ==========================================================================
@@ -1929,7 +1905,8 @@
   .cta-shell {
     grid-template-columns: 1fr;
   }
-  .hardware-inspector {
+  .hardware-inspector,
+  .thermal-banner__metrics {
     border-left: none;
     border-top: 1px solid var(--border-subtle);
   }
