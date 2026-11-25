@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaseificou! — Biodigestão turnkey para hotéis, pousadas e restaurantes</title>
+  <meta name="description" content="Sistema compacto chave na mão que converte resíduos orgânicos da cozinha de hotéis, pousadas e restaurantes em gás térmico próprio para substituir o GLP, com escoamento urbano e telemetria IoT." />
+
+  <!-- Typography: Bricolage Grotesque + Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles/tokens.css" />
+  <link rel="stylesheet" href="./styles/main.css" />
+</head>
+<body>
+  <!-- Scroll Progress Beam -->
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar" id="scrollProgress"></div>
+  </div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Floating Navigation (Preserved) -->
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-shell" id="navShell" aria-label="Navegação principal">
+      <a href="#topo" class="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C9.5 6 6 8.8 6 13.5C6 17.09 8.69 20 12 20C15.31 20 18 17.09 18 13.5C18 10.6 16.3 8.2 14.5 6.3C14.1 8.1 13.2 9.2 12 9.8C12.3 7.4 12.6 4.7 12 2Z" fill="#10f0a0"/>
+            <path d="M12 12.2C10.9 13.7 10 14.9 10 16.3C10 17.4 10.9 18.3 12 18.3C13.1 18.3 14 17.4 14 16.3C14 14.9 13.1 13.7 12 12.2Z" fill="#ff6b2b"/>
+          </svg>
+        </span>
+        <span>Gaseificou<span class="brand__accent">!</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#problema">O Problema</a></li>
+        <li><a href="#arquitetura">4 Módulos</a></li>
+        <li><a href="#simulador">Simulador ROI</a></li>
+        <li><a href="#iot-esg">IoT &amp; ESG</a></li>
+        <li><a href="#modelo">Investimento</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <span class="nav-pill-metric">
+          <span class="pulse-dot"></span>
+          70–85% Eficiência Térmica
+        </span>
+        <a href="#contato" class="btn btn--primary btn--sm magnetic">
+          Diagnóstico Grátis
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="4" y1="7" x2="20" y2="7"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="17" x2="20" y2="17"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="topo">
+    <!-- ====================================================================
+         SECTION 1: HERO (Three.js Bio-Thermal Particle Vortex)
+         ==================================================================== -->
+    <section class="hero">
+      <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="hero__vignette" aria-hidden="true"></div>
+
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <span class="eyebrow hero-reveal">
+            <span class="pulse-dot"></span>
+            Biodigestão turnkey para hotelaria e restaurantes
+          </span>
+
+          <h1 class="hero__title" id="heroTitle">
+            <span class="line-wrap"><span class="line-inner">O resto do seu buffet</span></span>
+            <span class="line-wrap"><span class="line-inner">vira o <span class="text-gradient">gás da sua cozinha.</span></span></span>
+          </h1>
+
+          <p class="hero__subtitle hero-reveal">
+            Sistema compacto entregue pronto para operar. Ele converte os resíduos orgânicos da cozinha de hotéis, pousadas e restaurantes em gás próprio para fogão e aquecimento, com retirada garantida do biofertilizante em área urbana e monitoramento IoT.
+          </p>
+
+          <div class="hero__cta-row hero-reveal">
+            <a href="#simulador" class="btn btn--primary magnetic">
+              Simular economia em GLP
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="#arquitetura" class="btn btn--ghost magnetic">
+              Ver arquitetura em 4 módulos
+            </a>
+            <span class="hero__trust-note">
+              <span class="pulse-dot pulse-dot--amber"></span>
+              Equipamento próprio desde o Dia 1 · Funciona em área urbana
+            </span>
+          </div>
+        </div>
+
+        <div class="hero__metrics hero-reveal" aria-label="Indicadores principais">
+          <div class="metric-cell">
+            <div class="metric-cell__value">70%–<span>85%</span></div>
+            <div class="metric-cell__label">Eficiência no uso térmico direto (fogão e água quente)</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-cell__value"><span>~2,5 L</span> / kg</div>
+            <div class="metric-cell__label">Digestato líquido com retirada semanal ou uso no jardim</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-cell__value">R$ <span>22.029</span></div>
+            <div class="metric-cell__label">Preço sugerido do Kit Urbano 35 kg/dia instalado</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-cell__value"><span>1,5–3,6</span> anos</div>
+            <div class="metric-cell__label">Payback em hotéis médios (50 a 100 kg/dia)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kinetic Marquee -->
+    <div class="marquee-band" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item"><strong>GÁS PRÓPRIO NO LOCAL</strong><span class="marquee-sep"></span></span>
+        <span class="marquee-item">FILTRAGEM DE H₂S E CORTA-CHAMAS<span class="marquee-sep"></span></span>
+        <span class="marquee-item"><strong>ENGATE RÁPIDO CAMLOCK URBANO</strong><span class="marquee-sep"></span></span>
+        <span class="marquee-item">REATOR COMPACTO 3.000 L<span class="marquee-sep"></span></span>
+        <span class="marquee-item"><strong>TELEMETRIA IOT PREVENTIVA</strong><span class="marquee-sep"></span></span>
+        <span class="marquee-item">QR CODE ESG NA RECEPÇÃO<span class="marquee-sep"></span></span>
+        <span class="marquee-item"><strong>GÁS PRÓPRIO NO LOCAL</strong><span class="marquee-sep"></span></span>
+        <span class="marquee-item">FILTRAGEM DE H₂S E CORTA-CHAMAS<span class="marquee-sep"></span></span>
+        <span class="marquee-item"><strong>ENGATE RÁPIDO CAMLOCK URBANO</strong><span class="marquee-sep"></span></span>
+        <span class="marquee-item">REATOR COMPACTO 3.000 L<span class="marquee-sep"></span></span>
+        <span class="marquee-item"><strong>TELEMETRIA IOT PREVENTIVA</strong><span class="marquee-sep"></span></span>
+        <span class="marquee-item">QR CODE ESG NA RECEPÇÃO<span class="marquee-sep"></span></span>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         SECTION 2: O PROBLEMA (Warm Paper Editorial Contrast)
+         ==================================================================== -->
+    <section class="section-paper" id="problema">
+      <div class="container">
+        <div class="section-header-split">
+          <div>
+            <span class="eyebrow eyebrow--dark">01 · O problema</span>
+            <h2 class="section-title" style="margin-top: 1rem;">
+              Três custos diários na rotina de cozinhas profissionais.
+            </h2>
+          </div>
+          <p class="section-lead">
+            Hotéis, pousadas e restaurantes pagam duas vezes pelo mesmo ciclo: compram gás o mês inteiro e depois pagam para armazenar ou descartar quilos de restos orgânicos.
+          </p>
+        </div>
+
+        <div class="pain-grid">
+          <article class="pain-card reveal-up">
+            <div>
+              <div class="pain-card__top">
+                <span class="pain-card__num">DOR 01</span>
+                <div class="pain-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2c1 4 5 6.5 5 11a5 5 0 1 1-10 0c0-2.8 1.8-5.3 3.2-7 .5 1.5 1.5 2.4 2.3 2.8C12 6.8 12.2 4.4 12 2Z"/>
+                  </svg>
+                </div>
+              </div>
+              <h3 style="margin-top: 1.4rem;">Custo recorrente alto com GLP e aquecimento</h3>
+              <p>
+                Cozinhas industriais e sistemas de água quente queimam gás todos os dias. Esse gasto pesa direto na conta mensal e sobe a cada reajuste de preço.
+              </p>
+            </div>
+            <div class="pain-card__tag">
+              <span>↗</span> Gasto fixo mensal no OPEX
+            </div>
+          </article>
+
+          <article class="pain-card reveal-up">
+            <div>
+              <div class="pain-card__top">
+                <span class="pain-card__num">DOR 02</span>
+                <div class="pain-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/>
+                  </svg>
+                </div>
+              </div>
+              <h3 style="margin-top: 1.4rem;">Descarte caro e mal visto de orgânicos</h3>
+              <p>
+                Sobras de buffet, preparos e cascas geram mau cheiro, exigem câmara fria ou coleta privada paga em centros urbanos e acabam em aterros sanitários.
+              </p>
+            </div>
+            <div class="pain-card__tag">
+              <span>↗</span> Coleta paga e destino em aterro
+            </div>
+          </article>
+
+          <article class="pain-card reveal-up">
+            <div>
+              <div class="pain-card__top">
+                <span class="pain-card__num">DOR 03</span>
+                <div class="pain-card__icon pain-card__icon--teal" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="8" width="7" height="13" rx="1"/><path d="M6.5 7v.01M6.5 11v.01M6.5 15v.01M17.5 12v.01M17.5 16v.01"/>
+                  </svg>
+                </div>
+              </div>
+              <h3 style="margin-top: 1.4rem;">Falta de soluções adaptadas à cidade</h3>
+              <p>
+                Biodigestores tradicionais precisam de área rural para escoar dezenas de litros de efluente líquido por dia. Se o fornecedor entrega só o tanque em um hotel urbano, a operação trava na segunda semana.
+              </p>
+            </div>
+            <div class="pain-card__tag" style="color: #0b6e49;">
+              <span>✓</span> Resolvido pelo módulo urbano com camlock
+            </div>
+          </article>
+        </div>
+
+        <!-- Thermal Focus vs Electric Comparison Banner -->
+        <div class="thermal-banner reveal-up">
+          <div class="thermal-banner__copy">
+            <span class="eyebrow">Decisão de engenharia</span>
+            <h3>Uso 100% térmico direto. Onde o retorno fecha.</h3>
+            <p>
+              Descartamos geração elétrica em pequena escala. Nela, a eficiência cai para 25% a 30% e inviabiliza o payback. Com queima direta no fogão industrial e no aquecimento de água, o aproveitamento fica entre 70% e 85%.
+            </p>
+            <div class="efficiency-bars">
+              <div class="eff-row">
+                <div class="eff-row__meta">
+                  <span>Uso térmico direto (Gaseificou!)</span>
+                  <strong style="color: var(--bio-emerald);">70% – 85%</strong>
+                </div>
+                <div class="eff-track">
+                  <div class="eff-fill eff-fill--thermal"></div>
+                </div>
+              </div>
+              <div class="eff-row">
+                <div class="eff-row__meta">
+                  <span>Geração elétrica em pequena escala</span>
+                  <strong style="color: var(--flame-amber);">25% – 30%</strong>
+                </div>
+                <div class="eff-track">
+                  <div class="eff-fill eff-fill--electric"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="thermal-banner__media">
+            <canvas id="burnerCanvas" class="burner-canvas" aria-label="Simulação animada da chama de biogás purificado em fogão industrial"></canvas>
+            <div class="thermal-banner__badge">
+              <span>CHAMA TÉRMICA FILTRADA (SEM H₂S)</span>
+              <strong style="color: var(--bio-emerald);">USO NO FOGÃO</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 3: ARQUITETURA TURNKEY EM 4 MÓDULOS
+         ==================================================================== -->
+    <section class="section-dark" id="arquitetura">
+      <div class="container">
+        <div class="section-header-split">
+          <div>
+            <span class="eyebrow">02 · Arquitetura em 4 módulos</span>
+            <h2 class="section-title" style="margin-top: 1rem;">
+              Sistema completo em <span class="text-gradient">4 módulos padronizados.</span>
+            </h2>
+          </div>
+          <p class="section-lead">
+            A entrega cobre a planta inteira: reator anaeróbico, linha de gás com segurança térmica, logística de saída do digestato e telemetria remota.
+          </p>
+        </div>
+
+        <!-- Interactive SVG Flow Blueprint -->
+        <div class="blueprint-stage reveal-up">
+          <div class="blueprint-stage__top">
+            <div>
+              <span class="mono" style="font-size: 0.76rem; color: var(--bio-emerald); text-transform: uppercase;">Fluxograma interativo · Kit Urbano 35 kg/dia</span>
+              <div style="font-size: 0.92rem; color: var(--ink-secondary);">Selecione um módulo para ver as especificações de massa, gás e sensores.</div>
+            </div>
+            <div class="blueprint-tabs" role="tablist" aria-label="Selecionar módulo">
+              <button class="bp-tab is-active" data-module="1" role="tab" aria-selected="true">01 · Core anaeróbico</button>
+              <button class="bp-tab" data-module="2" role="tab" aria-selected="false">02 · Gás e segurança</button>
+              <button class="bp-tab" data-module="3" role="tab" aria-selected="false">03 · Escoamento</button>
+              <button class="bp-tab" data-module="4" role="tab" aria-selected="false">04 · IoT e ESG</button>
+            </div>
+          </div>
+
+          <svg class="schematic-svg" viewBox="0 0 1120 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de fluxo dos 4 módulos Gaseificou">
+            <!-- Base Pipes -->
+            <path class="pipe-base" d="M 165 130 H 255" />
+            <path class="pipe-base" d="M 455 100 H 545" />
+            <path class="pipe-base" d="M 455 160 C 495 160 495 200 545 200" />
+            <path class="pipe-base" d="M 745 100 H 845" />
+            <path class="pipe-base" d="M 745 200 H 845" />
+            <path class="pipe-base" d="M 355 68 V 28 H 950 V 68" />
+
+            <!-- Animated Energy Flows -->
+            <path class="pipe-flow pipe-flow--amber" d="M 165 130 H 255" />
+            <path class="pipe-flow" d="M 455 100 H 545" />
+            <path class="pipe-flow pipe-flow--teal" d="M 455 160 C 495 160 495 200 545 200" />
+            <path class="pipe-flow" d="M 745 100 H 845" />
+            <path class="pipe-flow pipe-flow--teal" d="M 745 200 H 845" />
+            <path class="pipe-flow" style="stroke-dasharray: 4 10; opacity: 0.65;" d="M 355 68 V 28 H 950 V 68" />
+
+            <!-- Input: Cozinha -->
+            <g>
+              <rect x="15" y="82" width="150" height="96" rx="16" fill="#131512" stroke="rgba(255,107,43,0.45)" stroke-width="1.5"/>
+              <text x="33" y="110" fill="#ff6b2b" font-family="JetBrains Mono" font-size="11" font-weight="600">ENTRADA DIÁRIA</text>
+              <text x="33" y="134" fill="#f4f2ec" font-family="Bricolage Grotesque" font-size="16" font-weight="700">Cozinha</text>
+              <text x="33" y="156" fill="#a2b2a9" font-family="Plus Jakarta Sans" font-size="12">~35 kg/dia triados</text>
+            </g>
+
+            <!-- Module 1 -->
+            <g class="bp-node is-active" data-module="1">
+              <rect class="node-box" x="255" y="68" width="200" height="124" rx="18"/>
+              <text x="275" y="96" fill="#10f0a0" font-family="JetBrains Mono" font-size="11" font-weight="600">MÓDULO 01</text>
+              <text x="275" y="122" fill="#f4f2ec" font-family="Bricolage Grotesque" font-size="18" font-weight="700">Core anaeróbico</text>
+              <text x="275" y="146" fill="#a2b2a9" font-family="Plus Jakarta Sans" font-size="12">Reator 3.000 L · 30 dias</text>
+              <text x="275" y="168" fill="#a2b2a9" font-family="Plus Jakarta Sans" font-size="12">Gasômetro 4–5 m³ + funil</text>
+            </g>
+
+            <!-- Module 2 -->
+            <g class="bp-node" data-module="2">
+              <rect class="node-box" x="545" y="54" width="200" height="92" rx="16"/>
+              <text x="565" y="80" fill="#10f0a0" font-family="JetBrains Mono" font-size="11" font-weight="600">MÓDULO 02 · TÉRMICO</text>
+              <text x="565" y="104" fill="#f4f2ec" font-family="Bricolage Grotesque" font-size="17" font-weight="700">Gás e segurança</text>
+              <text x="565" y="126" fill="#a2b2a9" font-family="Plus Jakarta Sans" font-size="12">Filtro H₂S · Corta-chamas</text>
+            </g>
+
+            <!-- Module 3 -->
+            <g class="bp-node" data-module="3">
+              <rect class="node-box" x="545" y="162" width="200" height="84" rx="16"/>
+              <text x="565" y="186" fill="#00d4c8" font-family="JetBrains Mono" font-size="11" font-weight="600">MÓDULO 03 · URBANO</text>
+              <text x="565" y="210" fill="#f4f2ec" font-family="Bricolage Grotesque" font-size="17" font-weight="700">Escoamento físico</text>
+              <text x="565" y="230" fill="#a2b2a9" font-family="Plus Jakarta Sans" font-size="12">Pulmão 1.000 L + camlock</text>
+            </g>
+
+            <!-- Output & Module 4 -->
+            <g class="bp-node" data-module="4">
+              <rect class="node-box" x="845" y="54" width="260" height="92" rx="16"/>
+              <text x="865" y="80" fill="#10f0a0" font-family="JetBrains Mono" font-size="11" font-weight="600">SAÍDA TÉRMICA + MÓDULO 04</text>
+              <text x="865" y="104" fill="#f4f2ec" font-family="Bricolage Grotesque" font-size="17" font-weight="700">Fogão + IoT e QR ESG</text>
+              <text x="865" y="126" fill="#a2b2a9" font-family="Plus Jakarta Sans" font-size="12">Queimadores adaptados + sensores</text>
+            </g>
+
+            <!-- Output: Biofertilizante -->
+            <g>
+              <rect x="845" y="162" width="260" height="84" rx="16" fill="#0b1614" stroke="rgba(0,212,200,0.4)" stroke-width="1.5"/>
+              <text x="865" y="186" fill="#00d4c8" font-family="JetBrains Mono" font-size="11" font-weight="600">DESTINO GARANTIDO</text>
+              <text x="865" y="210" fill="#f4f2ec" font-family="Bricolage Grotesque" font-size="17" font-weight="700">~612 L/sem biofertilizante</text>
+              <text x="865" y="230" fill="#a2b2a9" font-family="Plus Jakarta Sans" font-size="12">Chácaras/viveiros locais ou jardim</text>
+            </g>
+          </svg>
+
+          <div class="bp-detail-bar" id="bpDetailBar">
+            <div>
+              <strong id="bpDetailTag">MÓDULO 01 · CORE ANAERÓBICO</strong>
+              <p id="bpDetailText" style="color: var(--ink-secondary); margin-top: 0.2rem;">
+                Reator de 3.000 L dimensionado para ~35 kg/dia de comida, com tempo de retenção de 30 dias, gasômetro de 4 a 5 m³ e funil de carga com mistura.
+              </p>
+            </div>
+            <span class="mono" style="font-size: 0.78rem; color: var(--ink-primary);" id="bpDetailMetric">Retenção: 30 dias · 3.000 L</span>
+          </div>
+        </div>
+
+        <!-- 4 Detailed Module Cards -->
+        <div class="modules-grid">
+          <!-- Module 1 -->
+          <article class="spotlight-card reveal-up" data-module-card="1">
+            <div class="module-head">
+              <span class="module-badge">MÓDULO 01 · CORE ANAERÓBICO</span>
+              <span class="mono" style="font-size: 0.8rem; color: var(--ink-muted);">3.000 L · 30 dias</span>
+            </div>
+            <h3>Módulo de biodigestão compacta</h3>
+            <p>
+              Reator compacto dimensionado para a carga diária do hotel (3.000 L para ~35 kg/dia, com 30 dias de retenção), gasômetro de 4 a 5 m³ e funil de carga com mistura.
+            </p>
+            <ul class="spec-list">
+              <li><span class="spec-check">✓</span><span>Triagem simples na própria cozinha, sem trituradores complexos.</span></li>
+              <li><span class="spec-check">✓</span><span>Ficam de fora plásticos, ossos grandes, cloro e excesso de gordura acima de 10–15%.</span></li>
+              <li><span class="spec-check">✓</span><span>Sistema fechado que cabe em áreas técnicas, quintais ou fundos de serviço.</span></li>
+            </ul>
+          </article>
+
+          <!-- Module 2 -->
+          <article class="spotlight-card reveal-up" data-module-card="2">
+            <div class="module-head">
+              <span class="module-badge module-badge--amber">MÓDULO 02 · FOCO TÉRMICO</span>
+              <span class="mono" style="font-size: 0.8rem; color: var(--flame-amber);">70% – 85% efic.</span>
+            </div>
+            <h3>Módulo de gás e segurança</h3>
+            <p>
+              Linha completa de purificação e proteção para levar gás limpo e constante direto ao fogão industrial e aos aquecedores.
+            </p>
+            <ul class="spec-list">
+              <li><span class="spec-check">✓</span><span>Filtro obrigatório de gás sulfídrico (H₂S) e dreno de umidade contra corrosão.</span></li>
+              <li><span class="spec-check">✓</span><span>Válvulas de bloqueio, corta-chamas, manômetro e booster de baixa pressão.</span></li>
+              <li><span class="spec-check">✓</span><span>Adaptação dos queimadores do fogão industrial para uso térmico direto.</span></li>
+            </ul>
+          </article>
+
+          <!-- Module 3 (Interactive Urban vs Rural Switch) -->
+          <article class="spotlight-card reveal-up" data-module-card="3">
+            <div class="module-head">
+              <span class="module-badge">MÓDULO 03 · ESCOAMENTO URBANO</span>
+              <span class="mono" style="font-size: 0.8rem; color: var(--bio-teal);">~2,5 L / kg</span>
+            </div>
+            <h3>Escoamento físico com destino garantido</h3>
+            <p>
+              Cada 1 kg de alimento diluído gera cerca de 2,5 L de digestato líquido (~87,5 L/dia ou ~612 L/semana em 35 kg/dia). Escolha o perfil do local:
+            </p>
+
+            <div class="mode-toggle" role="tablist" aria-label="Cenário de escoamento">
+              <button class="mode-toggle__btn is-active" id="btnUrban" data-mode="urban" role="tab" aria-selected="true">Hotel urbano sem jardim</button>
+              <button class="mode-toggle__btn" id="btnRural" data-mode="rural" role="tab" aria-selected="false">Pousada com área verde</button>
+            </div>
+
+            <div class="mode-panel" id="panelUrban">
+              <ul class="spec-list" style="margin-top: 0;">
+                <li><span class="spec-check">✓</span><span>Tanque pulmão vedado de 1.000 L, bomba de transferência e engate rápido limpo (camlock).</span></li>
+                <li><span class="spec-check">✓</span><span>Entregue com parceria local engatilhada (chácaras, viveiros ou paisagistas) para retirada semanal gratuita.</span></li>
+              </ul>
+              <span class="saving-pill">Evita filtros de esgoto: economiza mais de R$ 3.300 no custo direto</span>
+            </div>
+
+            <div class="mode-panel" id="panelRural" hidden>
+              <ul class="spec-list" style="margin-top: 0;">
+                <li><span class="spec-check">✓</span><span>Aplicação direta diluída nos jardins, gramados e hortas da pousada ou hotel.</span></li>
+                <li><span class="spec-check">✓</span><span>Compostagem eventual do lodo de fundo, retirado a cada 6 a 24 meses.</span></li>
+              </ul>
+              <span class="saving-pill">Ciclo fechado no próprio terreno com biofertilizante gratuito</span>
+            </div>
+          </article>
+
+          <!-- Module 4 -->
+          <article class="spotlight-card reveal-up" data-module-card="4">
+            <div class="module-head">
+              <span class="module-badge">MÓDULO 04 · CAMADA DIGITAL</span>
+              <span class="mono" style="font-size: 0.8rem; color: var(--bio-emerald);">IoT + QR ESG</span>
+            </div>
+            <h3>Telemetria IoT e experiência ESG</h3>
+            <p>
+              Monitoramento remoto dos parâmetros críticos do reator e painel público para os clientes do hotel acompanharem os dados reais.
+            </p>
+            <ul class="spec-list">
+              <li><span class="spec-check">✓</span><span>Sensores de pressão do gás, temperatura interna do reator e nível do tanque pulmão.</span></li>
+              <li><span class="spec-check">✓</span><span>Alertas enviados antes de a biologia desregular ou de o tanque pulmão lotar.</span></li>
+              <li><span class="spec-check">✓</span><span>QR Code na recepção e no restaurante com a quantidade de lixo convertida em gás.</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Hardware Architectural CAD Blueprint + Interactive Engineering Hotspots -->
+        <div class="hardware-showcase reveal-up">
+          <div class="hardware-stage">
+            <svg class="hardware-iso-svg" viewBox="0 0 820 460" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Maquete técnica interativa do Kit Urbano 35 kg/dia Gaseificou">
+              <defs>
+                <radialGradient id="isoGlow" cx="50%" cy="48%" r="55%">
+                  <stop offset="0%" stop-color="#10f0a0" stop-opacity="0.16"/>
+                  <stop offset="100%" stop-color="#060a08" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="tankBody" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#111d18"/>
+                  <stop offset="45%" stop-color="#1d3027"/>
+                  <stop offset="100%" stop-color="#0b1410"/>
+                </linearGradient>
+                <linearGradient id="bufferBody" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#0d1b1b"/>
+                  <stop offset="50%" stop-color="#163132"/>
+                  <stop offset="100%" stop-color="#081314"/>
+                </linearGradient>
+                <linearGradient id="liquidFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#00d4c8" stop-opacity="0.45"/>
+                  <stop offset="100%" stop-color="#10f0a0" stop-opacity="0.16"/>
+                </linearGradient>
+                <pattern id="isoGrid" width="32" height="32" patternUnits="userSpaceOnUse">
+                  <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(244,242,236,0.045)" stroke-width="1"/>
+                </pattern>
+              </defs>
+
+              <rect width="820" height="460" fill="url(#isoGrid)"/>
+              <rect width="820" height="460" fill="url(#isoGlow)"/>
+
+              <!-- Base Platform -->
+              <polygon points="90,340 420,425 745,330 415,255" fill="#0d1512" stroke="rgba(244,242,236,0.14)" stroke-width="1.5"/>
+              <polygon points="90,340 420,425 420,442 90,357" fill="#080e0c" stroke="rgba(244,242,236,0.08)"/>
+              <polygon points="420,425 745,330 745,347 420,442" fill="#0a120f" stroke="rgba(244,242,236,0.08)"/>
+
+              <!-- Connecting Pipes -->
+              <path class="pipe-base" d="M 275 112 V 82 H 445 V 158"/>
+              <path class="pipe-flow" d="M 275 112 V 82 H 445 V 158"/>
+              <path class="pipe-base" d="M 485 182 H 555 V 100 H 715"/>
+              <path class="pipe-flow" d="M 485 182 H 555 V 100 H 715"/>
+
+              <path class="pipe-base" d="M 340 288 H 522 V 278 H 572"/>
+              <path class="pipe-flow pipe-flow--teal" d="M 340 288 H 522 V 278 H 572"/>
+
+              <path class="pipe-base" style="stroke-width: 1.5;" d="M 275 142 H 532 V 162"/>
+              <path class="pipe-flow" style="stroke-width: 1.5; stroke-dasharray: 4 8;" d="M 275 142 H 532 V 162"/>
+
+              <!-- 01 · REATOR ANAERÓBICO 3.000 L -->
+              <g class="iso-part is-focused" data-part="reator">
+                <path d="M 118 196 L 178 196 L 160 236 L 136 236 Z" fill="#1b1511" stroke="#ff6b2b" stroke-width="1.6"/>
+                <rect x="143" y="236" width="10" height="58" fill="#1b1511" stroke="rgba(255,107,43,0.6)"/>
+                <path class="pipe-flow pipe-flow--amber" d="M 148 206 V 290 H 206"/>
+
+                <ellipse cx="275" cy="316" rx="86" ry="26" fill="#070c0a" stroke="rgba(16,240,160,0.3)" stroke-width="1.5"/>
+                <rect x="189" y="148" width="172" height="168" fill="url(#tankBody)" stroke="rgba(244,242,236,0.22)" stroke-width="1.5"/>
+                <path d="M 189 148 C 189 96 361 96 361 148 Z" fill="#11221b" stroke="rgba(16,240,160,0.55)" stroke-width="1.8"/>
+                <ellipse cx="275" cy="148" rx="86" ry="22" fill="#142921" stroke="rgba(16,240,160,0.4)" stroke-width="1.4"/>
+
+                <rect x="242" y="182" width="66" height="108" rx="10" fill="#070f0c" stroke="rgba(16,240,160,0.35)" stroke-width="1.2"/>
+                <rect x="246" y="218" width="58" height="68" rx="6" fill="url(#liquidFill)"/>
+                <circle class="bio-bubble b1" cx="262" cy="264" r="3.5" fill="#10f0a0"/>
+                <circle class="bio-bubble b2" cx="278" cy="250" r="4.5" fill="#00d4c8"/>
+                <circle class="bio-bubble b3" cx="290" cy="272" r="3" fill="#10f0a0"/>
+                <circle class="bio-bubble b4" cx="270" cy="228" r="2.8" fill="#ffb84d"/>
+
+                <text x="196" y="362" fill="#a2b2a9" font-family="JetBrains Mono" font-size="11">REATOR 3.000 L + GASÔMETRO 4-5m³</text>
+              </g>
+
+              <!-- 02 · SKID H2S + CORTA-CHAMAS -->
+              <g class="iso-part" data-part="gas">
+                <rect x="412" y="156" width="76" height="142" rx="12" fill="#101a16" stroke="rgba(244,242,236,0.22)" stroke-width="1.5"/>
+                <rect x="428" y="176" width="22" height="86" rx="11" fill="#0a2018" stroke="#10f0a0" stroke-width="1.5"/>
+                <line x1="428" y1="205" x2="450" y2="205" stroke="rgba(16,240,160,0.45)"/>
+                <line x1="428" y1="235" x2="450" y2="235" stroke="rgba(16,240,160,0.45)"/>
+                <circle cx="468" cy="196" r="13" fill="#060a08" stroke="#ffb84d" stroke-width="1.6"/>
+                <line x1="468" y1="196" x2="475" y2="189" stroke="#ff6b2b" stroke-width="2" stroke-linecap="round"/>
+                <rect x="458" y="232" width="20" height="30" rx="5" fill="#1f1510" stroke="#ff6b2b" stroke-width="1.4"/>
+                <text x="394" y="318" fill="#a2b2a9" font-family="JetBrains Mono" font-size="10">FILTRO H₂S · BOOSTER</text>
+              </g>
+
+              <!-- 04 · CENTRAL IOT TELEMETRIA -->
+              <g class="iso-part" data-part="iot">
+                <rect x="514" y="154" width="60" height="72" rx="10" fill="#0b1612" stroke="#10f0a0" stroke-width="1.6"/>
+                <circle cx="544" cy="182" r="14" fill="rgba(16,240,160,0.12)" stroke="#10f0a0" stroke-width="2"/>
+                <circle cx="544" cy="182" r="5" fill="#10f0a0"/>
+                <rect x="525" y="206" width="38" height="8" rx="3" fill="rgba(244,242,236,0.16)"/>
+                <text x="506" y="244" fill="#10f0a0" font-family="JetBrains Mono" font-size="10">IOT HUB 24/7</text>
+              </g>
+
+              <!-- 03 · TANQUE PULMÃO 1.000 L + CAMLOCK -->
+              <g class="iso-part" data-part="pulmao">
+                <ellipse cx="640" cy="316" rx="64" ry="20" fill="#070c0a" stroke="rgba(0,212,200,0.35)" stroke-width="1.5"/>
+                <rect x="576" y="196" width="128" height="120" fill="url(#bufferBody)" stroke="rgba(0,212,200,0.4)" stroke-width="1.5"/>
+                <ellipse cx="640" cy="196" rx="64" ry="18" fill="#132b2d" stroke="rgba(0,212,200,0.55)" stroke-width="1.5"/>
+                <rect x="628" y="220" width="24" height="74" rx="6" fill="#060c0c" stroke="rgba(0,212,200,0.4)"/>
+                <rect x="631" y="246" width="18" height="45" rx="4" fill="#00d4c8" fill-opacity="0.65"/>
+                <rect x="704" y="274" width="34" height="18" rx="5" fill="#202e29" stroke="#00d4c8" stroke-width="1.8"/>
+                <circle cx="742" cy="283" r="6" fill="#00d4c8"/>
+                <text x="572" y="356" fill="#00d4c8" font-family="JetBrains Mono" font-size="10">PULMÃO 1.000 L + CAMLOCK</text>
+              </g>
+
+              <!-- Output Label Top Right -->
+              <g>
+                <rect x="660" y="76" width="136" height="46" rx="10" fill="#0a1913" stroke="rgba(16,240,160,0.5)" stroke-width="1.3"/>
+                <text x="674" y="96" fill="#10f0a0" font-family="JetBrains Mono" font-size="10" font-weight="600">SAÍDA TÉRMICA →</text>
+                <text x="674" y="112" fill="#f4f2ec" font-family="Plus Jakarta Sans" font-size="11">Fogão industrial</text>
+              </g>
+            </svg>
+
+            <button class="hotspot is-active" style="top: 46%; left: 33%;" data-hotspot="reator" aria-label="Inspecionar Reator Anaeróbico">01</button>
+            <button class="hotspot" style="top: 44%; left: 55%;" data-hotspot="gas" aria-label="Inspecionar Filtro H2S e Linha de Gás">02</button>
+            <button class="hotspot" style="top: 59%; left: 79%;" data-hotspot="pulmao" aria-label="Inspecionar Tanque Pulmão e Camlock">03</button>
+            <button class="hotspot" style="top: 39%; left: 66%;" data-hotspot="iot" aria-label="Inspecionar Controlador IoT">04</button>
+          </div>
+
+          <div class="hardware-inspector">
+            <div>
+              <span class="eyebrow" style="margin-bottom: 1rem;">Raio-X do hardware</span>
+              <div class="hotspot-info">
+                <h3 class="hotspot-info__title" id="hsTitle">01 · Reator anaeróbico 3.000 L + gasômetro</h3>
+                <p class="hotspot-info__desc" id="hsDesc">
+                  Reator fechado para áreas urbanas sem cheiro. Recebe ~35 kg/dia de restos orgânicos diluídos pelo funil misturador, com 30 dias de retenção e gasômetro de 4 a 5 m³.
+                </p>
+              </div>
+              <div class="hotspot-specs">
+                <div class="hotspot-spec-box">
+                  <span id="hsSpec1Label">Volume reator</span>
+                  <strong id="hsSpec1Val">3.000 L (30d)</strong>
+                </div>
+                <div class="hotspot-spec-box">
+                  <span id="hsSpec2Label">Gasômetro</span>
+                  <strong id="hsSpec2Val">4 – 5 m³</strong>
+                </div>
+              </div>
+            </div>
+            <p class="mono" style="font-size: 0.74rem; color: var(--ink-muted);">
+              Clique nos pinos numerados (01–04) para ver os dados de cada subsistema.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 4: SIMULADOR INTERATIVO DE ROI & SEGMENTOS
+         ==================================================================== -->
+    <section class="section-dark section-dark--elevated" id="simulador">
+      <div class="container">
+        <div class="section-header-split">
+          <div>
+            <span class="eyebrow">03 · Calculadora de viabilidade</span>
+            <h2 class="section-title" style="margin-top: 1rem;">
+              Simule a economia de <span class="text-gradient">GLP e o payback</span> do seu hotel.
+            </h2>
+          </div>
+          <p class="section-lead">
+            Ajuste o volume diário de resíduos orgânicos da cozinha ou escolha um dos três perfis abaixo para conferir economia bruta, saldo líquido e prazo de retorno.
+          </p>
+        </div>
+
+        <div class="sim-wrapper reveal-up">
+          <!-- Controls -->
+          <div class="sim-controls">
+            <div>
+              <div class="sim-readout-big">
+                <span class="mono" style="font-size: 0.78rem; color: var(--ink-secondary); text-transform: uppercase;">Resíduos orgânicos / dia</span>
+                <div class="sim-kg-display"><span id="simKgVal">50</span> <small>kg/dia</small></div>
+              </div>
+
+              <div style="margin-top: 1.25rem;">
+                <input type="range" id="simRange" class="range-slider" min="10" max="240" step="5" value="50" aria-label="Volume diário de resíduos orgânicos em quilogramas" />
+                <div class="range-ticks">
+                  <span>10 kg</span>
+                  <span>35 kg</span>
+                  <span>50 kg</span>
+                  <span>100 kg</span>
+                  <span>200+ kg</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="preset-grid" aria-label="Perfis rápidos de clientes">
+              <button class="preset-btn" data-kg="35">
+                <div>
+                  <strong>Hotéis pequenos e pousadas</strong>
+                  <span>10 a 35 kg/dia · Porta de entrada e saneamento</span>
+                </div>
+                <span class="preset-pill">35 kg/dia</span>
+              </button>
+
+              <button class="preset-btn is-active" data-kg="50">
+                <div>
+                  <strong>Hotéis médios / c/ restaurante</strong>
+                  <span>50 a 100 kg/dia · Payback de 1,5 a 3,6 anos</span>
+                </div>
+                <span class="preset-pill">50 kg/dia</span>
+              </button>
+
+              <button class="preset-btn" data-kg="100">
+                <div>
+                  <strong>Hotel médio de alto giro</strong>
+                  <span>100 kg/dia · Mesma estrutura periférica, retorno em 1,5 ano</span>
+                </div>
+                <span class="preset-pill">100 kg/dia</span>
+              </button>
+
+              <button class="preset-btn" data-kg="200">
+                <div>
+                  <strong>Resorts e mini-hubs turísticos</strong>
+                  <span>200+ kg/dia · Alto volume ou unidade compartilhada</span>
+                </div>
+                <span class="preset-pill">200 kg/dia</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Output -->
+          <div class="sim-output">
+            <div class="sim-highlight">
+              <div class="sim-highlight__label">Economia bruta mensal em GLP</div>
+              <div class="sim-highlight__value" id="outMonthlyGlp">R$ 717</div>
+              <div class="sim-highlight__sub" id="outNetSummary">Saldo líquido: ~R$ 517/mês (após R$ 200 de OPEX estimado)</div>
+            </div>
+
+            <div class="sim-kpi-grid">
+              <div class="sim-kpi">
+                <div class="sim-kpi__label">Payback estimado</div>
+                <div class="sim-kpi__val" id="outPayback">3,6 anos</div>
+              </div>
+              <div class="sim-kpi">
+                <div class="sim-kpi__label">Digestato / semana</div>
+                <div class="sim-kpi__val sim-kpi__val--amber" id="outBiofertWeek">875 L</div>
+              </div>
+              <div class="sim-kpi">
+                <div class="sim-kpi__label">Digestato / dia</div>
+                <div class="sim-kpi__val" id="outBiofertDay">125 L</div>
+              </div>
+              <div class="sim-kpi">
+                <div class="sim-kpi__label">Desviado do aterro / mês</div>
+                <div class="sim-kpi__val" id="outDiverted">1.500 kg</div>
+              </div>
+            </div>
+
+            <div class="sim-recommendation" id="outRecommendation">
+              <strong>Faixa recomendada (50 a 100 kg/dia):</strong> Usa quase a mesma estrutura periférica do kit de 35 kg/dia e reduz o payback para 1,5 a 3,6 anos.
+            </div>
+          </div>
+        </div>
+
+        <!-- Go-to-Market Matrix Table -->
+        <div class="gtm-table-wrap reveal-up">
+          <table class="gtm-table">
+            <thead>
+              <tr>
+                <th>Perfil do cliente</th>
+                <th>Geração diária</th>
+                <th>Economia bruta (GLP/mês)</th>
+                <th>Papel na estratégia da startup</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Hotéis pequenos e pousadas</strong></td>
+                <td class="mono">10 a 35 kg/dia</td>
+                <td class="mono" style="color: var(--bio-emerald);">R$ 143 a R$ 502</td>
+                <td>Porta de entrada rápida e vitrine: venda direta para pousadas ecológicas (saneamento + marketing verde) ou hotéis urbanos que já pagam coleta privada de lixo.</td>
+              </tr>
+              <tr>
+                <td><strong>Hotéis médios / c/ restaurante</strong> <span class="badge-sweet">TRAÇÃO</span></td>
+                <td class="mono">50 a 100 kg/dia</td>
+                <td class="mono" style="color: var(--bio-emerald);">R$ 717 a R$ 1.433</td>
+                <td>Ponto ideal de tração financeira: usa quase a mesma estrutura periférica do kit pequeno e leva o payback do cliente para 1,5 a 3,6 anos.</td>
+              </tr>
+              <tr>
+                <td><strong>Resorts e mini-hubs turísticos</strong></td>
+                <td class="mono">200+ kg/dia</td>
+                <td class="mono" style="color: var(--bio-emerald);">Acima de R$ 2.866</td>
+                <td>Escala e contratos maiores: operação de alto volume (hotel grande ou 1 unidade atendendo pousadas vizinhas), abrindo margem futura para assinatura completa (EaaS).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 5: CAMADA DIGITAL IOT & EXPERIÊNCIA DO HÓSPEDE
+         ==================================================================== -->
+    <section class="section-dark" id="iot-esg">
+      <div class="container">
+        <div class="section-header-split">
+          <div>
+            <span class="eyebrow">04 · IoT e experiência ESG</span>
+            <h2 class="section-title" style="margin-top: 1rem;">
+              Sensores no reator. <span class="text-gradient">Dados abertos ao hóspede.</span>
+            </h2>
+          </div>
+          <p class="section-lead">
+            A operação não depende de conferência manual da equipe da cozinha. Os sensores monitoram pressão, temperatura e nível do tanque pulmão, e o QR Code mostra os resultados na recepção.
+          </p>
+        </div>
+
+        <div class="iot-grid reveal-up">
+          <!-- Left: Live Telemetry Console -->
+          <div class="iot-console">
+            <div class="iot-console__header">
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <span class="pulse-dot"></span>
+                  <strong style="font-family: var(--font-display); font-size: 1.15rem;">Painel IoT · Unidade demonstração (35 kg/dia)</strong>
+                </div>
+                <span class="mono" style="font-size: 0.74rem; color: var(--ink-muted);">TELEMETRIA PREVENTIVA · LEITURA CONTÍNUA</span>
+              </div>
+              <button class="btn btn--ghost btn--sm" id="btnSimulateAlert" type="button">
+                Testar alerta preventivo
+              </button>
+            </div>
+
+            <div class="iot-sensors">
+              <div class="sensor-tile" id="tilePressure">
+                <span class="sensor-tile__label">Pressão do gás</span>
+                <span class="sensor-tile__value" id="valPressure">18.4 mbar</span>
+                <span class="sensor-tile__status" id="stPressure">● Chama estável</span>
+              </div>
+              <div class="sensor-tile" id="tileTemp">
+                <span class="sensor-tile__label">Temp. interna</span>
+                <span class="sensor-tile__value" id="valTemp">35.6 °C</span>
+                <span class="sensor-tile__status" id="stTemp">● Zona mesofílica</span>
+              </div>
+              <div class="sensor-tile" id="tileLevel">
+                <span class="sensor-tile__label">Tanque pulmão</span>
+                <span class="sensor-tile__value" id="valLevel">62%</span>
+                <span class="sensor-tile__status" id="stLevel">● Coleta: Qui 08h</span>
+              </div>
+            </div>
+
+            <div class="telemetry-chart-box">
+              <div class="telemetry-chart-head">
+                <span>PRODUÇÃO DE GÁS NO GASÔMETRO (4–5 m³)</span>
+                <span style="color: var(--bio-emerald);" id="valFlowRate">4,6 m³/dia · Filtro H₂S OK</span>
+              </div>
+              <canvas class="telemetry-canvas" id="telemetryChart" width="600" height="120"></canvas>
+            </div>
+
+            <div class="alert-banner" id="iotAlertBanner">
+              <span id="iotAlertMsg">Biologia estável. Pressão, temperatura interna e nível do tanque pulmão dentro da faixa.</span>
+              <span class="mono" style="font-size: 0.72rem; white-space: nowrap;" id="iotAlertTag">STATUS: NOMINAL</span>
+            </div>
+          </div>
+
+          <!-- Right: Guest QR Code Phone Preview -->
+          <div class="guest-phone-card">
+            <div>
+              <span class="mono" style="font-size: 0.74rem; color: var(--bio-emerald); text-transform: uppercase;">Recepção e restaurante</span>
+              <h3 style="font-family: var(--font-display); font-size: 1.45rem; margin-top: 0.35rem;">
+                O que o hóspede vê ao escanear o QR Code
+              </h3>
+            </div>
+
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="guest-live-pill">
+                <span class="pulse-dot"></span>
+                AO VIVO · PAINEL GASEIFICOU!
+              </div>
+              <h4 class="guest-headline">
+                As refeições deste hotel usam gás gerado dos próprios resíduos orgânicos da cozinha.
+              </h4>
+              <div class="guest-stats-row">
+                <div class="guest-stat">
+                  <strong id="guestKgCounter">1.050 kg</strong>
+                  <span>Orgânicos processados no mês</span>
+                </div>
+                <div class="guest-stat">
+                  <strong id="guestBioCounter">2.625 L</strong>
+                  <span>Biofertilizante retirado por parceiros locais</span>
+                </div>
+              </div>
+              <div class="qr-strip">
+                <div class="qr-box" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" width="52" height="52" fill="#060a08">
+                    <rect x="2" y="2" width="10" height="10" rx="1.5"/>
+                    <rect x="4" y="4" width="6" height="6" fill="#fff"/>
+                    <rect x="5.5" y="5.5" width="3" height="3"/>
+                    <rect x="24" y="2" width="10" height="10" rx="1.5"/>
+                    <rect x="26" y="4" width="6" height="6" fill="#fff"/>
+                    <rect x="27.5" y="5.5" width="3" height="3"/>
+                    <rect x="2" y="24" width="10" height="10" rx="1.5"/>
+                    <rect x="4" y="26" width="6" height="6" fill="#fff"/>
+                    <rect x="5.5" y="27.5" width="3" height="3"/>
+                    <rect x="15" y="4" width="3" height="3"/><rect x="19" y="7" width="3" height="3"/>
+                    <rect x="14" y="12" width="4" height="4"/><rect x="20" y="14" width="3" height="6"/>
+                    <rect x="4" y="15" width="6" height="3"/><rect x="14" y="19" width="4" height="4"/>
+                    <rect x="25" y="16" width="4" height="4"/><rect x="30" y="21" width="4" height="4"/>
+                    <rect x="16" y="26" width="5" height="3"/><rect x="24" y="26" width="4" height="7"/>
+                    <rect x="30" y="29" width="4" height="5"/>
+                  </svg>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--ink-secondary); line-height: 1.45;">
+                  <strong style="color: var(--ink-primary); display: block;">Placa na recepção e mesas</strong>
+                  O hóspede abre o painel no celular e acompanha quanto lixo virou energia limpa.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 6: MODELO HÍBRIDO & TRANSPARÊNCIA FINANCEIRA
+         ==================================================================== -->
+    <section class="section-dark section-dark--elevated" id="modelo">
+      <div class="container">
+        <div class="section-header-split">
+          <div>
+            <span class="eyebrow">05 · Modelo híbrido</span>
+            <h2 class="section-title" style="margin-top: 1rem;">
+              Venda direta do sistema + <span class="text-gradient">assinatura leve de IoT.</span>
+            </h2>
+          </div>
+          <p class="section-lead">
+            A venda do equipamento fica separada da assinatura de telemetria. O hotel adquire o ativo no Dia 1 (à vista ou via linha de financiamento verde) e paga uma mensalidade baixa pelo monitoramento.
+          </p>
+        </div>
+
+        <div class="pricing-grid reveal-up">
+          <!-- Revenue 1: CAPEX Turnkey -->
+          <article class="pricing-card pricing-card--featured">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+                <span class="module-badge">RECEITA 01 · SISTEMA INSTALADO (CAPEX)</span>
+                <span class="mono" style="font-size: 0.78rem; color: var(--ink-secondary);">Kit Urbano 35 kg/dia</span>
+              </div>
+              <div style="margin-top: 1.5rem;">
+                <div class="price-tag">R$ 22.029 <small>instalado</small></div>
+                <p style="color: var(--ink-secondary); margin-top: 0.75rem;">
+                  Compra à vista ou financiada por linha verde bancária. O ativo e o prazo de amortização ficam com o cliente, sem imobilizar capital da operação em locação.
+                </p>
+              </div>
+              <ul class="spec-list" style="margin-top: 1.5rem;">
+                <li><span class="spec-check">✓</span><span>Reator anaeróbico 3.000 L, gasômetro 4–5 m³ e funil misturador</span></li>
+                <li><span class="spec-check">✓</span><span>Linha de gás com filtro H₂S, dreno, corta-chamas, booster e adaptação do fogão</span></li>
+                <li><span class="spec-check">✓</span><span>Tanque pulmão 1.000 L, bomba, engate camlock e parceria local de retirada</span></li>
+                <li><span class="spec-check">✓</span><span>Kit de sensores IoT, frete e instalação completa no local</span></li>
+              </ul>
+            </div>
+            <a href="#contato" class="btn btn--primary magnetic" style="width: 100%;">
+              Solicitar proposta e financiamento verde
+              <span class="btn__arrow">→</span>
+            </a>
+          </article>
+
+          <!-- Revenue 2: SaaS + IoT -->
+          <article class="pricing-card">
+            <div>
+              <span class="module-badge module-badge--amber">RECEITA 02 · RECORRÊNCIA LEVE (SAAS + IOT)</span>
+              <div style="margin-top: 1.5rem;">
+                <div class="price-tag">R$ 99–199 <small>/mês</small></div>
+                <p style="color: var(--ink-secondary); margin-top: 0.75rem;">
+                  Mensalidade acessível porque não precisa amortizar o equipamento. Cobre monitoramento remoto, relatórios e suporte técnico.
+                </p>
+              </div>
+              <ul class="spec-list" style="margin-top: 1.5rem;">
+                <li><span class="spec-check">✓</span><span>Telemetria preventiva com alertas antes de a biologia desregular</span></li>
+                <li><span class="spec-check">✓</span><span>Relatórios mensais de economia em GLP e dados ESG</span></li>
+                <li><span class="spec-check">✓</span><span>Painel público ao vivo via QR Code na recepção e no restaurante</span></li>
+                <li><span class="spec-check">✓</span><span>Suporte técnico remoto (visitas corretivas cobradas à parte)</span></li>
+              </ul>
+            </div>
+            <a href="#iot-esg" class="btn btn--ghost magnetic" style="width: 100%;">
+              Ver painel IoT e QR Code
+            </a>
+          </article>
+        </div>
+
+        <!-- Collapsible Unit Economics & Engineering Transparency X-Ray -->
+        <div class="xray-box reveal-up" id="xrayBox">
+          <button class="xray-trigger" id="xrayTrigger" type="button" aria-expanded="false">
+            <div>
+              <span class="mono" style="font-size: 0.72rem; color: var(--bio-emerald); text-transform: uppercase;">Estrutura financeira base</span>
+              <h3>Raio-X do Kit Urbano 35 kg/dia (montagem própria padronizada)</h3>
+              <p>Custo direto (COGS) de R$ 15.200, Simples Nacional de 6%, margem líquida de 25% e retorno operacional do hotel.</p>
+            </div>
+            <span class="xray-icon" aria-hidden="true">+</span>
+          </button>
+
+          <div class="xray-content" id="xrayContent">
+            <div>
+              <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.76rem; margin-bottom: 0.5rem;">
+                <span>COMPOSIÇÃO DO PREÇO DE VENDA (R$ 22.029)</span>
+                <span>COGS 69% · SIMPLES 6% · MARGEM LÍQ. 25%</span>
+              </div>
+              <div class="stacked-bar" aria-label="Composição financeira do kit">
+                <span style="width: 69%; background: var(--bio-emerald);" title="COGS: R$ 15.200"></span>
+                <span style="width: 6%; background: var(--flame-amber);" title="Simples Nacional: R$ 1.322"></span>
+                <span style="width: 25%; background: var(--bio-teal);" title="Margem Líquida: R$ 5.507"></span>
+              </div>
+            </div>
+
+            <div class="xray-grid">
+              <div class="xray-col">
+                <h4>Custo direto (COGS · R$ 15.200)</h4>
+                <div class="xray-row"><span>Reator + gasômetro + misturador</span><strong>R$ 7.000</strong></div>
+                <div class="xray-row"><span>Linha de gás + filtro H₂S + segurança</span><strong>R$ 3.200</strong></div>
+                <div class="xray-row"><span>Tanque pulmão 1.000 L + camlock</span><strong>R$ 2.200</strong></div>
+                <div class="xray-row"><span>Instalação + frete</span><strong>R$ 2.200</strong></div>
+                <div class="xray-row"><span>Kit IoT</span><strong>R$ 600</strong></div>
+              </div>
+
+              <div class="xray-col">
+                <h4>Preço de venda (R$ 22.029)</h4>
+                <div class="xray-row"><span>Custo direto (COGS)</span><strong>R$ 15.200</strong></div>
+                <div class="xray-row"><span>Simples Nacional (6%)</span><strong>R$ 1.322</strong></div>
+                <div class="xray-row"><span>Margem líquida (25%)</span><strong style="color: var(--bio-emerald);">R$ 5.507</strong></div>
+                <div class="xray-row"><span>Recorrência SaaS + IoT</span><strong>R$ 99–199/mês</strong></div>
+              </div>
+
+              <div class="xray-col">
+                <h4>Retorno para o hotel (35 kg/dia)</h4>
+                <div class="xray-row"><span>Economia bruta no GLP</span><strong>~R$ 502/mês</strong></div>
+                <div class="xray-row"><span>OPEX estimado</span><strong>~R$ 200/mês</strong></div>
+                <div class="xray-row"><span>Saldo líquido mensal</span><strong style="color: var(--bio-emerald);">~R$ 302/mês</strong></div>
+                <div class="xray-row"><span>Payback: 35 / 50 / 100 kg·dia</span><strong>6,1 / 3,6 / 1,5 anos</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 7: CTA FINAL & DIAGNÓSTICO GRATUITO
+         ==================================================================== -->
+    <section class="section-dark" id="contato">
+      <div class="container">
+        <div class="cta-shell reveal-up">
+          <div style="display: grid; gap: 1.35rem;">
+            <span class="eyebrow">Pré-dimensionamento gratuito</span>
+            <h2 class="section-title">
+              Receba o cálculo técnico para a <span class="text-gradient">sua cozinha.</span>
+            </h2>
+            <p class="section-lead">
+              Informe o volume estimado de restos orgânicos e a cidade. Montamos o dimensionamento do reator, o retorno previsto em GLP e a opção de retirada semanal do biofertilizante na sua região.
+            </p>
+            <ul class="spec-list">
+              <li><span class="spec-check">✓</span><span>Tamanho do reator e economia bruta/líquida mensal em GLP</span></li>
+              <li><span class="spec-check">✓</span><span>Plano de escoamento urbano (camlock) ou uso em jardim</span></li>
+              <li><span class="spec-check">✓</span><span>Condições à vista ou por financiamento verde bancário</span></li>
+            </ul>
+          </div>
+
+          <form class="diag-form" id="diagForm">
+            <div class="field">
+              <label for="fHotel">Hotel, pousada ou restaurante</label>
+              <input type="text" id="fHotel" name="hotel" placeholder="Ex.: Pousada Solar da Serra" required />
+            </div>
+
+            <div class="form-row-2">
+              <div class="field">
+                <label for="fVolume">Resíduos orgânicos / dia</label>
+                <select id="fVolume" name="volume">
+                  <option value="35">10 a 35 kg/dia (Pequeno)</option>
+                  <option value="50" selected>50 a 100 kg/dia (Médio)</option>
+                  <option value="200">200+ kg/dia (Resort / Hub)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="fAmbiente">Perfil de espaço</label>
+                <select id="fAmbiente" name="ambiente">
+                  <option value="Urbano sem jardim (tanque pulmão + camlock)">Urbano sem jardim</option>
+                  <option value="Com jardim / área verde (aplicação direta)">Com área verde / horta</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="field">
+                <label for="fCidade">Cidade / UF</label>
+                <input type="text" id="fCidade" name="cidade" placeholder="Ex.: Gramado / RS" required />
+              </div>
+              <div class="field">
+                <label for="fContato">WhatsApp ou e-mail</label>
+                <input type="text" id="fContato" name="contato" placeholder="(11) 99999-9999" required />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn--primary magnetic" style="width: 100%; margin-top: 0.35rem;">
+              Gerar pré-diagnóstico gratuito
+              <span class="btn__arrow">→</span>
+            </button>
+
+            <div class="form-success" id="formSuccess" hidden>
+              <strong style="color: var(--bio-emerald); font-family: var(--font-display); font-size: 1.15rem;">
+                Pré-diagnóstico gerado
+              </strong>
+              <p id="formSummaryText" style="font-size: 0.9rem; color: #d6e4dc;"></p>
+              <button type="button" class="btn btn--ghost btn--sm" id="btnResetForm" style="width: fit-content;">
+                Fazer nova simulação
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Editorial Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div style="max-width: 340px; display: grid; gap: 0.85rem;">
+          <a href="#topo" class="brand">
+            <span class="brand__mark" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C9.5 6 6 8.8 6 13.5C6 17.09 8.69 20 12 20C15.31 20 18 17.09 18 13.5C18 10.6 16.3 8.2 14.5 6.3C14.1 8.1 13.2 9.2 12 9.8C12.3 7.4 12.6 4.7 12 2Z" fill="#10f0a0"/>
+                <path d="M12 12.2C10.9 13.7 10 14.9 10 16.3C10 17.4 10.9 18.3 12 18.3C13.1 18.3 14 17.4 14 16.3C14 14.9 13.1 13.7 12 12.2Z" fill="#ff6b2b"/>
+              </svg>
+            </span>
+            <span>Gaseificou<span class="brand__accent">!</span></span>
+          </a>
+          <p style="font-size: 0.9rem; color: var(--ink-secondary);">
+            Biodigestão compacta turnkey, escoamento urbano com engate camlock e telemetria IoT para cozinhas de hotéis, pousadas e restaurantes.
+          </p>
+        </div>
+
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Solução</h4>
+            <ul>
+              <li><a href="#problema">O Problema</a></li>
+              <li><a href="#arquitetura">Arquitetura 4 Módulos</a></li>
+              <li><a href="#iot-esg">Telemetria IoT e QR ESG</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Viabilidade</h4>
+            <ul>
+              <li><a href="#simulador">Simulador de ROI</a></li>
+              <li><a href="#modelo">Modelo Híbrido</a></li>
+              <li><a href="#contato">Diagnóstico Gratuito</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-wordmark" aria-hidden="true">GASEIFICOU!</div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Gaseificou! · Biodigestão Turnkey</span>
+        <span class="mono">USO TÉRMICO 70–85% · ESCOAMENTO URBANO · IOT</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Libraries: Three.js, GSAP + ScrollTrigger, Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+
+  <script src="./js/hero-webgl.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
