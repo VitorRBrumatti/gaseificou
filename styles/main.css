@@ -17,8 +17,7 @@
 .scroll-progress__bar {
   height: 100%;
   width: 0%;
-  background: var(--grad-organic-to-gas);
-  box-shadow: 0 0 14px rgba(16, 240, 160, 0.7);
+  background: var(--bio-emerald);
   transition: width 0.08s linear;
 }
 
@@ -72,11 +71,10 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(16, 240, 160, 0.2), rgba(255, 107, 43, 0.18));
+  background: rgba(16, 240, 160, 0.12);
   border: 1px solid rgba(16, 240, 160, 0.4);
   display: grid;
   place-items: center;
-  box-shadow: 0 0 20px rgba(16, 240, 160, 0.25);
 }
 
 .brand__accent {
@@ -264,24 +262,14 @@
 }
 
 .section-lead {
-  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  font-size: clamp(1.06rem, 1.55vw, 1.24rem);
   color: var(--ink-secondary);
-  max-width: 60ch;
-  line-height: 1.65;
+  max-width: 58ch;
+  line-height: 1.6;
 }
 
-.text-gradient {
-  background: var(--grad-thermal);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.text-gradient-warm {
-  background: var(--grad-organic-to-gas);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.text-accent {
+  color: var(--bio-emerald);
 }
 
 .mono {
@@ -289,93 +277,77 @@
 }
 
 /* ==========================================================================
-   HERO SECTION (WebGL 3D Bio-Thermal Vortex)
+   HERO SECTION (Clean Matte Editorial + Scroll-Pass Centered Title)
    ========================================================================== */
 .hero {
   position: relative;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding-top: 120px;
+  justify-content: space-between;
+  padding-top: 132px;
   padding-bottom: 3rem;
   overflow: hidden;
-  background: radial-gradient(ellipse 80% 60% at 50% 35%, rgba(16, 240, 160, 0.09), transparent 70%),
-              radial-gradient(ellipse 55% 45% at 75% 65%, rgba(255, 107, 43, 0.08), transparent 70%),
-              var(--bg-obsidian);
-}
-
-.hero__canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero__vignette {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(6, 10, 8, 0.35) 0%, rgba(6, 10, 8, 0.12) 45%, rgba(6, 10, 8, 0.94) 100%);
+  background-color: var(--bg-obsidian);
 }
 
 .hero__inner {
   position: relative;
   z-index: 5;
-  display: grid;
-  gap: 2.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
 }
 
 .hero__content {
-  max-width: 920px;
-  display: grid;
-  gap: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2.25rem;
+  padding-block: clamp(2rem, 6vh, 4.5rem);
 }
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 6.7vw, 6.1rem);
+  font-size: clamp(3rem, 7.6vw, 7.2rem);
   font-weight: 800;
-  line-height: 0.97;
-  letter-spacing: -0.04em;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
   color: var(--ink-primary);
+  text-align: center;
+  max-width: 18ch;
 }
 
 .hero__title .line-wrap {
   display: block;
-  overflow: hidden;
+  overflow: visible;
   padding-bottom: 0.06em;
 }
 
 .hero__title .line-inner {
   display: inline-block;
-}
-
-.hero__subtitle {
-  font-size: clamp(1.05rem, 1.55vw, 1.28rem);
-  color: #c5d1ca;
-  max-width: 62ch;
-  line-height: 1.62;
+  will-change: transform, opacity;
 }
 
 .hero__cta-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
-  margin-top: 0.4rem;
 }
 
-.hero__trust-note {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.86rem;
-  color: var(--ink-secondary);
-  padding-left: 0.5rem;
+.hero__scroll-hint {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
 }
 
 /* Hero Telemetry Strip */
@@ -385,26 +357,25 @@
   gap: 1px;
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: rgba(244, 242, 236, 0.1);
-  border: 1px solid rgba(244, 242, 236, 0.12);
-  backdrop-filter: blur(18px);
+  background: var(--border-subtle);
+  border: 1px solid var(--border-subtle);
 }
 
 .metric-cell {
-  background: rgba(8, 14, 11, 0.78);
-  padding: 1.25rem 1.4rem;
+  background: var(--bg-surface);
+  padding: 1.35rem 1.5rem;
   display: grid;
-  gap: 0.35rem;
-  transition: background-color 0.3s ease;
+  gap: 0.4rem;
+  transition: background-color 0.25s ease;
 }
 
 .metric-cell:hover {
-  background: rgba(16, 28, 22, 0.92);
+  background: var(--bg-elevated);
 }
 
 .metric-cell__value {
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-size: clamp(1.45rem, 2.3vw, 1.95rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--ink-primary);
@@ -415,9 +386,9 @@
 }
 
 .metric-cell__label {
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   color: var(--ink-secondary);
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 /* ==========================================================================
@@ -641,18 +612,17 @@
 
 .eff-fill--thermal {
   width: 85%;
-  background: var(--grad-thermal);
-  box-shadow: 0 0 18px rgba(16, 240, 160, 0.45);
+  background: var(--bio-emerald);
 }
 
 .eff-fill--electric {
   width: 28%;
-  background: linear-gradient(90deg, #ff6b2b, #943414);
+  background: var(--flame-amber);
 }
 
 .thermal-banner__metrics {
   padding: clamp(2rem, 4vw, 3.25rem);
-  background: radial-gradient(circle at 85% 20%, rgba(16, 240, 160, 0.1), transparent 65%), #09110d;
+  background: var(--bg-surface);
   border-left: 1px solid rgba(244, 242, 236, 0.08);
   display: grid;
   align-content: center;
@@ -668,7 +638,7 @@
 }
 
 .section-dark--elevated {
-  background: linear-gradient(180deg, #070d0a 0%, #0b1410 50%, #060a08 100%);
+  background: #080f0c;
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
 }
@@ -678,8 +648,7 @@
   margin-top: 3rem;
   margin-bottom: 2.5rem;
   border-radius: var(--radius-lg);
-  background: radial-gradient(circle at 50% 0%, rgba(16, 240, 160, 0.08), transparent 65%),
-              #09110d;
+  background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   padding: clamp(1.25rem, 3vw, 2.25rem);
   position: relative;
@@ -808,8 +777,6 @@
 }
 
 .spotlight-card {
-  --mx: 50%;
-  --my: 50%;
   position: relative;
   border-radius: var(--radius-lg);
   background: var(--bg-surface);
@@ -819,31 +786,18 @@
   flex-direction: column;
   gap: 1.25rem;
   overflow: hidden;
-  transition: border-color 0.35s ease, transform 0.45s var(--ease-expo);
-}
-
-.spotlight-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(500px circle at var(--mx) var(--my), rgba(16, 240, 160, 0.11), transparent 55%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-.spotlight-card:hover::before {
-  opacity: 1;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.35s var(--ease-expo);
 }
 
 .spotlight-card:hover {
-  border-color: rgba(16, 240, 160, 0.35);
+  background: var(--bg-elevated);
+  border-color: rgba(16, 240, 160, 0.42);
   transform: translateY(-4px);
 }
 
 .spotlight-card.is-highlighted {
   border-color: var(--bio-emerald);
-  box-shadow: 0 0 0 1px rgba(16, 240, 160, 0.35), 0 20px 55px rgba(16, 240, 160, 0.09);
+  background: var(--bg-elevated);
 }
 
 .module-head {
@@ -1142,14 +1096,15 @@
   color: var(--ink-secondary);
 }
 
-/* Custom Range Slider */
+/* Custom Range Slider (Solid Flat Track) */
 .range-slider {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
   height: 10px;
   border-radius: var(--radius-pill);
-  background: linear-gradient(90deg, var(--bio-emerald) var(--pct, 15%), rgba(244, 242, 236, 0.14) var(--pct, 15%));
+  background: rgba(244, 242, 236, 0.16);
+  accent-color: var(--bio-emerald);
   outline: none;
   cursor: pointer;
 }
@@ -1238,8 +1193,8 @@
 
 /* Output Panel */
 .sim-output {
-  background: radial-gradient(circle at 90% 10%, rgba(16, 240, 160, 0.12), transparent 55%),
-              #0d1813;
+  background: var(--bg-elevated);
+  border: 1px solid rgba(16, 240, 160, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1493,9 +1448,8 @@
 /* Guest QR Experience Phone Mockup */
 .guest-phone-card {
   border-radius: var(--radius-lg);
-  background: radial-gradient(circle at 50% 0%, rgba(16, 240, 160, 0.16), transparent 65%),
-              #0d1813;
-  border: 1px solid rgba(16, 240, 160, 0.22);
+  background: var(--bg-elevated);
+  border: 1px solid rgba(16, 240, 160, 0.24);
   padding: 1.85rem;
   display: flex;
   flex-direction: column;
@@ -1601,9 +1555,8 @@
 }
 
 .pricing-card--featured {
-  background: radial-gradient(circle at 100% 0%, rgba(16, 240, 160, 0.14), transparent 55%),
-              #0d1813;
-  border-color: rgba(16, 240, 160, 0.35);
+  background: var(--bg-elevated);
+  border-color: rgba(16, 240, 160, 0.42);
 }
 
 .price-tag {
@@ -1747,10 +1700,8 @@
 .cta-shell {
   border-radius: 32px;
   padding: clamp(2rem, 5vw, 4rem);
-  background: radial-gradient(circle at 15% 15%, rgba(16, 240, 160, 0.16), transparent 50%),
-              radial-gradient(circle at 85% 85%, rgba(255, 107, 43, 0.13), transparent 50%),
-              #0c1612;
-  border: 1px solid rgba(16, 240, 160, 0.25);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(2rem, 4vw, 3.5rem);

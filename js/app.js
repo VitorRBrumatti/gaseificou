@@ -92,22 +92,39 @@
 
     const heroLines = document.querySelectorAll('#heroTitle .line-inner');
     gsap.from(heroLines, {
-      yPercent: 115,
+      yPercent: 90,
       opacity: 0,
-      duration: 1.05,
-      stagger: 0.14,
+      duration: 0.95,
+      stagger: 0.12,
       ease: 'power4.out',
-      delay: 0.1,
+      delay: 0.08,
     });
 
     gsap.from('.hero-reveal', {
-      y: 26,
+      y: 22,
       opacity: 0,
-      duration: 0.85,
+      duration: 0.8,
       stagger: 0.1,
       ease: 'power3.out',
-      delay: 0.35,
+      delay: 0.28,
     });
+
+    // Scroll-scrubbed kinetic pass on the centered Hero title
+    if (typeof ScrollTrigger !== 'undefined') {
+      const heroTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#heroSection',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.7,
+        },
+      });
+
+      heroTl
+        .to('.hero-line-1', { xPercent: -26, opacity: 0.15, ease: 'none' }, 0)
+        .to('.hero-line-2', { xPercent: 26, opacity: 0.15, ease: 'none' }, 0)
+        .to('#heroTitle', { y: -45, ease: 'none' }, 0);
+    }
 
     document.querySelectorAll('.reveal-up').forEach((el) => {
       gsap.from(el, {
@@ -415,21 +432,12 @@
         y: h - ((v - minV) / (maxV - minV)) * (h - 22) - 10,
       }));
 
-      const fillGrad = ctx.createLinearGradient(0, 0, 0, h);
-      if (alertActive) {
-        fillGrad.addColorStop(0, 'rgba(255, 107, 43, 0.34)');
-        fillGrad.addColorStop(1, 'rgba(255, 107, 43, 0)');
-      } else {
-        fillGrad.addColorStop(0, 'rgba(16, 240, 160, 0.3)');
-        fillGrad.addColorStop(1, 'rgba(16, 240, 160, 0)');
-      }
-
       ctx.beginPath();
       ctx.moveTo(points[0].x, h);
       points.forEach((p) => ctx.lineTo(p.x, p.y));
       ctx.lineTo(points[points.length - 1].x, h);
       ctx.closePath();
-      ctx.fillStyle = fillGrad;
+      ctx.fillStyle = alertActive ? 'rgba(255, 107, 43, 0.16)' : 'rgba(16, 240, 160, 0.14)';
       ctx.fill();
 
       ctx.beginPath();

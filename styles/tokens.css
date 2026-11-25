@@ -1,42 +1,36 @@
 /* ==========================================================================
-   GASEIFICOU! — Design Tokens & Reset
-   Neo-Industrial Bio-Thermal Editorial System
+   GASEIFICOU! — Design Tokens & Reset (Flat Neo-Industrial, Zero Gradients)
    ========================================================================== */
 
 :root {
-  /* Core Surfaces */
+  /* Core Solid Surfaces */
   --bg-obsidian: #060a08;
-  --bg-surface: #0c1310;
-  --bg-elevated: #111b17;
-  --bg-card: rgba(16, 26, 22, 0.72);
-  --bg-glass: rgba(12, 19, 16, 0.65);
+  --bg-surface: #0b120e;
+  --bg-elevated: #101a15;
+  --bg-card: #0d1612;
+  --bg-glass: rgba(10, 16, 13, 0.88);
 
   /* Editorial Light Contrast Surface */
   --bg-paper: #f3f1ea;
   --bg-paper-card: #ffffff;
   --ink-dark: #0a120e;
-  --ink-dark-muted: #43524a;
+  --ink-dark-muted: #3d4b44;
 
   /* Ink & Borders (Dark) */
   --ink-primary: #f4f2ec;
-  --ink-secondary: #a2b2a9;
-  --ink-muted: #687b71;
-  --border-subtle: rgba(244, 242, 236, 0.09);
-  --border-strong: rgba(244, 242, 236, 0.18);
-  --border-dark: rgba(10, 18, 14, 0.12);
+  --ink-secondary: #b5c3bb;
+  --ink-muted: #7e9086;
+  --border-subtle: rgba(244, 242, 236, 0.11);
+  --border-strong: rgba(244, 242, 236, 0.24);
+  --border-dark: rgba(10, 18, 14, 0.14);
 
-  /* Bio-Thermal Signature Accents */
+  /* Solid Accents */
   --bio-emerald: #10f0a0;
-  --bio-emerald-dim: rgba(16, 240, 160, 0.14);
+  --bio-emerald-dim: rgba(16, 240, 160, 0.12);
   --bio-teal: #00d4c8;
   --flame-amber: #ff6b2b;
-  --flame-amber-dim: rgba(255, 107, 43, 0.14);
+  --flame-amber-dim: rgba(255, 107, 43, 0.12);
   --flame-gold: #ffb84d;
-
-  /* Gradients */
-  --grad-thermal: linear-gradient(135deg, #10f0a0 0%, #00d4c8 55%, #38bdf8 100%);
-  --grad-organic-to-gas: linear-gradient(90deg, #ff6b2b 0%, #ffb84d 35%, #10f0a0 75%, #00d4c8 100%);
-  --grad-glow: radial-gradient(circle at 50% 0%, rgba(16, 240, 160, 0.16), transparent 65%);
 
   /* Typography */
   --font-display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
@@ -48,10 +42,10 @@
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --radius-sm: 10px;
   --radius-md: 18px;
-  --radius-lg: 28px;
+  --radius-lg: 26px;
   --radius-pill: 999px;
 
-  /* Motion Curves (60fps.design / Framer inspired) */
+  /* Motion Curves */
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
@@ -85,7 +79,6 @@ body {
   color: var(--ink-primary);
   line-height: 1.6;
   overflow-x: hidden;
-  selection-background-color: var(--bio-emerald);
 }
 
 ::selection {

@@ -64,27 +64,15 @@
 
   <main id="topo">
     <!-- ====================================================================
-         SECTION 1: HERO (Three.js Bio-Thermal Particle Vortex)
+         SECTION 1: HERO (Centered Kinetic Scroll-Pass Title, Flat Matte)
          ==================================================================== -->
-    <section class="hero">
-      <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
-      <div class="hero__vignette" aria-hidden="true"></div>
-
+    <section class="hero" id="heroSection">
       <div class="container hero__inner">
         <div class="hero__content">
-          <span class="eyebrow hero-reveal">
-            <span class="pulse-dot"></span>
-            Biodigestão turnkey para hotelaria e restaurantes
-          </span>
-
           <h1 class="hero__title" id="heroTitle">
-            <span class="line-wrap"><span class="line-inner">O resto do seu buffet</span></span>
-            <span class="line-wrap"><span class="line-inner">vira <span class="text-gradient">gás para o seu hotel.</span></span></span>
+            <span class="line-wrap"><span class="line-inner hero-line-1">O resto do seu buffet</span></span>
+            <span class="line-wrap"><span class="line-inner hero-line-2">vira <span class="text-accent">gás para o seu hotel.</span></span></span>
           </h1>
-
-          <p class="hero__subtitle hero-reveal">
-            Sistema compacto entregue pronto para operar. Ele converte os resíduos orgânicos de hotéis, pousadas e restaurantes em gás próprio para aquecimento de água e caldeiras, com retirada garantida do biofertilizante em área urbana e monitoramento IoT.
-          </p>
 
           <div class="hero__cta-row hero-reveal">
             <a href="#simulador" class="btn btn--primary magnetic">
@@ -94,10 +82,6 @@
             <a href="#arquitetura" class="btn btn--ghost magnetic">
               Ver arquitetura em 4 módulos
             </a>
-            <span class="hero__trust-note">
-              <span class="pulse-dot pulse-dot--amber"></span>
-              Equipamento próprio desde o Dia 1 · Funciona em área urbana
-            </span>
           </div>
         </div>
 
@@ -264,7 +248,7 @@
           <div>
             <span class="eyebrow">02 · Arquitetura em 4 módulos</span>
             <h2 class="section-title" style="margin-top: 1rem;">
-              Sistema completo em <span class="text-gradient">4 módulos padronizados.</span>
+              Sistema completo em <span class="text-accent">4 módulos padronizados.</span>
             </h2>
           </div>
           <p class="section-lead">
@@ -457,31 +441,12 @@
           <div class="hardware-stage">
             <svg class="hardware-iso-svg" viewBox="0 0 820 460" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Maquete técnica interativa do Kit Urbano 35 kg/dia Gaseificou">
               <defs>
-                <radialGradient id="isoGlow" cx="50%" cy="48%" r="55%">
-                  <stop offset="0%" stop-color="#10f0a0" stop-opacity="0.16"/>
-                  <stop offset="100%" stop-color="#060a08" stop-opacity="0"/>
-                </radialGradient>
-                <linearGradient id="tankBody" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#111d18"/>
-                  <stop offset="45%" stop-color="#1d3027"/>
-                  <stop offset="100%" stop-color="#0b1410"/>
-                </linearGradient>
-                <linearGradient id="bufferBody" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#0d1b1b"/>
-                  <stop offset="50%" stop-color="#163132"/>
-                  <stop offset="100%" stop-color="#081314"/>
-                </linearGradient>
-                <linearGradient id="liquidFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#00d4c8" stop-opacity="0.45"/>
-                  <stop offset="100%" stop-color="#10f0a0" stop-opacity="0.16"/>
-                </linearGradient>
                 <pattern id="isoGrid" width="32" height="32" patternUnits="userSpaceOnUse">
                   <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(244,242,236,0.045)" stroke-width="1"/>
                 </pattern>
               </defs>
 
               <rect width="820" height="460" fill="url(#isoGrid)"/>
-              <rect width="820" height="460" fill="url(#isoGlow)"/>
 
               <!-- Base Platform -->
               <polygon points="90,340 420,425 745,330 415,255" fill="#0d1512" stroke="rgba(244,242,236,0.14)" stroke-width="1.5"/>
@@ -507,12 +472,12 @@
                 <path class="pipe-flow pipe-flow--amber" d="M 148 206 V 290 H 206"/>
 
                 <ellipse cx="275" cy="316" rx="86" ry="26" fill="#070c0a" stroke="rgba(16,240,160,0.3)" stroke-width="1.5"/>
-                <rect x="189" y="148" width="172" height="168" fill="url(#tankBody)" stroke="rgba(244,242,236,0.22)" stroke-width="1.5"/>
+                <rect x="189" y="148" width="172" height="168" fill="#13211b" stroke="rgba(244,242,236,0.22)" stroke-width="1.5"/>
                 <path d="M 189 148 C 189 96 361 96 361 148 Z" fill="#11221b" stroke="rgba(16,240,160,0.55)" stroke-width="1.8"/>
                 <ellipse cx="275" cy="148" rx="86" ry="22" fill="#142921" stroke="rgba(16,240,160,0.4)" stroke-width="1.4"/>
 
                 <rect x="242" y="182" width="66" height="108" rx="10" fill="#070f0c" stroke="rgba(16,240,160,0.35)" stroke-width="1.2"/>
-                <rect x="246" y="218" width="58" height="68" rx="6" fill="url(#liquidFill)"/>
+                <rect x="246" y="218" width="58" height="68" rx="6" fill="rgba(0,212,200,0.28)"/>
                 <circle class="bio-bubble b1" cx="262" cy="264" r="3.5" fill="#10f0a0"/>
                 <circle class="bio-bubble b2" cx="278" cy="250" r="4.5" fill="#00d4c8"/>
                 <circle class="bio-bubble b3" cx="290" cy="272" r="3" fill="#10f0a0"/>
@@ -545,7 +510,7 @@
               <!-- 03 · TANQUE PULMÃO 1.000 L + CAMLOCK -->
               <g class="iso-part" data-part="pulmao">
                 <ellipse cx="640" cy="316" rx="64" ry="20" fill="#070c0a" stroke="rgba(0,212,200,0.35)" stroke-width="1.5"/>
-                <rect x="576" y="196" width="128" height="120" fill="url(#bufferBody)" stroke="rgba(0,212,200,0.4)" stroke-width="1.5"/>
+                <rect x="576" y="196" width="128" height="120" fill="#102223" stroke="rgba(0,212,200,0.4)" stroke-width="1.5"/>
                 <ellipse cx="640" cy="196" rx="64" ry="18" fill="#132b2d" stroke="rgba(0,212,200,0.55)" stroke-width="1.5"/>
                 <rect x="628" y="220" width="24" height="74" rx="6" fill="#060c0c" stroke="rgba(0,212,200,0.4)"/>
                 <rect x="631" y="246" width="18" height="45" rx="4" fill="#00d4c8" fill-opacity="0.65"/>
@@ -605,7 +570,7 @@
           <div>
             <span class="eyebrow">03 · Calculadora de viabilidade</span>
             <h2 class="section-title" style="margin-top: 1rem;">
-              Simule a economia de <span class="text-gradient">GLP e o payback</span> do seu hotel.
+              Simule a economia de <span class="text-accent">GLP e o payback</span> do seu hotel.
             </h2>
           </div>
           <p class="section-lead">
@@ -747,7 +712,7 @@
           <div>
             <span class="eyebrow">04 · IoT e experiência ESG</span>
             <h2 class="section-title" style="margin-top: 1rem;">
-              Sensores no reator. <span class="text-gradient">Dados abertos ao hóspede.</span>
+              Sensores no reator. <span class="text-accent">Dados abertos ao hóspede.</span>
             </h2>
           </div>
           <p class="section-lead">
@@ -871,7 +836,7 @@
           <div>
             <span class="eyebrow">05 · Modelo híbrido</span>
             <h2 class="section-title" style="margin-top: 1rem;">
-              Venda direta do sistema + <span class="text-gradient">assinatura leve de IoT.</span>
+              Venda direta do sistema + <span class="text-accent">assinatura leve de IoT.</span>
             </h2>
           </div>
           <p class="section-lead">
@@ -993,7 +958,7 @@
           <div style="display: grid; gap: 1.35rem;">
             <span class="eyebrow">Pré-dimensionamento gratuito</span>
             <h2 class="section-title">
-              Receba o cálculo técnico para a <span class="text-gradient">sua operação.</span>
+              Receba o cálculo técnico para a <span class="text-accent">sua operação.</span>
             </h2>
             <p class="section-lead">
               Informe o volume estimado de restos orgânicos e a cidade. Montamos o dimensionamento do reator, o retorno previsto em GLP e a opção de retirada semanal do biofertilizante na sua região.
@@ -1108,13 +1073,11 @@
     </div>
   </footer>
 
-  <!-- Libraries: Three.js, GSAP + ScrollTrigger, Lenis Smooth Scroll -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <!-- Libraries: GSAP + ScrollTrigger, Lenis Smooth Scroll -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 
-  <script src="./js/hero-webgl.js"></script>
   <script src="./js/app.js"></script>
 </body>
 </html>
