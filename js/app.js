@@ -148,7 +148,7 @@
       },
       2: {
         tag: 'MÓDULO 02 · GÁS E SEGURANÇA TÉRMICA',
-        text: 'Filtragem obrigatória de H₂S, dreno de umidade contra corrosão, válvulas, corta-chamas, manômetro, booster de baixa pressão e adaptação dos queimadores do fogão.',
+        text: 'Filtragem obrigatória de H₂S, dreno de umidade contra corrosão, válvulas, corta-chamas, manômetro, booster de baixa pressão e conexão direta aos aquecedores de água e caldeiras.',
         metric: 'Eficiência térmica: 70%–85%',
       },
       3: {
@@ -225,7 +225,7 @@
       },
       gas: {
         title: '02 · Skid de filtragem H₂S e segurança térmica',
-        desc: 'Filtro dessulfurizador obrigatório contra corrosão, dreno de umidade, válvulas, corta-chamas, manômetro e booster de baixa pressão para os queimadores adaptados do fogão.',
+        desc: 'Filtro dessulfurizador obrigatório contra corrosão, dreno de umidade, válvulas, corta-chamas, manômetro e booster de baixa pressão para alimentação de aquecedores de água, boilers e caldeiras.',
         s1l: 'Eficiência térmica',
         s1v: '70% – 85%',
         s2l: 'Proteção',

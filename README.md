@@ -1,6 +1,6 @@
 # Gaseificou!
 
-Landing page do **Gaseificou!**, sistema turnkey de biodigestão compacta para hotéis, pousadas e restaurantes. Converte resíduos orgânicos de cozinhas profissionais em gás térmico próprio para substituir o GLP, com logística urbana de escoamento de biofertilizante e telemetria IoT.
+Landing page do **Gaseificou!**, sistema turnkey de biodigestão compacta para hotéis, pousadas e restaurantes. Converte resíduos orgânicos em gás térmico próprio para aquecimento de água e substituição do GLP, com logística urbana de escoamento de biofertilizante e telemetria IoT.
 
 ## Estrutura
 
