@@ -575,8 +575,8 @@ select:focus-visible {
   .energy-table tr { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(244,242,236,0.14); padding: 0.75rem 0; }
   .energy-table tbody th { grid-column: 1 / -1; width: auto; border: none; padding: 0 0 0.4rem; }
   .energy-table td { border: none; padding: 0 0.75rem 0 0; }
-  .energy-table td:nth-of-type(1)::before { content: "Térmico: "; font-weight: 600; color: var(--bio-emerald); }
-  .energy-table td:nth-of-type(2)::before { content: "Elétrico: "; font-weight: 600; color: #f08a5d; }
+  .energy-table td:nth-of-type(1)::before { content: "Padrão Gaseificou!: "; font-weight: 600; color: var(--bio-emerald); }
+  .energy-table td:nth-of-type(2)::before { content: "Referência: "; font-weight: 600; color: var(--ink-secondary); }
 }
 
 /* ==========================================================================
