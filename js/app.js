@@ -101,6 +101,22 @@
       delay: 0.25,
     });
 
+    // Strong entrance for Hero top KPI numbers
+    gsap.fromTo(
+      '.metric-cell__value',
+      { y: 34, scale: 1.24, opacity: 0, filter: 'blur(8px)' },
+      {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        filter: 'blur(0px)',
+        duration: 0.95,
+        stagger: 0.1,
+        ease: 'expo.out',
+        delay: 0.32,
+      }
+    );
+
     // Centered Hero title passes horizontally as user scrolls
     if (typeof ScrollTrigger !== 'undefined') {
       const heroTl = gsap.timeline({
@@ -144,38 +160,81 @@
       },
     });
 
-    // Smooth staggered entrance + tabular count-up for the 4 Glassmorphism Modules
+    // High-impact "data arriving big" choreography for the 4 Glassmorphism Modules
     if (document.getElementById('modulesGrid')) {
-      gsap.from('.module-glass', {
-        y: 26,
-        opacity: 0,
-        duration: 0.85,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '#modulesGrid',
-          start: 'top 84%',
-          once: true,
-        },
-      });
-
       const intFmt = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 0 });
-      document.querySelectorAll('#modulesGrid .stat-count').forEach((el) => {
-        const target = Number(el.dataset.target);
-        if (!Number.isFinite(target)) return;
-        const counter = { val: 0 };
-        gsap.to(counter, {
-          val: target,
-          duration: 1.35,
-          ease: 'power2.out',
+      const cards = document.querySelectorAll('#modulesGrid .module-glass');
+
+      cards.forEach((card, index) => {
+        const heroNum = card.querySelector('.module-hero-stat__num');
+        const heroLabel = card.querySelector('.module-hero-stat__label');
+        const datums = card.querySelectorAll('.module-datum');
+        const counters = card.querySelectorAll('.stat-count');
+
+        const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: el.closest('.module-glass') || '#modulesGrid',
+            trigger: card,
             start: 'top 86%',
             once: true,
           },
-          onUpdate: () => {
-            el.textContent = intFmt.format(Math.round(counter.val));
-          },
+          delay: (index % 2) * 0.12,
+        });
+
+        tl.from(card, {
+          y: 32,
+          opacity: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+        });
+
+        if (heroNum) {
+          tl.fromTo(
+            heroNum,
+            { y: 52, scale: 1.32, opacity: 0, filter: 'blur(10px)' },
+            {
+              y: 0,
+              scale: 1,
+              opacity: 1,
+              filter: 'blur(0px)',
+              duration: 0.95,
+              ease: 'expo.out',
+            },
+            '-=0.52'
+          );
+        }
+
+        if (heroLabel) {
+          tl.from(
+            heroLabel,
+            { y: 16, opacity: 0, duration: 0.55, ease: 'power2.out' },
+            '-=0.65'
+          );
+        }
+
+        if (datums.length) {
+          tl.from(
+            datums,
+            { y: 20, opacity: 0, duration: 0.55, stagger: 0.08, ease: 'power3.out' },
+            '-=0.55'
+          );
+        }
+
+        counters.forEach((el) => {
+          const target = Number(el.dataset.target);
+          if (!Number.isFinite(target)) return;
+          const obj = { val: 0 };
+          tl.to(
+            obj,
+            {
+              val: target,
+              duration: 1.25,
+              ease: 'power3.out',
+              onUpdate: () => {
+                el.textContent = intFmt.format(Math.round(obj.val));
+              },
+            },
+            0.12
+          );
         });
       });
     }
@@ -242,12 +301,20 @@
       if (!m3HeroNum) return;
       if (m3HeroUnit) m3HeroUnit.textContent = unit;
       if (m3HeroLabel) m3HeroLabel.textContent = label;
+      const heroWrap = m3HeroNum.closest('.module-hero-stat__num');
       if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+        if (heroWrap) {
+          gsap.fromTo(
+            heroWrap,
+            { y: 24, scale: 1.22, opacity: 0.2, filter: 'blur(6px)' },
+            { y: 0, scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.65, ease: 'expo.out' }
+          );
+        }
         const obj = { v: 0 };
         gsap.to(obj, {
           v: targetNum,
-          duration: 0.65,
-          ease: 'power2.out',
+          duration: 0.7,
+          ease: 'power3.out',
           onUpdate: () => {
             m3HeroNum.textContent = isDecimal
               ? obj.v.toFixed(1).replace('.', ',')
@@ -500,6 +567,13 @@
         range.value = kg;
         kgInput.value = kg;
         update();
+        if (typeof gsap !== 'undefined' && !prefersReducedMotion && outMonthlyGlp) {
+          gsap.fromTo(
+            outMonthlyGlp,
+            { scale: 1.12, y: 12, opacity: 0.4 },
+            { scale: 1, y: 0, opacity: 1, duration: 0.45, ease: 'expo.out' }
+          );
+        }
       });
     });
 

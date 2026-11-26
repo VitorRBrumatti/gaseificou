@@ -710,25 +710,27 @@
 
 .module-hero-stat {
   display: grid;
-  gap: 0.35rem;
+  gap: 0.45rem;
 }
 
 .module-hero-stat__num {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 5.2vw, 4.6rem);
+  font-size: clamp(3.6rem, 6vw, 5.5rem);
   font-weight: 800;
-  line-height: 0.96;
-  letter-spacing: -0.045em;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
   color: var(--ink-primary);
   font-variant-numeric: tabular-nums;
+  transform-origin: left center;
+  will-change: transform, opacity, filter;
 }
 
 .module-hero-stat__num small {
-  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
-  font-weight: 600;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  font-weight: 700;
   letter-spacing: 0;
   color: var(--bio-emerald);
-  margin-left: 0.25rem;
+  margin-left: 0.28rem;
 }
 
 .module-hero-stat__num--amber small {
