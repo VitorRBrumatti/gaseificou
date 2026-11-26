@@ -11,7 +11,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  z-index: 1000;
+  z-index: var(--z-progress);
   pointer-events: none;
 }
 
@@ -22,14 +22,14 @@
   transition: width 0.08s linear;
 }
 
-/* --- Floating Navigation (Preserved) --- */
+/* --- Floating Navigation (Rounded + Glassmorphism) --- */
 .site-header {
   position: fixed;
   top: 16px;
   left: 50%;
   transform: translateX(-50%);
   width: min(calc(100% - 24px), 1240px);
-  z-index: 900;
+  z-index: var(--z-nav);
 }
 
 .nav-shell {
@@ -39,11 +39,11 @@
   gap: 1rem;
   padding: 0.55rem 0.7rem 0.55rem 1.25rem;
   border-radius: var(--radius-pill);
-  background: rgba(8, 14, 11, 0.68);
-  border: 1px solid rgba(244, 242, 236, 0.13);
+  background: rgba(11, 16, 13, 0.72);
+  border: 1px solid rgba(244, 242, 236, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 24px rgba(0, 0, 0, 0.28);
   backdrop-filter: blur(20px) saturate(140%);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.36);
 }
 
 .brand {
@@ -137,29 +137,39 @@
   cursor: pointer;
 }
 
-/* --- Buttons --- */
+/* --- Buttons (Better-UI Tactile Micro-Interactions & 44px Target) --- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding: 0.9rem 1.6rem;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
   border-radius: var(--radius-pill);
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: -0.01em;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.3s var(--ease-spring), background-color 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.18s var(--ease-out), background-color 0.18s var(--ease-out), border-color 0.18s var(--ease-out);
+}
+
+.btn:active,
+.rail-step:active,
+.preset-btn:active,
+.mode-tabs__btn:active,
+.cad-nav__btn:active {
+  transform: scale(0.97) !important;
 }
 
 .btn--sm {
-  padding: 0.58rem 1.15rem;
+  min-height: 40px;
+  padding: 0.52rem 1.15rem;
   font-size: 0.85rem;
 }
 
 .btn--rect {
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
 }
 
 .btn--primary {
@@ -274,10 +284,10 @@
 
 .hero__title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 7.6vw, 7.2rem);
+  font-size: clamp(2.75rem, 6.2vw, 5.75rem);
   font-weight: 800;
-  line-height: 0.96;
-  letter-spacing: -0.045em;
+  line-height: 0.98;
+  letter-spacing: -0.036em;
   color: var(--ink-primary);
   text-align: center;
   max-width: 18ch;
@@ -834,10 +844,10 @@ select:focus-visible {
 
 .module-hero-stat__num {
   font-family: var(--font-display);
-  font-size: clamp(3.6rem, 6vw, 5.5rem);
+  font-size: clamp(3.2rem, 5.2vw, 4.75rem);
   font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.05em;
+  line-height: 0.95;
+  letter-spacing: -0.038em;
   color: var(--ink-primary);
   font-variant-numeric: tabular-nums;
   transform-origin: left center;
@@ -941,16 +951,17 @@ select:focus-visible {
 }
 
 .mode-tabs__btn {
+  min-height: 44px;
   padding: 0.62rem 0.85rem;
   border: none;
   background: transparent;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: var(--ink-secondary);
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.18s var(--ease-out), color 0.18s var(--ease-out), transform 0.15s var(--ease-out);
 }
 
 .mode-tabs__btn + .mode-tabs__btn {
@@ -1002,15 +1013,16 @@ select:focus-visible {
 }
 
 .cad-nav__btn {
-  padding: 0.45rem 0.9rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
   background: transparent;
   border: none;
   border-right: 1px solid var(--line-dark);
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   color: var(--ink-secondary);
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.18s var(--ease-out), color 0.18s var(--ease-out), transform 0.15s var(--ease-out);
 }
 
 .cad-nav__btn:last-child {
@@ -1452,10 +1464,12 @@ select:focus-visible {
 }
 
 .calc-note {
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   color: var(--ink-secondary);
-  border-left: 2px solid var(--bio-emerald);
-  padding-left: 1rem;
+  padding: 1rem 1.15rem;
+  background: rgba(16, 232, 154, 0.05);
+  border: 1px solid rgba(16, 232, 154, 0.22);
+  border-radius: var(--radius-sm);
 }
 
 .calc-note strong {
@@ -1745,7 +1759,8 @@ select:focus-visible {
 
 .form-success {
   padding: 1.5rem;
-  border-left: 2px solid var(--bio-emerald);
+  border: 1px solid rgba(16, 232, 154, 0.32);
+  border-radius: var(--radius-sm);
   background: var(--bg-surface);
   display: grid;
   gap: 0.9rem;

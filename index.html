@@ -214,7 +214,6 @@
       <div class="container">
         <div class="section-header-split">
           <div>
-            <span class="section-kicker">02 / Arquitetura turnkey</span>
             <h2 class="section-title">
               Sistema completo em <span class="text-accent">4 módulos padronizados.</span>
             </h2>
@@ -624,7 +623,6 @@
       <div class="container">
         <div class="section-header-split">
           <div>
-            <span class="section-kicker">03 / Calculadora de viabilidade</span>
             <h2 class="section-title">
               Simule economia de <span class="text-accent">GLP e payback</span> por estabelecimento.
             </h2>
@@ -784,7 +782,6 @@
       <div class="container">
         <div class="section-header-split">
           <div>
-            <span class="section-kicker">04 / IoT e transparência ESG</span>
             <h2 class="section-title">
               Sensores no reator. <span class="text-accent">Dados abertos ao público.</span>
             </h2>
@@ -897,7 +894,6 @@
       <div class="container">
         <div class="cta-split reveal-up">
           <div style="display: grid; gap: 1.35rem;">
-            <span class="section-kicker" style="margin-bottom: 0;">05 / Pré-dimensionamento</span>
             <h2 class="section-title">
               Quer se aprofundar nos números do <span class="text-accent">seu estabelecimento?</span>
             </h2>
@@ -905,16 +901,16 @@
               Preencha em menos de 1 minuto. Você recebe na hora o cálculo base em GLP e a gente mapeia a retirada semanal do biofertilizante na sua cidade.
             </p>
             <ul class="spec-list">
-              <li><span class="spec-dash">—</span><span>Tamanho do reator e saldo líquido mensal estimado</span></li>
-              <li><span class="spec-dash">—</span><span>Plano de escoamento urbano (camlock) ou uso em área verde</span></li>
-              <li><span class="spec-dash">—</span><span>Opções à vista ou por financiamento verde bancário</span></li>
+              <li><span class="spec-dash">→</span><span>Tamanho do reator e saldo líquido mensal estimado</span></li>
+              <li><span class="spec-dash">→</span><span>Plano de escoamento urbano (camlock) ou uso em área verde</span></li>
+              <li><span class="spec-dash">→</span><span>Opções à vista ou por financiamento verde bancário</span></li>
             </ul>
           </div>
 
           <form class="diag-form" id="diagForm">
             <div class="field">
               <label for="fEstabelecimento">Nome do estabelecimento</label>
-              <input type="text" id="fEstabelecimento" name="estabelecimento" placeholder="Ex.: Unidade Centro / Rede X" required />
+              <input type="text" id="fEstabelecimento" name="estabelecimento" autocomplete="organization" placeholder="Ex.: Unidade Centro / Rede X" required />
             </div>
 
             <div class="form-row-2">
@@ -938,20 +934,20 @@
             <div class="form-row-2">
               <div class="field">
                 <label for="fCidade">Cidade / UF</label>
-                <input type="text" id="fCidade" name="cidade" placeholder="Ex.: São Paulo / SP" required />
+                <input type="text" id="fCidade" name="cidade" autocomplete="address-level2" placeholder="Ex.: São Paulo / SP" required />
               </div>
               <div class="field">
                 <label for="fContato">WhatsApp ou e-mail</label>
-                <input type="text" id="fContato" name="contato" placeholder="(11) 99999-9999" required />
+                <input type="text" id="fContato" name="contato" autocomplete="tel" placeholder="(11) 99999-9999" required />
               </div>
             </div>
 
             <button type="submit" class="btn btn--primary btn--rect magnetic" style="width: 100%; margin-top: 0.35rem;">
-              Gerar pré-diagnóstico gratuito
+              Calcular dimensionamento gratuito
               <span class="btn__arrow">→</span>
             </button>
 
-            <div class="form-success" id="formSuccess" hidden>
+            <div class="form-success" id="formSuccess" role="status" aria-live="polite" hidden>
               <strong style="color: var(--bio-emerald); font-family: var(--font-display); font-size: 1.15rem;">
                 Pré-diagnóstico gerado
               </strong>
