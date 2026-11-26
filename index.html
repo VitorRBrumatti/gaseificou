@@ -13,6 +13,14 @@
 
   <link rel="stylesheet" href="./styles/tokens.css" />
   <link rel="stylesheet" href="./styles/main.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.172.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.172.0/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true">
@@ -447,127 +455,36 @@
           </div>
 
           <div class="hardware-cad__body">
-            <div class="hardware-stage">
-              <svg class="hardware-iso-svg" viewBox="0 0 860 440" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Desenho técnico interativo do Kit Urbano 35 kg/dia">
-                <defs>
-                  <pattern id="cadGrid" width="28" height="28" patternUnits="userSpaceOnUse">
-                    <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(244,242,236,0.045)" stroke-width="1"/>
-                  </pattern>
-                </defs>
+            <div class="hardware-stage" id="hardwareStage">
+              <div class="cad3d-viewport" id="cad3dViewport"></div>
 
-                <rect width="860" height="440" fill="url(#cadGrid)"/>
+              <!-- 3D -> 2D Projected Interactive Callout Pins & Flow Markers -->
+              <div class="cad3d-hud" id="cad3dPins" aria-label="Pontos interativos do modelo 3D">
+                <button type="button" class="cad3d-pin is-active" data-anchor="reator" data-hotspot="reator" aria-label="Focar 01 Reator anaeróbico">01</button>
+                <button type="button" class="cad3d-pin" data-anchor="gas" data-hotspot="gas" aria-label="Focar 02 Skid Gás e H2S">02</button>
+                <button type="button" class="cad3d-pin" data-anchor="pulmao" data-hotspot="pulmao" aria-label="Focar 03 Pulmão e Camlock">03</button>
+                <button type="button" class="cad3d-pin" data-anchor="iot" data-hotspot="iot" aria-label="Focar 04 Painel IoT">04</button>
 
-                <!-- Technical Floor Datum Line -->
-                <line x1="40" y1="364" x2="820" y2="364" stroke="rgba(244,242,236,0.22)" stroke-width="1"/>
-                <text x="44" y="382" fill="#76887e" font-family="JetBrains Mono" font-size="10">DATUM 0.00m · BASE TÉCNICA COMPACTA</text>
+                <span class="cad3d-tag cad3d-tag--amber" data-anchor="carga" aria-hidden="true">CARGA 35 kg/d</span>
+                <span class="cad3d-tag cad3d-tag--emerald" data-anchor="saida" aria-hidden="true">SAÍDA TÉRMICA → Boiler</span>
+              </div>
 
-                <!-- Flow Piping (Orthogonal CAD Routing) -->
-                <!-- Organic Feed -->
-                <path class="pipe-base" d="M 102 252 V 322 H 168"/>
-                <path class="pipe-flow pipe-flow--amber" d="M 102 252 V 322 H 168"/>
+              <!-- Mini CAD Toolbar -->
+              <div class="cad3d-toolbar" role="toolbar" aria-label="Controles do visualizador 3D">
+                <button type="button" class="cad3d-tool" id="cadBtnOverview">Vista Geral</button>
+                <button type="button" class="cad3d-tool is-active" id="cadBtnXray" aria-pressed="true">Raio-X</button>
+                <button type="button" class="cad3d-tool is-active" id="cadBtnFlow" aria-pressed="true">Fluxo</button>
+                <button type="button" class="cad3d-tool cad3d-tool--icon" id="cadBtnZoomIn" aria-label="Aproximar zoom">+</button>
+                <button type="button" class="cad3d-tool cad3d-tool--icon" id="cadBtnZoomOut" aria-label="Afastar zoom">−</button>
+              </div>
 
-                <!-- Biogas Main: Reactor Top -> H2S Skid -> Thermal Exit -->
-                <path class="pipe-base" d="M 262 114 V 74 H 458 V 188"/>
-                <path class="pipe-flow" d="M 262 114 V 74 H 458 V 188"/>
-                <path class="pipe-base" d="M 508 214 H 558 V 92 H 694"/>
-                <path class="pipe-flow" d="M 508 214 H 558 V 92 H 694"/>
-
-                <!-- Digestato Transfer: Reactor -> Buffer Tank -->
-                <path class="pipe-base" d="M 356 322 H 604"/>
-                <path class="pipe-flow pipe-flow--teal" d="M 356 322 H 604"/>
-
-                <!-- Telemetry Sensor Bus -->
-                <path class="pipe-base" style="stroke-dasharray: 3 5;" d="M 356 168 H 516 V 130"/>
-
-                <!-- 01 · REATOR 3.000 L + GASÔMETRO + FUNIL -->
-                <g class="iso-part is-focused" data-part="reator">
-                  <!-- Feed Hopper -->
-                  <polygon points="74,204 130,204 114,252 90,252" fill="#17110d" stroke="#ff6b2b" stroke-width="1.5"/>
-                  <text x="58" y="194" fill="#ff6b2b" font-family="JetBrains Mono" font-size="10">CARGA 35 kg/d</text>
-
-                  <!-- Reactor Shell (Clean Elevation Cutaway) -->
-                  <path d="M 168 164 C 168 102 356 102 356 164 Z" fill="#0d1d16" stroke="#10f0a0" stroke-width="1.5"/>
-                  <rect x="168" y="164" width="188" height="200" fill="#0c1712" stroke="rgba(244,242,236,0.34)" stroke-width="1.5"/>
-                  <line x1="168" y1="164" x2="356" y2="164" stroke="rgba(16,240,160,0.45)" stroke-width="1"/>
-
-                  <!-- Internal Biomass Level + Cutaway -->
-                  <rect x="186" y="232" width="152" height="114" fill="rgba(0,212,200,0.14)" stroke="rgba(0,212,200,0.35)" stroke-width="1"/>
-                  <line x1="186" y1="232" x2="338" y2="232" stroke="#00d4c8" stroke-width="1.5"/>
-                  <circle class="bio-bubble" cx="226" cy="312" r="3" fill="#10f0a0"/>
-                  <circle class="bio-bubble b2" cx="262" cy="296" r="3.5" fill="#00d4c8"/>
-                  <circle class="bio-bubble b3" cx="298" cy="318" r="2.8" fill="#10f0a0"/>
-
-                  <text x="192" y="148" fill="#10f0a0" font-family="JetBrains Mono" font-size="10">GASÔMETRO 4–5 m³</text>
-                  <text x="198" y="340" fill="#b4c2ba" font-family="JetBrains Mono" font-size="10">REATOR 3.000 L · 30d</text>
-                </g>
-
-                <!-- 02 · SKID DE FILTRAGEM H2S + SEGURANÇA -->
-                <g class="iso-part" data-part="gas">
-                  <rect x="418" y="188" width="90" height="176" fill="#0c1511" stroke="rgba(244,242,236,0.34)" stroke-width="1.5"/>
-                  <!-- H2S Scrubber Column -->
-                  <rect x="434" y="212" width="24" height="116" fill="#081c14" stroke="#10f0a0" stroke-width="1.4"/>
-                  <line x1="434" y1="246" x2="458" y2="246" stroke="rgba(16,240,160,0.4)"/>
-                  <line x1="434" y1="286" x2="458" y2="286" stroke="rgba(16,240,160,0.4)"/>
-                  <!-- Manometer -->
-                  <circle cx="484" cy="236" r="14" fill="#060a08" stroke="#ffb84d" stroke-width="1.5"/>
-                  <line x1="484" y1="236" x2="492" y2="228" stroke="#ff6b2b" stroke-width="1.8"/>
-                  <!-- Flame Arrestor & Booster -->
-                  <rect x="472" y="274" width="24" height="38" fill="#1a120d" stroke="#ff6b2b" stroke-width="1.4"/>
-                  <text x="418" y="382" fill="#b4c2ba" font-family="JetBrains Mono" font-size="10">H₂S · BOOSTER</text>
-                </g>
-
-                <!-- 04 · CENTRAL IOT -->
-                <g class="iso-part" data-part="iot">
-                  <rect x="486" y="96" width="60" height="58" fill="#0a1611" stroke="#10f0a0" stroke-width="1.5"/>
-                  <circle cx="516" cy="120" r="10" fill="rgba(16,240,160,0.12)" stroke="#10f0a0" stroke-width="1.5"/>
-                  <circle cx="516" cy="120" r="3.5" fill="#10f0a0"/>
-                  <line x1="498" y1="142" x2="534" y2="142" stroke="rgba(244,242,236,0.28)" stroke-width="2"/>
-                </g>
-
-                <!-- 03 · TANQUE PULMÃO 1.000 L + CAMLOCK -->
-                <g class="iso-part" data-part="pulmao">
-                  <rect x="604" y="216" width="136" height="148" fill="#0a1819" stroke="#00d4c8" stroke-width="1.5"/>
-                  <rect x="618" y="264" width="108" height="86" fill="rgba(0,212,200,0.22)"/>
-                  <line x1="618" y1="264" x2="726" y2="264" stroke="#00d4c8" stroke-width="1.5"/>
-                  <!-- Transfer Pump + Camlock Coupling -->
-                  <rect x="740" y="318" width="44" height="22" fill="#111d1a" stroke="#00d4c8" stroke-width="1.5"/>
-                  <line x1="784" y1="329" x2="804" y2="329" stroke="#00d4c8" stroke-width="2"/>
-                  <circle cx="808" cy="329" r="5" fill="#00d4c8"/>
-                  <text x="604" y="382" fill="#00d4c8" font-family="JetBrains Mono" font-size="10">PULMÃO 1.000 L + CAMLOCK</text>
-                </g>
-
-                <!-- Output Tag Top Right -->
-                <g>
-                  <rect x="694" y="70" width="138" height="44" fill="#0b1510" stroke="#10f0a0" stroke-width="1.2"/>
-                  <text x="706" y="88" fill="#10f0a0" font-family="JetBrains Mono" font-size="9.5" font-weight="600">SAÍDA TÉRMICA →</text>
-                  <text x="706" y="104" fill="#f4f2ec" font-family="Plus Jakarta Sans" font-size="11">Aquecimento / Boiler</text>
-                </g>
-
-                <!-- Clean Non-Overlapping CAD Callout Pins + Leader Lines -->
-                <g class="cad-pin is-active" data-hotspot="reator">
-                  <line x1="210" y1="68" x2="232" y2="118" stroke="#10f0a0" stroke-width="1" stroke-dasharray="2 2"/>
-                  <circle class="pin-bg" cx="204" cy="54" r="15"/>
-                  <text x="204" y="58" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="700">01</text>
-                </g>
-
-                <g class="cad-pin" data-hotspot="gas">
-                  <line x1="406" y1="146" x2="438" y2="188" stroke="rgba(244,242,236,0.4)" stroke-width="1" stroke-dasharray="2 2"/>
-                  <circle class="pin-bg" cx="396" cy="134" r="15"/>
-                  <text x="396" y="138" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="700">02</text>
-                </g>
-
-                <g class="cad-pin" data-hotspot="pulmao">
-                  <line x1="672" y1="176" x2="672" y2="216" stroke="rgba(0,212,200,0.6)" stroke-width="1" stroke-dasharray="2 2"/>
-                  <circle class="pin-bg" cx="672" cy="160" r="15"/>
-                  <text x="672" y="164" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="700">03</text>
-                </g>
-
-                <g class="cad-pin" data-hotspot="iot">
-                  <line x1="516" y1="68" x2="516" y2="96" stroke="#10f0a0" stroke-width="1" stroke-dasharray="2 2"/>
-                  <circle class="pin-bg" cx="516" cy="52" r="15"/>
-                  <text x="516" y="56" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="700">04</text>
-                </g>
-              </svg>
+              <div class="cad3d-datum" aria-hidden="true">DATUM 0.00m · BASE TÉCNICA COMPACTA</div>
+              <div class="cad3d-hint" id="cad3dHint" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/>
+                </svg>
+                Arraste para girar 360°
+              </div>
             </div>
 
             <div class="hardware-inspector">
@@ -995,5 +912,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="./js/app.js"></script>
+  <script type="module" src="./js/cad3d/index.js"></script>
 </body>
 </html>

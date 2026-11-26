@@ -364,7 +364,7 @@
       });
     }
 
-    // Precision Hardware CAD Inspector (synced across top tabs, SVG pins, and SVG assemblies)
+    // Precision Hardware CAD Inspector (bidirectional sync with Three.js 3D viewer)
     const cadSpecs = {
       reator: {
         idx: 'SUBSISTEMA 01 / 04',
@@ -380,11 +380,11 @@
       gas: {
         idx: 'SUBSISTEMA 02 / 04',
         title: 'Skid de filtragem H₂S e segurança térmica',
-        desc: 'Filtro dessulfurizador obrigatório contra corrosão e dreno de umidade. Completa o conjunto com válvulas, corta-chamas, manômetro e booster para aquecedores e boilers.',
+        desc: 'Coluna dessulfurizadora contra corrosão ácida nos trocadores de cobre e dreno condensador. Inclui manômetro, corta-chamas, válvula solenoide de CH₄ e booster para boilers.',
         s1l: 'Eficiência térmica',
-        s1v: '70% – 85%',
-        s2l: 'Proteção',
-        s2v: 'H₂S + corta-chamas',
+        s1v: '80% – 85%',
+        s2l: 'Gatilho H₂S',
+        s2v: '50 – 100 ppm',
         s3l: 'Referência COGS',
         s3v: 'R$ 3.200',
       },
@@ -401,10 +401,10 @@
       },
       iot: {
         idx: 'SUBSISTEMA 04 / 04',
-        title: 'Central IoT e painel QR ESG',
-        desc: 'Monitora o reator e o nível do pulmão sem conferência manual. Dispara alertas antes de a biologia desregular e atualiza o painel público via QR Code.',
+        title: 'Central IoT IP65 e telemetria preditiva',
+        desc: 'Painel IP65 com sensores de pH/temperatura, saída de H₂S, vazamento de CH₄ com corte automático por solenoide e balança IoT para métricas ESG via QR Code.',
         s1l: 'Sensores',
-        s1v: 'Pressão · Temp · Nível',
+        s1v: 'pH/T · H₂S · CH₄ · Peso',
         s2l: 'Assinatura SaaS',
         s2v: 'R$ 99 – 199 / mês',
         s3l: 'Referência COGS',
@@ -413,8 +413,6 @@
     };
 
     const cadNavBtns = document.querySelectorAll('.cad-nav__btn');
-    const cadPins = document.querySelectorAll('.cad-pin');
-    const isoParts = document.querySelectorAll('.iso-part');
     const hsIdx = document.getElementById('hsIdx');
     const hsTitle = document.getElementById('hsTitle');
     const hsDesc = document.getElementById('hsDesc');
@@ -425,7 +423,7 @@
     const hsSpec3Label = document.getElementById('hsSpec3Label');
     const hsSpec3Val = document.getElementById('hsSpec3Val');
 
-    function selectCadPart(key) {
+    function selectCadPart(key, opts = {}) {
       const item = cadSpecs[key];
       if (!item) return;
 
@@ -434,8 +432,6 @@
         b.classList.toggle('is-active', active);
         b.setAttribute('aria-selected', String(active));
       });
-      cadPins.forEach((p) => p.classList.toggle('is-active', p.dataset.hotspot === key));
-      isoParts.forEach((part) => part.classList.toggle('is-focused', part.dataset.part === key));
 
       hsIdx.textContent = item.idx;
       hsTitle.textContent = item.title;
@@ -446,11 +442,14 @@
       hsSpec2Val.textContent = item.s2v;
       hsSpec3Label.textContent = item.s3l;
       hsSpec3Val.textContent = item.s3v;
+
+      if (!opts.from3D) {
+        window.__gaseificouCad3D?.focusSubsystem(key, true);
+      }
     }
 
+    window.__gaseificouSelectCadPart = selectCadPart;
     cadNavBtns.forEach((b) => b.addEventListener('click', () => selectCadPart(b.dataset.hotspot)));
-    cadPins.forEach((p) => p.addEventListener('click', () => selectCadPart(p.dataset.hotspot)));
-    isoParts.forEach((part) => part.addEventListener('click', () => selectCadPart(part.dataset.part)));
   }
 
   /* ------------------------------------------------------------------------
