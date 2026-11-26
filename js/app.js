@@ -246,19 +246,19 @@
   function initArchitecture() {
     const railSpecs = {
       1: {
-        text: 'Reator de 3.000 L dimensionado para ~35 kg/dia de matéria orgânica triada, com 30 dias de retenção hidráulica, gasômetro de 4 a 5 m³ e funil de carga com mistura.',
+        text: 'Reator de 3.000 L feito para ~35 kg/dia de orgânicos triados. Fica 30 dias em digestão, armazena 4 a 5 m³ no gasômetro e recebe a carga pelo funil misturador.',
         stat: 'RETENÇÃO: 30 DIAS · 3.000 L',
       },
       2: {
-        text: 'Filtragem obrigatória de H₂S, dreno de umidade contra corrosão, válvulas, corta-chamas, manômetro, booster de baixa pressão e conexão direta aos aquecedores de água e caldeiras.',
+        text: 'Filtro obrigatório de H₂S contra corrosão e dreno de umidade. A linha ainda leva válvulas, corta-chamas, manômetro e booster de baixa pressão para aquecedores de água.',
         stat: 'EFICIÊNCIA TÉRMICA: 70% – 85%',
       },
       3: {
-        text: 'Cada 1 kg de alimento gera ~2,5 L de digestato líquido (~87,5 L/dia ou ~612 L/semana em 35 kg/dia). Tanque pulmão vedado de 1.000 L, bomba, engate camlock e retirada semanal gratuita.',
+        text: 'Cada 1 kg de alimento vira ~2,5 L de digestato líquido (~87,5 L/dia ou ~612 L/semana em 35 kg/dia). O tanque pulmão de 1.000 L com camlock resolve a retirada semanal gratuita.',
         stat: 'ECONOMIA > R$ 3.300 EM FILTROS',
       },
       4: {
-        text: 'Sensores de pressão do gás, temperatura interna e nível do tanque pulmão conectados ao painel remoto, com alertas preventivos e QR Code público no estabelecimento.',
+        text: 'Sensores acompanham o reator e o tanque pulmão à distância. Qualquer desvio gera alerta preventivo, e o QR Code abre o painel ao vivo para quem visita o local.',
         stat: 'ASSINATURA: R$ 99 – 199 / MÊS',
       },
     };
@@ -345,7 +345,7 @@
         btnUrban.setAttribute('aria-selected', 'false');
         panelRural.hidden = false;
         panelUrban.hidden = true;
-        animateM3Hero(2.5, 'L/kg', 'Aplicação diluída direta em jardins, gramados e hortas', true);
+        animateM3Hero(2.5, 'L/kg', 'Aplicação diluída direto nos jardins e hortas do terreno', true);
       });
     }
 
@@ -354,7 +354,7 @@
       reator: {
         idx: 'SUBSISTEMA 01 / 04',
         title: 'Reator anaeróbico 3.000 L + gasômetro',
-        desc: 'Reator fechado para áreas urbanas sem cheiro. Recebe ~35 kg/dia de restos orgânicos diluídos pelo funil misturador, com 30 dias de retenção e gasômetro de 4 a 5 m³.',
+        desc: 'Reator fechado para áreas urbanas sem cheiro. Recebe ~35 kg/dia de orgânicos diluídos no funil misturador e mantém 30 dias de retenção com gasômetro de 4 a 5 m³.',
         s1l: 'Volume reator',
         s1v: '3.000 L (30 dias)',
         s2l: 'Gasômetro',
@@ -365,7 +365,7 @@
       gas: {
         idx: 'SUBSISTEMA 02 / 04',
         title: 'Skid de filtragem H₂S e segurança térmica',
-        desc: 'Filtro dessulfurizador obrigatório contra corrosão, dreno de umidade, válvulas, corta-chamas, manômetro e booster de baixa pressão para alimentação de aquecedores de água, boilers e caldeiras.',
+        desc: 'Filtro dessulfurizador obrigatório contra corrosão e dreno de umidade. Completa o conjunto com válvulas, corta-chamas, manômetro e booster para aquecedores e boilers.',
         s1l: 'Eficiência térmica',
         s1v: '70% – 85%',
         s2l: 'Proteção',
@@ -376,7 +376,7 @@
       pulmao: {
         idx: 'SUBSISTEMA 03 / 04',
         title: 'Tanque pulmão 1.000 L + engate camlock',
-        desc: 'Armazena cerca de 612 L/semana de biofertilizante líquido em tanque vedado. Tem bomba de transferência e engate rápido camlock para retirada semanal gratuita por chácaras, viveiros ou paisagistas.',
+        desc: 'Armazena cerca de 612 L por semana de biofertilizante em tanque vedado. A bomba e o engate camlock deixam a retirada semanal limpa para chácaras ou viveiros parceiros.',
         s1l: 'Armazenamento',
         s1v: '1.000 L vedado',
         s2l: 'Economia CAPEX',
@@ -387,7 +387,7 @@
       iot: {
         idx: 'SUBSISTEMA 04 / 04',
         title: 'Central IoT e painel QR ESG',
-        desc: 'Lê pressão do gás, temperatura interna e nível do tanque pulmão. Dispara alertas preventivos antes de a biologia desregular e atualiza o painel público via QR Code.',
+        desc: 'Monitora o reator e o nível do pulmão sem conferência manual. Dispara alertas antes de a biologia desregular e atualiza o painel público via QR Code.',
         s1l: 'Sensores',
         s1v: 'Pressão · Temp · Nível',
         s2l: 'Assinatura SaaS',
@@ -693,7 +693,7 @@
           stTemp.textContent = 'Zona mesofílica';
           stLevel.textContent = 'Coleta: Qui 08h';
           alertMsg.textContent =
-            'Biologia estável. Pressão, temperatura interna e nível do tanque pulmão dentro da faixa.';
+            'Biologia estável. Todos os sensores dentro da faixa de operação.';
           alertTag.textContent = 'NOMINAL';
         }
         drawChart();
