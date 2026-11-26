@@ -1,49 +1,50 @@
 {
-  "metadata": {
-    "titulo": "Dados sobre biodigestores, biogás, desperdício de alimentos e coleta de resíduos",
-    "idioma": "pt-BR",
-    "data_pesquisa": "2026-11-26",
-    "observacao": "Os dados divulgados por fornecedores são identificados como informações comerciais e devem ser confirmados em proposta técnica, visita e contrato."
+  "projeto": {
+    "titulo_resumido": "Gaseificou!",
+    "evento": "Hackateens - FIciências",
+    "local": "Foz do Iguaçu, Paraná, Brasil",
+    "autores": [
+      "Vitor Hugo de Oliveira Morgante",
+      "Jair Augusto Dério Boeing",
+      "Vitor Rufino Brumatti",
+      "Kauã Barros"
+    ],
+    "uso_energetico_principal": "Rota térmica híbrida (pré-aquecimento de boiler/aquecedores a gás em substituição parcial ao GLP — 80% a 85% de eficiência)",
+    "monitoramento_iot": [
+      "Sensores de pH e temperatura no biodigestor (prevenção de acidificação)",
+      "Sensor de H2S na saída do filtro (troca preditiva quando > 50–100 ppm)",
+      "Sensor de CH4 + válvula solenoide (bloqueio automático contra vazamentos)",
+      "Balança IoT na entrada (medição de desperdício por turno e métricas ESG)"
+    ]
   },
-  "conclusoes_tecnicas": [
-    {
-      "id": "CT-001",
-      "conclusao": "Biodigestor pode significar tecnologias diferentes. Digestão anaeróbia produz biogás e digestato; digestão aeróbia pode produzir água ou efluente tratado, mas não necessariamente biogás.",
-      "implicacao": "Exigir no projeto a descrição do processo, o balanço de massa e a composição do produto de saída.",
-      "fontes": ["SRC-007", "SRC-008", "SRC-010"]
-    },
-    {
-      "id": "CT-002",
-      "conclusao": "Resíduos da caixa de gordura não devem ser misturados automaticamente aos restos de comida.",
-      "implicacao": "A gordura pode elevar a produção de biogás em certas condições, mas também pode inibir o processo; recomenda-se caracterização, teste de tratabilidade e dosagem controlada.",
-      "fontes": ["SRC-013", "SRC-014", "SRC-018"]
-    },
-    {
-      "id": "CT-003",
-      "conclusao": "A prevenção deve vir antes do tratamento.",
-      "implicacao": "Reduzir produção excessiva e sobras normalmente é mais vantajoso do que tratar todo o alimento descartado.",
-      "fontes": ["SRC-002", "SRC-003", "SRC-004", "SRC-006"]
-    }
+  "dados_operacionais_referencia_100kg_dia": {
+    "gasto_mensal_glp_brl": [8000, 14000],
+    "media_glp_brl": 10500,
+    "consumo_glp_kg_mes": [900, 1350],
+    "consumo_por_banho_10min_kg_glp": [0.25, 0.35],
+    "producao_biogas_m3_dia": 12,
+    "equivalencia_glp_kg_mes": 162,
+    "economia_mensal_brl": [1450, 1700],
+    "economia_anual_brl": [17400, 20400],
+    "reducao_conta_glp_pct": [12, 18],
+    "eficiencia_termica_pct": [80, 85],
+    "payback_estimado_anos": [2.5, 4.5]
+  },
+  "manutencao_filtro_h2s": [
+    { "tipo": "Óxido de ferro (pellets / esponja)", "intervalo_meses": [3, 6], "valor_troca_brl": [250, 600], "custo_anual_brl": [500, 1800] },
+    { "tipo": "Carvão ativado impregnado (KI/NaOH)", "intervalo_meses": [6, 12], "valor_troca_brl": [800, 1800], "custo_anual_brl": [1200, 2500] }
   ],
-  "dados_brasil_e_biogas": {
-    "residuos_solidos_brasil_mt_ano": 78,
-    "fracao_organica_pct": 52,
-    "massa_organica_mt_ano": 40.5,
-    "emissoes_decomposicao_mtco2e": 47,
-    "plantas_biogas_brasil_2023": 1365,
-    "novas_plantas_2023": 338,
-    "capacidade_instalada_bi_nm3_ano": 4.15,
-    "cagr_5_anos_pct": 21,
-    "fontes": ["SRC-005", "SRC-009", "SRC-021"]
-  },
-  "conformidade_e_documentacao": ["MTR (SINIR)", "CDF", "PGRS", "Licença ambiental transportador/receptora", "Medição prévia de 14 dias"],
-  "fontes": [
-    { "id": "SRC-001", "titulo": "UNEP Food Waste Index Report 2024", "url": "https://unstats.un.org/unsd/envstats/fdes/EGES11/9UNEP_Food%20Waste%20Index.pdf" },
-    { "id": "SRC-005", "titulo": "Recursos para Hotéis Brasileiros — Hotel Kitchen", "url": "https://hotelkitchen.org/more-resources-1/brpt/" },
-    { "id": "SRC-007", "titulo": "ANP — Biometano", "url": "https://www.gov.br/anp/pt-br/assuntos/producao-e-fornecimento-de-biocombustiveis/biometano" },
-    { "id": "SRC-009", "titulo": "Compostagem Doméstica, Comunitária e Institucional (MMA)", "url": "https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/protegeer/biblioteca/CompostagemDomsticaComunitriaeInstitucionaldeResduosOrgnicosMMA.pdf" },
-    { "id": "SRC-013", "titulo": "FOG Co-digestion With Food Waste in Anaerobic Membrane Bioreactors", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8072289/" },
-    { "id": "SRC-020", "titulo": "SINIR — Manifesto de Transporte de Resíduos", "url": "https://sinir.gov.br/sistemas/mtr/" },
-    { "id": "SRC-021", "titulo": "Panorama do Biogás 2023 — CIBiogás/ABiogás", "url": "https://abiogas.org.br/wp-content/uploads/protectedfiles/cms_files_54738_1716811508PANORAMA_DO_BIOGS_2023.pdf" }
-  ]
+  "mercado_parana_e_foz": {
+    "foz_meios_hospedagem_ativos": 122,
+    "foz_hoteis_resorts": 100,
+    "foz_pousadas": 22,
+    "foz_leitos_estimados": [29000, 30000],
+    "brasil_plantas_biogas_2024": "1.700+ (CIBiogás/ABiogás)",
+    "crescimento_anual_pct": 19,
+    "renovapr_plantas_financiadas": 77,
+    "renovapr_subvencao_brl": 120000000,
+    "renovapr_taxa_anual_pct": 5,
+    "base_legal_pr": ["Lei Estadual nº 20.607/2021", "PERS/PR (SEDEST/IAT)", "MTR (SINIR)", "CDF"],
+    "estudos_organicos": { "rsd_journal_2021_pct": 57, "conbiv_2023_aumento_alimentacao_pct": 114 }
+  }
 }

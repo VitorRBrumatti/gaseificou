@@ -664,15 +664,15 @@
 
     setInterval(() => {
       if (alertActive) {
-        valPressure.textContent = `${(14.8 + (Math.random() - 0.5) * 0.4).toFixed(1)} mbar`;
-        valTemp.textContent = `${(29.4 + (Math.random() - 0.5) * 0.3).toFixed(1)} °C`;
-        valLevel.textContent = '89%';
+        valPressure.textContent = `${74 + Math.floor(Math.random() * 14)} ppm`;
+        valTemp.textContent = `6.1 · ${(29.4 + (Math.random() - 0.5) * 0.3).toFixed(1)} °C`;
+        valLevel.textContent = 'FECHADA';
         series.shift();
         series.push(3.5 + Math.random() * 0.35);
       } else {
-        valPressure.textContent = `${(18.4 + (Math.random() - 0.5) * 0.5).toFixed(1)} mbar`;
-        valTemp.textContent = `${(35.6 + (Math.random() - 0.5) * 0.3).toFixed(1)} °C`;
-        valLevel.textContent = `${62 + Math.floor(Math.random() * 2)}%`;
+        valPressure.textContent = `${16 + Math.floor(Math.random() * 5)} ppm`;
+        valTemp.textContent = `7.1 · ${(35.6 + (Math.random() - 0.5) * 0.3).toFixed(1)} °C`;
+        valLevel.textContent = '0 ppm';
         series.shift();
         series.push(4.45 + Math.random() * 0.45);
       }
@@ -692,15 +692,15 @@
 
         if (alertActive) {
           btnSimAlert.textContent = 'Restaurar operação normal';
-          stTemp.textContent = 'Queda térmica detectada';
-          stLevel.textContent = 'Pulmão 89% · Coleta acionada';
+          stTemp.textContent = 'Alerta de acidificação (pH 6.1)';
+          stLevel.textContent = 'Solenoide fechada · H₂S > 50 ppm';
           alertMsg.textContent =
-            'Alerta preventivo disparado: suporte remoto acionou ajuste de carga e antecipou a coleta camlock antes de qualquer parada.';
+            'Alerta preditivo acionado: refil de H₂S acima de 50 ppm e queda de pH detectada. Válvula solenoide bloqueou a linha por segurança.';
           alertTag.textContent = 'PREVENÇÃO';
         } else {
           btnSimAlert.textContent = 'Testar alerta preventivo';
-          stTemp.textContent = 'Zona mesofílica';
-          stLevel.textContent = 'Coleta: Qui 08h';
+          stTemp.textContent = 'Biologia estável';
+          stLevel.textContent = 'Linha estanque';
           alertMsg.textContent =
             'Biologia estável. Todos os sensores dentro da faixa de operação.';
           alertTag.textContent = 'NOMINAL';
