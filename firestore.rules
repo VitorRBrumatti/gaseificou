@@ -1,0 +1,149 @@
+rules_version = '2';
+
+// ===============================================================
+// Modelo de dados assumido
+// ===============================================================
+//
+// Coleção: diagnostics
+// ID do documento: automático (addDoc)
+// Campos (todos obrigatórios no create; nenhum outro campo é aceito):
+//   - hotelName: string (2–120) — nome do hotel, pousada ou restaurante
+//   - volumeKgDay: number (1–500) — kg/dia representativo do formulário
+//   - spaceProfile: string — um dos dois perfis urbanos/área verde
+//   - cityUf: string (2–80) — cidade e UF
+//   - contactInfo: string (5–160) — WhatsApp ou e-mail
+//   - estimatedMonthlyGlpBrl: int — economia bruta mensal (kg * 14,331, arredondada)
+//   - estimatedWeeklyBiofertL: int — litros semanais (floor(kg * 2,5 * 7))
+//   - createdAt: timestamp — serverTimestamp(), igual a request.time
+// Operações do app: create público. Leitura só com sessão Google. Update e delete ficam fechados.
+//
+// Coleção: telemetry_units/{id}
+// ID: identificador como KIT-URB-35.
+// get de um documento é público: o painel do hóspede abre /cliente/{id} sem sessão.
+// list da coleção exige sessão, para a equipe ver o painel sem enumerar unidades na internet.
+// Campos da unidade (create e update com sessão):
+//   - name: string (2–80)
+//   - pressureMbar, temperatureC, flowM3PerDay, monthlyOrganicKg, monthlyBiofertL: number
+//   - bufferLevelPct: number (0–100)
+//   - filterOk: bool
+//   - collectionLabel: string (2–80)
+//   - status: "nominal" | "alert"
+//   - updatedAt: timestamp == request.time
+// Subcoleção: telemetry_units/{id}/readings/{auto}
+//   Mesmos campos de sensor, com createdAt no lugar de name/updatedAt.
+// Operações: leitura do histórico só com sessão. Apagar fica fechado.
+//
+// Protótipo para o MVP. Revise antes de publicar o app.
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function validString(field, minLen, maxLen) {
+      return request.resource.data[field] is string
+        && request.resource.data[field].size() >= minLen
+        && request.resource.data[field].size() <= maxLen;
+    }
+
+    function isAllowedSpaceProfile(value) {
+      return value == 'Urbano sem jardim (tanque pulmão + camlock)'
+        || value == 'Com jardim / área verde (aplicação direta)';
+    }
+
+    function isValidDiagnostic() {
+      let data = request.resource.data;
+      let fields = [
+        'hotelName',
+        'volumeKgDay',
+        'spaceProfile',
+        'cityUf',
+        'contactInfo',
+        'estimatedMonthlyGlpBrl',
+        'estimatedWeeklyBiofertL',
+        'createdAt'
+      ];
+      return data.keys().hasAll(fields)
+        && data.keys().hasOnly(fields)
+        && validString('hotelName', 2, 120)
+        && data.volumeKgDay is number
+        && data.volumeKgDay >= 1
+        && data.volumeKgDay <= 500
+        && isAllowedSpaceProfile(data.spaceProfile)
+        && validString('cityUf', 2, 80)
+        && validString('contactInfo', 5, 160)
+        && data.estimatedMonthlyGlpBrl is int
+        && data.estimatedMonthlyGlpBrl >= data.volumeKgDay * 14.331 - 1
+        && data.estimatedMonthlyGlpBrl <= data.volumeKgDay * 14.331 + 1
+        && data.estimatedWeeklyBiofertL is int
+        && data.estimatedWeeklyBiofertL >= data.volumeKgDay * 2.5 * 7 - 1
+        && data.estimatedWeeklyBiofertL <= data.volumeKgDay * 2.5 * 7
+        && data.createdAt == request.time;
+    }
+
+    function inNumberRange(field, min, max) {
+      return request.resource.data[field] is number
+        && request.resource.data[field] >= min
+        && request.resource.data[field] <= max;
+    }
+
+    function telemetryFieldsOk() {
+      return inNumberRange('pressureMbar', 0, 200)
+        && inNumberRange('temperatureC', 0, 80)
+        && inNumberRange('bufferLevelPct', 0, 100)
+        && inNumberRange('flowM3PerDay', 0, 100)
+        && request.resource.data.filterOk is bool
+        && inNumberRange('monthlyOrganicKg', 0, 1000000)
+        && inNumberRange('monthlyBiofertL', 0, 1000000)
+        && validString('collectionLabel', 2, 80)
+        && (request.resource.data.status == 'nominal' || request.resource.data.status == 'alert');
+    }
+
+    function isValidUnit(unitId) {
+      let data = request.resource.data;
+      let fields = [
+        'name', 'pressureMbar', 'temperatureC', 'bufferLevelPct', 'flowM3PerDay',
+        'filterOk', 'monthlyOrganicKg', 'monthlyBiofertL', 'collectionLabel', 'status', 'updatedAt'
+      ];
+      return unitId.matches('^[A-Z0-9][A-Z0-9-]{1,30}$')
+        && data.keys().hasAll(fields)
+        && data.keys().hasOnly(fields)
+        && validString('name', 2, 80)
+        && telemetryFieldsOk()
+        && data.updatedAt == request.time;
+    }
+
+    function isValidReading() {
+      let data = request.resource.data;
+      let fields = [
+        'pressureMbar', 'temperatureC', 'bufferLevelPct', 'flowM3PerDay',
+        'filterOk', 'monthlyOrganicKg', 'monthlyBiofertL', 'collectionLabel', 'status', 'createdAt'
+      ];
+      return data.keys().hasAll(fields)
+        && data.keys().hasOnly(fields)
+        && telemetryFieldsOk()
+        && data.createdAt == request.time;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    match /diagnostics/{diagnosticId} {
+      allow create: if isValidDiagnostic();
+      allow read: if request.auth != null;
+      allow update, delete: if false;
+    }
+
+    match /telemetry_units/{unitId} {
+      allow get: if true;
+      allow list: if request.auth != null;
+      allow create, update: if request.auth != null && isValidUnit(unitId);
+      allow delete: if false;
+
+      match /readings/{readingId} {
+        allow read: if request.auth != null;
+        allow create: if request.auth != null && isValidReading();
+        allow update, delete: if false;
+      }
+    }
+  }
+}

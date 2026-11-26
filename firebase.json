@@ -1,0 +1,41 @@
+{
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      { "source": "/app", "destination": "/app.html" },
+      { "source": "/app/**", "destination": "/app.html" },
+      { "source": "/entrar", "destination": "/app.html" },
+      { "source": "/criar-conta", "destination": "/app.html" },
+      { "source": "/cliente", "destination": "/app.html" },
+      { "source": "/cliente/**", "destination": "/app.html" }
+    ]
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "auth": {
+    "providers": {
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "Gaseificou!",
+        "supportEmail": "jairderioboeing@gmail.com",
+        "authorizedRedirectUris": [
+          "https://gaseificou.firebaseapp.com/__/auth/handler",
+          "http://localhost"
+        ]
+      }
+    },
+    "authorizedDomains": [
+      "localhost",
+      "gaseificou.firebaseapp.com",
+      "gaseificou.web.app",
+      "gaseificou.com.br",
+      "www.gaseificou.com.br"
+    ]
+  }
+}
