@@ -39,10 +39,6 @@
       </ul>
 
       <div class="nav-actions">
-        <span class="nav-pill-metric">
-          <span class="pulse-dot"></span>
-          70–85% Eficiência Térmica
-        </span>
         <a href="#contato" class="btn btn--primary btn--sm magnetic">
           Diagnóstico Grátis
           <span class="btn__arrow" aria-hidden="true">→</span>
@@ -109,87 +105,104 @@
     <!-- ====================================================================
          SECTION 2: O PROBLEMA (Minimalist Editorial Paper, Zero Rounded Cards)
          ==================================================================== -->
-    <section class="section-paper" id="problema">
+    <section class="section-paper" id="problema" aria-labelledby="problemaTitle">
       <div class="container">
-        <div class="section-header-split">
-          <div>
-            <span class="section-kicker section-kicker--dark">01 / O problema</span>
-            <h2 class="section-title">
-              A verdadeira razão por que a conta não fecha.
-            </h2>
-          </div>
-          <p class="section-lead">
-            Quem gera muito orgânico paga duas vezes. Compra GLP todo mês e ainda paga para armazenar ou mandar esse resíduo embora pro aterro.
-          </p>
+        <div class="problem-head">
+          <h2 class="section-title" id="problemaTitle">Hoje a operação paga 2 vezes pelo mesmo orgânico.</h2>
+          <p class="section-lead">Compra GLP para aquecer água e paga para tirar o resíduo que poderia gerar esse gás.</p>
         </div>
 
-        <div class="pain-strip reveal-up">
-          <article class="pain-col">
-            <div>
-              <span class="pain-col__idx">01 — ENERGIA TÉRMICA</span>
-              <h3>Conta alta de GLP todo santo mês</h3>
-              <p>
-                Boilers e caldeiras queimam gás sem parar. Esse custo entra direto na margem e sobe a cada reajuste do botijão ou do tanque a granel.
-              </p>
-            </div>
-            <span class="pain-col__foot">Gasto fixo mensal no OPEX</span>
+        <div class="problem-grid reveal-up">
+          <article class="problem-item problem-item--lead">
+            <p class="problem-metric problem-metric--pending">[INSERIR DADO REAL: gasto mensal médio com GLP no aquecimento]</p>
+            <h3>O GLP pesa todo mês no aquecimento</h3>
+            <p>Boilers e caldeiras rodam o dia inteiro. Cada reajuste do gás sai direto da margem.</p>
           </article>
 
-          <article class="pain-col">
-            <div>
-              <span class="pain-col__idx">02 — RESÍDUO ORGÂNICO</span>
-              <h3>Lixo caro e mal visto no fundo do pátio</h3>
-              <p>
-                Restos de alimento geram mau cheiro rápido. Em centros urbanos, você ainda paga câmara fria ou coleta privada só para mandar tudo pro aterro.
-              </p>
-            </div>
-            <span class="pain-col__foot">Coleta paga + destino em aterro</span>
+          <article class="problem-item">
+            <p class="problem-metric"><span class="num">1.050</span> kg/mês</p>
+            <p class="problem-metric__label">de orgânico numa operação de 35 kg/dia</p>
+            <h3>Orgânico custa para sair</h3>
+            <p>Exige câmara fria ou coleta privada paga e termina em aterro.</p>
           </article>
 
-          <article class="pain-col">
-            <div>
-              <span class="pain-col__idx">03 — GARGALO URBANO</span>
-              <h3>Biodigestor comum trava na segunda semana</h3>
-              <p>
-                Tanque rural exige terreno aberto para escoar litros de líquido por dia. MAS na cidade não tem onde jogar 612 L por semana. Quem só instala o reator trava a operação em 15 dias.
-              </p>
-            </div>
-            <span class="pain-col__foot pain-col__foot--ok">Resolvido com pulmão + camlock</span>
+          <article class="problem-item">
+            <p class="problem-metric"><span class="num">612</span> L/semana</p>
+            <p class="problem-metric__label">de efluente líquido nos mesmos 35 kg/dia</p>
+            <h3>Biodigestor rural não cabe na cidade</h3>
+            <p>Sem logística de escoamento, o projeto trava na 2ª semana.</p>
           </article>
         </div>
 
-        <!-- Thermal Focus vs Electric Comparison Band -->
-        <div class="thermal-band reveal-up">
-          <div class="thermal-band__copy">
-            <span class="section-kicker">Decisão de engenharia</span>
-            <h3>Uso 100% térmico direto. Onde a conta fecha.</h3>
-            <p>
-              Descartamos geração elétrica em pequena escala. Nela, a eficiência despenca para 25% a 30% e mata o payback. Queimando direto em aquecedores de água e caldeiras, você aproveita de 70% a 85% do gás.
-            </p>
+        <div class="energy-block reveal-up" aria-labelledby="energyTitle">
+          <div class="energy-block__copy">
+            <h3 id="energyTitle">Queimar o biogás direto rende quase 3× mais que gerar eletricidade</h3>
+            <p>Em pequena escala, o motogerador perde 70–75% da energia em calor e atrito. Na queima direta em boiler, a perda cai para 15–30%.</p>
           </div>
 
-          <div class="thermal-band__metrics">
-            <div class="efficiency-bars">
-              <div class="eff-row">
-                <div class="eff-row__meta">
-                  <span>Uso térmico direto (Gaseificou!)</span>
-                  <strong style="color: var(--bio-emerald);">70% – 85%</strong>
-                </div>
-                <div class="eff-track">
-                  <div class="eff-fill eff-fill--thermal"></div>
-                </div>
+          <figure class="eff-chart">
+            <div class="eff-chart__legend" aria-hidden="true">
+              <span><i class="sw sw--use"></i>Aproveitada</span>
+              <span><i class="sw sw--range"></i>Faixa variável</span>
+              <span><i class="sw sw--loss"></i>Perdida</span>
+            </div>
+
+            <div class="eff-row" role="img" aria-label="Uso térmico direto: 70% a 85% da energia aproveitada, 15% a 30% perdida.">
+              <div class="eff-row__label">
+                <span>Uso térmico direto</span>
+                <strong class="num">70–85%</strong>
               </div>
-              <div class="eff-row">
-                <div class="eff-row__meta">
-                  <span>Geração elétrica em pequena escala</span>
-                  <strong style="color: var(--flame-amber);">25% – 30%</strong>
-                </div>
-                <div class="eff-track">
-                  <div class="eff-fill eff-fill--electric"></div>
-                </div>
+              <div class="eff-bar">
+                <span class="bar-seg bar-seg--use" style="width:70%"></span>
+                <span class="bar-seg bar-seg--range" style="width:15%"></span>
+                <span class="bar-seg bar-seg--loss" style="width:15%"></span>
               </div>
             </div>
-          </div>
+
+            <div class="eff-row" role="img" aria-label="Geração elétrica em pequena escala: 25% a 30% aproveitada, 70% a 75% perdida.">
+              <div class="eff-row__label">
+                <span>Geração elétrica em pequena escala</span>
+                <strong class="num num--loss">25–30%</strong>
+              </div>
+              <div class="eff-bar">
+                <span class="bar-seg bar-seg--use" style="width:25%"></span>
+                <span class="bar-seg bar-seg--range" style="width:5%"></span>
+                <span class="bar-seg bar-seg--loss" style="width:70%"></span>
+              </div>
+            </div>
+
+            <div class="eff-scale num" aria-hidden="true">
+              <span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span>
+            </div>
+          </figure>
+
+          <table class="energy-table">
+            <caption class="sr-only">Consequência prática de cada rota de uso do biogás</caption>
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Térmico direto</th>
+                <th scope="col">Elétrico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Equipamento extra</th>
+                <td>Nenhum. Usa o boiler ou aquecedor existente</td>
+                <td>Motogerador e painel de conexão</td>
+              </tr>
+              <tr>
+                <th scope="row">Manutenção</th>
+                <td>Troca do filtro de H₂S <span class="pending">[INSERIR DADO REAL: intervalo]</span></td>
+                <td>Revisão do motor <span class="pending">[INSERIR DADO REAL: intervalo]</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Payback</th>
+                <td><span class="num">1,5–3,6</span> anos em 50–100 kg/dia</td>
+                <td><span class="pending">[INSERIR DADO REAL: payback na rota elétrica]</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

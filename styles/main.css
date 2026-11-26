@@ -25,25 +25,24 @@
 /* --- Floating Navigation (Preserved) --- */
 .site-header {
   position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(calc(100% - 24px), 1240px);
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 900;
+  background: rgba(17, 22, 19, 0.94);
+  border-bottom: 1px solid var(--line-dark);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .nav-shell {
+  width: min(100% - (var(--gutter) * 2), var(--container-max));
+  margin-inline: auto;
+  min-height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.65rem 0.75rem 0.65rem 1.25rem;
-  border-radius: var(--radius-pill);
-  background: rgba(8, 14, 11, 0.78);
-  border: 1px solid rgba(244, 242, 236, 0.12);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.36);
 }
 
 .brand {
@@ -347,119 +346,139 @@
 }
 
 /* ==========================================================================
-   SECTION 2: O PROBLEMA (Warm Editorial Paper, Zero Rounded Cards)
+   SECTION 2: O PROBLEMA + DECISÃO DE ENERGIA
    ========================================================================== */
 .section-paper {
   background: var(--bg-paper);
   color: var(--ink-dark);
-  padding: clamp(5rem, 9vw, 8.5rem) 0;
+  padding: clamp(5rem, 9vw, 8rem) 0;
 }
 
 .section-paper .section-lead {
   color: var(--ink-dark-muted);
 }
 
-.pain-strip {
+.problem-head {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 7fr 5fr;
+  gap: 2.5rem;
+  align-items: end;
+  margin-bottom: 3rem;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  padding-top: 2.5rem;
   border-top: 1px solid var(--line-light);
-  border-bottom: 1px solid var(--line-light);
 }
 
-.pain-col {
-  padding: 2.5rem 2.2rem 2.5rem 0;
-  border-right: 1px solid var(--line-light);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.75rem;
+.problem-item h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 1rem 0 0.5rem;
 }
 
-.pain-col + .pain-col {
-  padding-left: 2.2rem;
-}
-
-.pain-col:last-child {
-  border-right: none;
-  padding-right: 0;
-}
-
-.pain-col__idx {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+.problem-item p {
+  font-size: 1rem;
+  line-height: 1.55;
   color: var(--ink-dark-muted);
 }
 
-.pain-col h3 {
+.problem-metric {
   font-family: var(--font-display);
-  font-size: 1.55rem;
-  font-weight: 700;
+  font-size: clamp(2.2rem, 3.6vw, 3rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: #9a3412 !important;
+}
+
+.problem-item--lead h3 {
+  font-size: 1.75rem;
+}
+
+.problem-metric--pending,
+.pending {
+  font-family: var(--font-body);
+  font-size: 0.875rem !important;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: #8a2c0d !important;
+  background: rgba(154, 52, 18, 0.08);
+  padding: 0.35rem 0.5rem;
+  display: inline-block;
+}
+
+.problem-metric__label {
+  margin-top: 0.4rem;
+  font-size: 0.875rem !important;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Energy decision block */
+.energy-block {
+  margin-top: clamp(4rem, 7vw, 6rem);
+  background: #141916;
+  color: var(--ink-primary);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  grid-template-areas:
+    "copy chart"
+    "table table";
+  gap: 2.5rem 3.5rem;
+}
+
+.energy-block__copy { grid-area: copy; }
+.eff-chart { grid-area: chart; margin: 0; }
+.energy-table { grid-area: table; }
+
+.energy-block__copy h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
   line-height: 1.15;
   letter-spacing: -0.025em;
-  margin-top: 0.9rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
-.pain-col p {
-  font-size: 0.98rem;
-  color: var(--ink-dark-muted);
-  line-height: 1.62;
+.energy-block__copy p {
+  color: #c9d4ce;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-.pain-col__foot {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #b44314;
-}
-
-.pain-col__foot--ok {
-  color: #0b6e49;
-}
-
-/* Thermal Comparison Architectural Band (Flat, Sharp Corners) */
-.thermal-band {
-  margin-top: 3.5rem;
-  background: var(--bg-obsidian);
-  color: var(--ink-primary);
+.eff-chart {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.5rem;
 }
 
-.thermal-band__copy {
-  padding: clamp(2.2rem, 4vw, 3.4rem);
-  display: grid;
-  gap: 1.1rem;
-  align-content: center;
+.eff-chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+  color: #c9d4ce;
 }
 
-.thermal-band__copy h3 {
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.7vw, 2.3rem);
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+.eff-chart__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.thermal-band__copy p {
-  color: var(--ink-secondary);
-  font-size: 0.98rem;
-}
-
-.thermal-band__metrics {
-  padding: clamp(2.2rem, 4vw, 3.4rem);
-  background: var(--bg-surface);
-  border-left: 1px solid var(--line-dark);
-  display: grid;
-  align-content: center;
-}
-
-.efficiency-bars {
-  display: grid;
-  gap: 1.4rem;
+.sw {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
 }
 
 .eff-row {
@@ -467,32 +486,131 @@
   gap: 0.55rem;
 }
 
-.eff-row__meta {
+.eff-row__label {
   display: flex;
   justify-content: space-between;
-  font-size: 0.86rem;
-  font-family: var(--font-mono);
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 0.95rem;
 }
 
-.eff-track {
-  height: 8px;
-  background: rgba(244, 242, 236, 0.12);
-  overflow: hidden;
+.eff-row__label strong {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--bio-emerald);
 }
 
-.eff-fill {
+.eff-row__label .num--loss {
+  color: #f08a5d;
+}
+
+.eff-bar {
+  height: 28px;
+  display: flex;
+  background: #0d110f;
+}
+
+.bar-seg {
   height: 100%;
   transform-origin: left center;
 }
 
-.eff-fill--thermal {
-  width: 85%;
-  background: var(--bio-emerald);
+.bar-seg--use,
+.sw--use {
+  background-color: var(--bio-emerald);
 }
 
-.eff-fill--electric {
-  width: 28%;
-  background: var(--flame-amber);
+.bar-seg--range,
+.sw--range {
+  background-color: #0b5c3f;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M-2 2l4-4M0 8l8-8M6 10l4-4' stroke='%2310f0a0' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+.bar-seg--loss,
+.sw--loss {
+  background-color: #c2410c;
+}
+
+.eff-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  color: #aab8b0;
+  border-top: 1px solid rgba(244, 242, 236, 0.3);
+  padding-top: 0.4rem;
+}
+
+.energy-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.energy-table th,
+.energy-table td {
+  text-align: left;
+  padding: 0.9rem 1rem 0.9rem 0;
+  border-top: 1px solid rgba(244, 242, 236, 0.14);
+  vertical-align: top;
+}
+
+.energy-table thead th {
+  border-top: none;
+  font-weight: 600;
+  color: #c9d4ce;
+}
+
+.energy-table tbody th {
+  font-weight: 600;
+  color: var(--ink-primary);
+  width: 22%;
+}
+
+.energy-table td {
+  color: #dbe4df;
+}
+
+.energy-table .pending {
+  margin-top: 0.3rem;
+  color: #ffb08a !important;
+  background: rgba(194, 65, 12, 0.18);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--bio-emerald);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .problem-head,
+  .problem-grid {
+    grid-template-columns: 1fr;
+  }
+  .energy-block {
+    grid-template-columns: 1fr;
+    grid-template-areas: "copy" "chart" "table";
+  }
+  .energy-table thead { display: none; }
+  .energy-table tr { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(244,242,236,0.14); padding: 0.75rem 0; }
+  .energy-table tbody th { grid-column: 1 / -1; width: auto; border: none; padding: 0 0 0.4rem; }
+  .energy-table td { border: none; padding: 0 0.75rem 0 0; }
+  .energy-table td:nth-of-type(1)::before { content: "Térmico: "; font-weight: 600; color: var(--bio-emerald); }
+  .energy-table td:nth-of-type(2)::before { content: "Elétrico: "; font-weight: 600; color: #f08a5d; }
 }
 
 /* ==========================================================================
@@ -1825,3 +1943,8 @@
     animation: none !important;
   }
 }
+
+html { scroll-padding-top: 84px; }
+.nav-toggle { width: 44px; height: 44px; border-radius: 4px; }
+.nav-links a { min-height: 44px; display: inline-flex; align-items: center; }
+

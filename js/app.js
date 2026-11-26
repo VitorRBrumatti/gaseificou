@@ -152,13 +152,13 @@
       });
     });
 
-    gsap.from('.eff-fill', {
+    gsap.from('.bar-seg', {
       scaleX: 0,
-      duration: 1.05,
-      stagger: 0.16,
+      duration: 0.9,
+      stagger: 0.08,
       ease: 'power3.out',
       scrollTrigger: {
-        trigger: '.efficiency-bars',
+        trigger: '.eff-chart',
         start: 'top 86%',
         once: true,
       },

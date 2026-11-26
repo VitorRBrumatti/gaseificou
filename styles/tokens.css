@@ -35,7 +35,7 @@
   /* Scale */
   --container-max: 1280px;
   --gutter: clamp(1.25rem, 4vw, 3rem);
-  --radius-pill: 999px;
+  --radius-pill: 4px;
 
   /* Motion */
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
