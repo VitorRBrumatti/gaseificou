@@ -143,6 +143,42 @@
         once: true,
       },
     });
+
+    // Smooth staggered entrance + tabular count-up for the 4 Glassmorphism Modules
+    if (document.getElementById('modulesGrid')) {
+      gsap.from('.module-glass', {
+        y: 26,
+        opacity: 0,
+        duration: 0.85,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#modulesGrid',
+          start: 'top 84%',
+          once: true,
+        },
+      });
+
+      const intFmt = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 0 });
+      document.querySelectorAll('#modulesGrid .stat-count').forEach((el) => {
+        const target = Number(el.dataset.target);
+        if (!Number.isFinite(target)) return;
+        const counter = { val: 0 };
+        gsap.to(counter, {
+          val: target,
+          duration: 1.35,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el.closest('.module-glass') || '#modulesGrid',
+            start: 'top 86%',
+            once: true,
+          },
+          onUpdate: () => {
+            el.textContent = intFmt.format(Math.round(counter.val));
+          },
+        });
+      });
+    }
   }
 
   /* ------------------------------------------------------------------------
@@ -193,11 +229,37 @@
       });
     });
 
-    // Urban vs Rural Mode Toggle inside Module 3
+    // Urban vs Rural Mode Toggle inside Module 3 (with smooth stat transition)
     const btnUrban = document.getElementById('btnUrban');
     const btnRural = document.getElementById('btnRural');
     const panelUrban = document.getElementById('panelUrban');
     const panelRural = document.getElementById('panelRural');
+    const m3HeroNum = document.getElementById('m3HeroNum');
+    const m3HeroUnit = document.getElementById('m3HeroUnit');
+    const m3HeroLabel = document.getElementById('m3HeroLabel');
+
+    function animateM3Hero(targetNum, unit, label, isDecimal) {
+      if (!m3HeroNum) return;
+      if (m3HeroUnit) m3HeroUnit.textContent = unit;
+      if (m3HeroLabel) m3HeroLabel.textContent = label;
+      if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+        const obj = { v: 0 };
+        gsap.to(obj, {
+          v: targetNum,
+          duration: 0.65,
+          ease: 'power2.out',
+          onUpdate: () => {
+            m3HeroNum.textContent = isDecimal
+              ? obj.v.toFixed(1).replace('.', ',')
+              : Math.round(obj.v).toLocaleString('pt-BR');
+          },
+        });
+      } else {
+        m3HeroNum.textContent = isDecimal
+          ? targetNum.toFixed(1).replace('.', ',')
+          : targetNum.toLocaleString('pt-BR');
+      }
+    }
 
     if (btnUrban && btnRural && panelUrban && panelRural) {
       btnUrban.addEventListener('click', () => {
@@ -207,6 +269,7 @@
         btnRural.setAttribute('aria-selected', 'false');
         panelUrban.hidden = false;
         panelRural.hidden = true;
+        animateM3Hero(612, 'L/sem', 'Biofertilizante líquido (~87,5 L/dia · 2,5 L/kg)', false);
       });
       btnRural.addEventListener('click', () => {
         btnRural.classList.add('is-active');
@@ -215,6 +278,7 @@
         btnUrban.setAttribute('aria-selected', 'false');
         panelRural.hidden = false;
         panelUrban.hidden = true;
+        animateM3Hero(2.5, 'L/kg', 'Aplicação diluída direta em jardins, gramados e hortas', true);
       });
     }
 

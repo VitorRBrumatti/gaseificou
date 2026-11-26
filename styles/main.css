@@ -637,47 +637,63 @@
   color: var(--bio-emerald);
 }
 
-/* 4 Modules Architectural 2x2 Grid (Sharp 1px Hairlines, No Rounded Cards) */
+/* 4 Modules: Clean Glassmorphism Data-First Grid */
+.modules-glass-wrap {
+  position: relative;
+  padding: 1.5rem;
+  border: 1px solid var(--line-dark);
+  background-color: #050907;
+  background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 0H0V32' fill='none' stroke='rgba(16,240,160,0.08)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 32px 32px;
+}
+
 .modules-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--line-dark);
-  border-bottom: 1px solid var(--line-dark);
+  gap: 1.25rem;
 }
 
-.module-cell {
-  padding: 2.5rem 2.5rem 2.5rem 0;
-  border-bottom: 1px solid var(--line-dark);
-  border-right: 1px solid var(--line-dark);
+.module-glass {
+  position: relative;
+  padding: 2.25rem;
+  border-radius: 6px;
+  background: rgba(12, 21, 17, 0.62);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid rgba(244, 242, 236, 0.12);
+  box-shadow: inset 0 1px 0 rgba(244, 242, 236, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  transition: background-color 0.2s ease;
+  justify-content: space-between;
+  gap: 1.5rem;
+  transition: transform 0.35s var(--ease-expo), border-color 0.25s ease, background-color 0.25s ease;
 }
 
-.module-cell:nth-child(even) {
-  padding-left: 2.5rem;
-  padding-right: 0;
-  border-right: none;
+.module-glass:hover {
+  transform: translateY(-3px);
+  background: rgba(15, 27, 22, 0.76);
+  border-color: rgba(244, 242, 236, 0.24);
 }
 
-.module-cell:nth-last-child(-n+2) {
-  border-bottom: none;
+.module-glass.is-highlighted {
+  border-color: rgba(16, 240, 160, 0.55);
+  background: rgba(14, 27, 21, 0.78);
 }
 
-.module-cell.is-highlighted {
-  background: rgba(16, 240, 160, 0.035);
-}
-
-.module-head {
+.module-glass__top {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
+}
+
+.module-glass__pill {
+  color: var(--ink-muted);
+  font-size: 0.72rem;
 }
 
 .module-tag {
@@ -688,17 +704,90 @@
   color: var(--flame-amber);
 }
 
-.module-cell h3 {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
+.module-tag--teal {
+  color: var(--bio-teal);
 }
 
-.module-cell p {
+.module-hero-stat {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.module-hero-stat__num {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.2vw, 4.6rem);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  color: var(--ink-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.module-hero-stat__num small {
+  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--bio-emerald);
+  margin-left: 0.25rem;
+}
+
+.module-hero-stat__num--amber small {
+  color: var(--flame-amber);
+}
+
+.module-hero-stat__num--teal small {
+  color: var(--bio-teal);
+}
+
+.module-hero-stat__label {
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--ink-primary);
+}
+
+.module-data-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgba(244, 242, 236, 0.1);
+  border-bottom: 1px solid rgba(244, 242, 236, 0.1);
+}
+
+.module-datum {
+  padding: 0.9rem 0.75rem 0.9rem 0;
+  border-right: 1px solid rgba(244, 242, 236, 0.08);
+  display: grid;
+  gap: 0.2rem;
+}
+
+.module-datum + .module-datum {
+  padding-left: 0.85rem;
+}
+
+.module-datum:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.module-datum strong {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.module-datum span {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+}
+
+.module-glass__desc {
   color: var(--ink-secondary);
-  font-size: 0.96rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 .spec-list {
@@ -722,19 +811,20 @@
   flex: 0 0 auto;
 }
 
-/* Urban vs Rural Switch inside Module 3 (Sharp Architectural Tabs) */
+/* Urban vs Rural Switch inside Module 3 */
 .mode-tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--line-dark-strong);
+  border: 1px solid rgba(244, 242, 236, 0.18);
+  background: rgba(6, 10, 8, 0.45);
 }
 
 .mode-tabs__btn {
-  padding: 0.68rem 1rem;
+  padding: 0.62rem 0.85rem;
   border: none;
   background: transparent;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--ink-secondary);
@@ -743,7 +833,7 @@
 }
 
 .mode-tabs__btn + .mode-tabs__btn {
-  border-left: 1px solid var(--line-dark-strong);
+  border-left: 1px solid rgba(244, 242, 236, 0.16);
 }
 
 .mode-tabs__btn.is-active {
@@ -753,21 +843,12 @@
 }
 
 .mode-panel {
-  padding-top: 0.75rem;
   display: grid;
-  gap: 0.85rem;
+  gap: 1.1rem;
 }
 
 .mode-panel[hidden] {
   display: none;
-}
-
-.saving-note {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--bio-emerald);
-  border-left: 2px solid var(--bio-emerald);
-  padding-left: 0.85rem;
 }
 
 /* Upgraded Precision Hardware CAD Blueprint (Zero Rounded Cards, Clean Leader Lines) */
@@ -1859,11 +1940,22 @@
   .preset-list {
     grid-template-columns: 1fr;
   }
-  .module-cell {
+  .modules-glass-wrap {
+    padding: 0.85rem;
+  }
+  .module-glass {
+    padding: 1.5rem;
+  }
+  .module-data-row {
+    grid-template-columns: 1fr;
+  }
+  .module-datum {
     border-right: none;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    border-bottom: 1px solid var(--line-dark) !important;
+    border-bottom: 1px solid rgba(244, 242, 236, 0.08);
+    padding: 0.7rem 0 !important;
+  }
+  .module-datum:last-child {
+    border-bottom: none;
   }
   .sensor-tile {
     border-right: none;

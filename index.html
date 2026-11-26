@@ -273,87 +273,171 @@
           </div>
         </div>
 
-        <!-- 4 Modules Architectural 2x2 Grid -->
-        <div class="modules-grid reveal-up">
-          <article class="module-cell is-highlighted" data-module-card="1">
-            <div class="module-head">
-              <span class="module-tag">01 / Core anaeróbico</span>
-              <span style="color: var(--ink-muted);">3.000 L · 30 dias</span>
-            </div>
-            <h3>Módulo de biodigestão compacta</h3>
-            <p>
-              Reator dimensionado para a carga diária do estabelecimento (3.000 L para ~35 kg/dia, 30 dias de retenção), gasômetro de 4 a 5 m³ e funil de carga com mistura.
-            </p>
-            <ul class="spec-list">
-              <li><span class="spec-dash">—</span><span>Triagem simples dos orgânicos na rotina diária, sem trituradores complexos.</span></li>
-              <li><span class="spec-dash">—</span><span>Ficam de fora plásticos, ossos grandes, cloro e excesso de gordura acima de 10–15%.</span></li>
-              <li><span class="spec-dash">—</span><span>Sistema fechado que opera sem cheiro em áreas técnicas ou fundos de serviço.</span></li>
-            </ul>
-          </article>
+        <!-- 4 Modules: Clean Glassmorphism Data-First Grid -->
+        <div class="modules-glass-wrap">
+          <div class="modules-grid" id="modulesGrid">
+            <!-- Module 01 -->
+            <article class="module-glass is-highlighted" data-module-card="1">
+              <div class="module-glass__top">
+                <span class="module-tag">01 / Core anaeróbico</span>
+                <span class="module-glass__pill">Biodigestão compacta</span>
+              </div>
 
-          <article class="module-cell" data-module-card="2">
-            <div class="module-head">
-              <span class="module-tag module-tag--amber">02 / Foco térmico</span>
-              <span style="color: var(--flame-amber);">70% – 85% efic.</span>
-            </div>
-            <h3>Módulo de gás e segurança</h3>
-            <p>
-              Linha completa de purificação e proteção para levar gás limpo e constante direto aos aquecedores de água, boilers e caldeiras.
-            </p>
-            <ul class="spec-list">
-              <li><span class="spec-dash">—</span><span>Filtro obrigatório de gás sulfídrico (H₂S) e dreno de umidade contra corrosão.</span></li>
-              <li><span class="spec-dash">—</span><span>Válvulas de bloqueio, corta-chamas, manômetro e booster de baixa pressão.</span></li>
-              <li><span class="spec-dash">—</span><span>Integração térmica direta com boilers, aquecedores de água e caldeiras a gás.</span></li>
-            </ul>
-          </article>
+              <div class="module-hero-stat">
+                <div class="module-hero-stat__num">
+                  <span class="stat-count" data-target="3000" data-format="int">3.000</span><small>L</small>
+                </div>
+                <span class="module-hero-stat__label">Reator fechado para ~35 kg/dia</span>
+              </div>
 
-          <article class="module-cell" data-module-card="3">
-            <div class="module-head">
-              <span class="module-tag">03 / Escoamento físico</span>
-              <span style="color: var(--bio-teal);">~2,5 L / kg</span>
-            </div>
-            <h3>Escoamento com destino garantido</h3>
-            <p>
-              Cada 1 kg de alimento diluído gera cerca de 2,5 L de digestato líquido (~87,5 L/dia ou ~612 L/semana em 35 kg/dia). Escolha o perfil do local:
-            </p>
+              <div class="module-data-row">
+                <div class="module-datum">
+                  <strong><span class="stat-count" data-target="30" data-format="int">30</span> dias</strong>
+                  <span>Retenção</span>
+                </div>
+                <div class="module-datum">
+                  <strong>4–5 m³</strong>
+                  <span>Gasômetro</span>
+                </div>
+                <div class="module-datum">
+                  <strong>≤ 15%</strong>
+                  <span>Gordura máx.</span>
+                </div>
+              </div>
 
-            <div class="mode-tabs" role="tablist" aria-label="Cenário de escoamento">
-              <button class="mode-tabs__btn is-active" id="btnUrban" data-mode="urban" role="tab" aria-selected="true">Área urbana sem jardim</button>
-              <button class="mode-tabs__btn" id="btnRural" data-mode="rural" role="tab" aria-selected="false">Local com área verde</button>
-            </div>
+              <p class="module-glass__desc">
+                Funil de carga com mistura e triagem simples na rotina, separando plásticos, ossos grandes e cloro.
+              </p>
+            </article>
 
-            <div class="mode-panel" id="panelUrban">
-              <ul class="spec-list">
-                <li><span class="spec-dash">—</span><span>Tanque pulmão vedado de 1.000 L, bomba de transferência e engate rápido limpo (camlock).</span></li>
-                <li><span class="spec-dash">—</span><span>Entregue com parceria local engatilhada (chácaras, viveiros ou paisagistas) para retirada semanal gratuita.</span></li>
-              </ul>
-              <div class="saving-note">Evita filtros complexos de esgoto: economiza mais de R$ 3.300 no custo direto.</div>
-            </div>
+            <!-- Module 02 -->
+            <article class="module-glass" data-module-card="2">
+              <div class="module-glass__top">
+                <span class="module-tag module-tag--amber">02 / Gás e segurança</span>
+                <span class="module-glass__pill">100% uso térmico</span>
+              </div>
 
-            <div class="mode-panel" id="panelRural" hidden>
-              <ul class="spec-list">
-                <li><span class="spec-dash">—</span><span>Aplicação direta diluída nos jardins, gramados e hortas do próprio estabelecimento.</span></li>
-                <li><span class="spec-dash">—</span><span>Compostagem eventual do lodo de fundo, retirado a cada 6 a 24 meses.</span></li>
-              </ul>
-              <div class="saving-note">Ciclo fechado no próprio terreno com biofertilizante gratuito.</div>
-            </div>
-          </article>
+              <div class="module-hero-stat">
+                <div class="module-hero-stat__num module-hero-stat__num--amber">
+                  70–<span class="stat-count" data-target="85" data-format="int">85</span><small>%</small>
+                </div>
+                <span class="module-hero-stat__label">Eficiência térmica direta em água quente e boilers</span>
+              </div>
 
-          <article class="module-cell" data-module-card="4">
-            <div class="module-head">
-              <span class="module-tag">04 / Camada digital</span>
-              <span style="color: var(--bio-emerald);">IoT + QR ESG</span>
-            </div>
-            <h3>Telemetria IoT e transparência ESG</h3>
-            <p>
-              Monitoramento remoto dos parâmetros críticos do reator e painel público para clientes ou visitantes acompanharem os dados reais.
-            </p>
-            <ul class="spec-list">
-              <li><span class="spec-dash">—</span><span>Sensores de pressão do gás, temperatura interna do reator e nível do tanque pulmão.</span></li>
-              <li><span class="spec-dash">—</span><span>Alertas enviados antes de a biologia desregular ou de o tanque pulmão lotar.</span></li>
-              <li><span class="spec-dash">—</span><span>QR Code na recepção ou área comum mostrando quanto resíduo virou energia limpa.</span></li>
-            </ul>
-          </article>
+              <div class="module-data-row">
+                <div class="module-datum">
+                  <strong>Filtro H₂S</strong>
+                  <span>Anticorrosão</span>
+                </div>
+                <div class="module-datum">
+                  <strong>Corta-chamas</strong>
+                  <span>+ dreno umidade</span>
+                </div>
+                <div class="module-datum">
+                  <strong>Booster</strong>
+                  <span>Baixa pressão</span>
+                </div>
+              </div>
+
+              <p class="module-glass__desc">
+                Purificação obrigatória e proteção de linha completa para entrega estável em aquecedores e caldeiras.
+              </p>
+            </article>
+
+            <!-- Module 03 -->
+            <article class="module-glass" data-module-card="3">
+              <div class="module-glass__top">
+                <span class="module-tag module-tag--teal">03 / Escoamento físico</span>
+                <span class="module-glass__pill">Destino garantido</span>
+              </div>
+
+              <div class="module-hero-stat">
+                <div class="module-hero-stat__num module-hero-stat__num--teal">
+                  <span class="stat-count" id="m3HeroNum" data-target="612" data-format="int">612</span><small id="m3HeroUnit">L/sem</small>
+                </div>
+                <span class="module-hero-stat__label" id="m3HeroLabel">Biofertilizante líquido (~87,5 L/dia · 2,5 L/kg)</span>
+              </div>
+
+              <div class="mode-tabs" role="tablist" aria-label="Cenário de escoamento">
+                <button class="mode-tabs__btn is-active" id="btnUrban" data-mode="urban" role="tab" aria-selected="true">Área urbana · Camlock</button>
+                <button class="mode-tabs__btn" id="btnRural" data-mode="rural" role="tab" aria-selected="false">Local com área verde</button>
+              </div>
+
+              <div class="mode-panel" id="panelUrban">
+                <div class="module-data-row">
+                  <div class="module-datum">
+                    <strong>1.000 L</strong>
+                    <span>Pulmão vedado</span>
+                  </div>
+                  <div class="module-datum">
+                    <strong>-R$ 3.300+</strong>
+                    <span>vs. filtro esgoto</span>
+                  </div>
+                  <div class="module-datum">
+                    <strong>Grátis</strong>
+                    <span>Retirada semanal</span>
+                  </div>
+                </div>
+                <p class="module-glass__desc">
+                  Bomba de transferência + engate rápido camlock já entregue com parceria local (chácaras, viveiros ou paisagistas).
+                </p>
+              </div>
+
+              <div class="mode-panel" id="panelRural" hidden>
+                <div class="module-data-row">
+                  <div class="module-datum">
+                    <strong>2,5 L/kg</strong>
+                    <span>Diluição direta</span>
+                  </div>
+                  <div class="module-datum">
+                    <strong>6–24 meses</strong>
+                    <span>Retirada lodo</span>
+                  </div>
+                  <div class="module-datum">
+                    <strong>100% local</strong>
+                    <span>Ciclo fechado</span>
+                  </div>
+                </div>
+                <p class="module-glass__desc">
+                  Aplicação diluída direto em jardins, gramados e hortas, com compostagem eventual do lodo de fundo.
+                </p>
+              </div>
+            </article>
+
+            <!-- Module 04 -->
+            <article class="module-glass" data-module-card="4">
+              <div class="module-glass__top">
+                <span class="module-tag">04 / Camada digital</span>
+                <span class="module-glass__pill">IoT + QR ESG</span>
+              </div>
+
+              <div class="module-hero-stat">
+                <div class="module-hero-stat__num">
+                  <span class="stat-count" data-target="24" data-format="int">24</span>/7<small>IoT</small>
+                </div>
+                <span class="module-hero-stat__label">Monitoramento preventivo + painel público via QR Code</span>
+              </div>
+
+              <div class="module-data-row">
+                <div class="module-datum">
+                  <strong><span class="stat-count" data-target="3" data-format="int">3</span> sensores</strong>
+                  <span>Pressão · Temp · Nível</span>
+                </div>
+                <div class="module-datum">
+                  <strong>R$ 99–199</strong>
+                  <span>Assinatura/mês</span>
+                </div>
+                <div class="module-datum">
+                  <strong>Tempo real</strong>
+                  <span>QR Code ESG</span>
+                </div>
+              </div>
+
+              <p class="module-glass__desc">
+                Alertas antes de a biologia desregular ou o pulmão lotar, além de QR Code na recepção mostrando impacto real.
+              </p>
+            </article>
+          </div>
         </div>
 
         <!-- Upgraded Precision Hardware CAD Blueprint -->
