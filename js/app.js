@@ -82,15 +82,19 @@
       gsap.registerPlugin(ScrollTrigger);
     }
 
-    const heroLines = document.querySelectorAll('#heroTitle .line-inner');
-    gsap.from(heroLines, {
-      yPercent: 90,
-      opacity: 0,
-      duration: 0.95,
-      stagger: 0.12,
-      ease: 'power4.out',
-      delay: 0.08,
-    });
+    // Entrance on .line-wrap (separate element from scroll-scrubbed .hero-line-1/2 so opacity is ALWAYS 1 at y=0)
+    gsap.fromTo(
+      '#heroTitle .line-wrap',
+      { y: 36, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.85,
+        stagger: 0.12,
+        ease: 'power4.out',
+        delay: 0.05,
+      }
+    );
 
     gsap.from('.hero-reveal', {
       y: 20,
@@ -98,7 +102,7 @@
       duration: 0.75,
       stagger: 0.09,
       ease: 'power3.out',
-      delay: 0.25,
+      delay: 0.22,
     });
 
     // Strong entrance for Hero top KPI numbers
@@ -113,25 +117,25 @@
         duration: 0.95,
         stagger: 0.1,
         ease: 'expo.out',
-        delay: 0.32,
+        delay: 0.3,
       }
     );
 
-    // Centered Hero title passes horizontally as user scrolls
+    // Centered Hero title starts 100% visible at y=0 and slides apart + fades OUT as user scrolls down
     if (typeof ScrollTrigger !== 'undefined') {
       const heroTl = gsap.timeline({
         scrollTrigger: {
           trigger: '#heroSection',
           start: 'top top',
           end: 'bottom top',
-          scrub: 0.7,
+          scrub: 0.6,
         },
       });
 
       heroTl
-        .to('.hero-line-1', { xPercent: -26, opacity: 0.15, ease: 'none' }, 0)
-        .to('.hero-line-2', { xPercent: 26, opacity: 0.15, ease: 'none' }, 0)
-        .to('#heroTitle', { y: -45, ease: 'none' }, 0);
+        .fromTo('.hero-line-1', { xPercent: 0, opacity: 1 }, { xPercent: -28, opacity: 0, ease: 'none', immediateRender: false }, 0)
+        .fromTo('.hero-line-2', { xPercent: 0, opacity: 1 }, { xPercent: 28, opacity: 0, ease: 'none', immediateRender: false }, 0)
+        .fromTo('#heroTitle', { y: 0 }, { y: -50, ease: 'none', immediateRender: false }, 0);
     }
 
     document.querySelectorAll('.reveal-up').forEach((el) => {
@@ -702,18 +706,9 @@
   }
 
   /* ------------------------------------------------------------------------
-     6. FINANCIAL X-RAY ACCORDION & DIAGNOSTIC FORM
+     6. DIAGNOSTIC FORM
      ------------------------------------------------------------------------ */
-  function initXrayAndForm() {
-    const xrayBox = document.getElementById('xrayBox');
-    const xrayTrigger = document.getElementById('xrayTrigger');
-    if (xrayBox && xrayTrigger) {
-      xrayTrigger.addEventListener('click', () => {
-        const isOpen = xrayBox.classList.toggle('is-open');
-        xrayTrigger.setAttribute('aria-expanded', String(isOpen));
-      });
-    }
-
+  function initDiagnosticForm() {
     const form = document.getElementById('diagForm');
     const successBox = document.getElementById('formSuccess');
     const summaryText = document.getElementById('formSummaryText');
@@ -755,6 +750,6 @@
     initArchitecture();
     initViabilityCalculator();
     initIoTConsole();
-    initXrayAndForm();
+    initDiagnosticForm();
   });
 })();
