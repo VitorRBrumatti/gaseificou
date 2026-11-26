@@ -776,7 +776,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-.module-datum span {
+.module-datum > span {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   text-transform: uppercase;
