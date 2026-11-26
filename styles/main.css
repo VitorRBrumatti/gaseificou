@@ -1596,177 +1596,7 @@ select:focus-visible {
 }
 
 /* ==========================================================================
-   SECTION 5: IOT TELEMETRIA & PAINEL QR ESG (Minimalist Split)
-   ========================================================================== */
-.iot-split {
-  border-top: 1px solid var(--line-dark-strong);
-  border-bottom: 1px solid var(--line-dark-strong);
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-}
-
-.iot-console {
-  padding: 2.2rem 2.5rem 2.2rem 0;
-  border-right: 1px solid var(--line-dark);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.75rem;
-}
-
-.iot-console__header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--line-dark);
-}
-
-.iot-sensors {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-bottom: 1px solid var(--line-dark);
-}
-
-.sensor-tile {
-  padding: 0 1.2rem 1.25rem 0;
-  border-right: 1px solid var(--line-dark);
-  display: grid;
-  gap: 0.35rem;
-}
-
-.sensor-tile + .sensor-tile {
-  padding-left: 1.2rem;
-}
-
-.sensor-tile:last-child {
-  border-right: none;
-  padding-right: 0;
-}
-
-.sensor-tile__label {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--ink-muted);
-  text-transform: uppercase;
-}
-
-.sensor-tile__value {
-  font-family: var(--font-mono);
-  font-size: 1.45rem;
-  font-weight: 700;
-  color: var(--ink-primary);
-}
-
-.sensor-tile__status {
-  font-size: 0.78rem;
-  color: var(--bio-emerald);
-}
-
-.sensor-tile.is-alert .sensor-tile__value,
-.sensor-tile.is-alert .sensor-tile__status {
-  color: var(--flame-amber);
-}
-
-.telemetry-chart-box {
-  padding: 0.5rem 0;
-}
-
-.telemetry-chart-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  color: var(--ink-secondary);
-}
-
-.telemetry-canvas {
-  width: 100%;
-  height: 120px;
-}
-
-.alert-strip {
-  padding: 0.9rem 1rem;
-  border-left: 2px solid var(--bio-emerald);
-  background: rgba(16, 240, 160, 0.05);
-  font-size: 0.88rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.alert-strip.is-warning {
-  border-left-color: var(--flame-amber);
-  background: rgba(255, 107, 43, 0.1);
-  color: #ffd5c2;
-}
-
-/* Guest QR Display (Clean Architectural Panel) */
-.guest-qr-col {
-  padding: 2.2rem 0 2.2rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.6rem;
-}
-
-.guest-headline {
-  font-family: var(--font-display);
-  font-size: 1.38rem;
-  line-height: 1.22;
-}
-
-.guest-stats-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--line-dark);
-  border-bottom: 1px solid var(--line-dark);
-}
-
-.guest-stat {
-  padding: 1.1rem 1rem 1.1rem 0;
-  border-right: 1px solid var(--line-dark);
-}
-
-.guest-stat:last-child {
-  padding-left: 1rem;
-  padding-right: 0;
-  border-right: none;
-}
-
-.guest-stat strong {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 1.55rem;
-  color: var(--bio-emerald);
-}
-
-.guest-stat span {
-  font-size: 0.8rem;
-  color: var(--ink-secondary);
-}
-
-.qr-strip {
-  display: flex;
-  align-items: center;
-  gap: 1.15rem;
-}
-
-.qr-box {
-  flex: 0 0 68px;
-  width: 68px;
-  height: 68px;
-  padding: 6px;
-  background: #ffffff;
-}
-
-/* ==========================================================================
-   SECTION 6: DIAGNÓSTICO (Clean Split, Sharp Architectural Inputs)
+   SECTION 5: DIAGNÓSTICO (Clean Split, Sharp Architectural Inputs)
    ========================================================================== */
 .cta-split {
   border-top: 1px solid var(--line-dark-strong);
@@ -1916,7 +1746,6 @@ select:focus-visible {
   .process-rail__detail,
   .hardware-cad__body,
   .calc-shell,
-  .iot-split,
   .pricing-split,
   .cta-split {
     grid-template-columns: 1fr;
@@ -1933,7 +1762,6 @@ select:focus-visible {
   .pain-col,
   .rail-step,
   .calc-inputs,
-  .iot-console,
   .pricing-col,
   .xray-col {
     border-right: none;
@@ -1943,7 +1771,6 @@ select:focus-visible {
   .pain-col,
   .rail-step,
   .calc-inputs,
-  .iot-console,
   .pricing-col,
   .xray-col {
     border-bottom: 1px solid var(--line-dark);
@@ -1954,7 +1781,6 @@ select:focus-visible {
   .thermal-band__metrics,
   .hardware-inspector,
   .calc-outputs,
-  .guest-qr-col,
   .pricing-col:last-child {
     border-left: none;
     padding-left: 0;
@@ -1984,7 +1810,6 @@ select:focus-visible {
     align-items: stretch;
   }
   .modules-grid,
-  .iot-sensors,
   .form-row-2,
   .preset-list {
     grid-template-columns: 1fr;
@@ -2005,11 +1830,6 @@ select:focus-visible {
   }
   .module-datum:last-child {
     border-bottom: none;
-  }
-  .sensor-tile {
-    border-right: none;
-    border-bottom: 1px solid var(--line-dark);
-    padding: 0.9rem 0 !important;
   }
   .hero__metrics {
     grid-template-columns: 1fr;

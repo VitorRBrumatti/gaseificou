@@ -274,7 +274,7 @@
       },
       4: {
         text: 'Sensores acompanham o reator e o tanque pulmão à distância. Qualquer desvio gera alerta preventivo, e o QR Code abre o painel ao vivo para quem visita o local.',
-        stat: 'ASSINATURA: R$ 99 – 199 / MÊS',
+        stat: 'INCLUSO NO CONTRATO',
       },
     };
 
@@ -367,7 +367,7 @@
     // Precision Hardware CAD Inspector (bidirectional sync with Three.js 3D viewer)
     const cadSpecs = {
       reator: {
-        idx: 'SUBSISTEMA 01 / 04',
+        idx: 'SUBSISTEMA 01 / 03',
         title: 'Reator anaeróbico 3.000 L + gasômetro',
         desc: 'Reator fechado para áreas urbanas sem cheiro. Recebe ~35 kg/dia de orgânicos diluídos no funil misturador e mantém 30 dias de retenção com gasômetro de 4 a 5 m³.',
         s1l: 'Volume reator',
@@ -378,7 +378,7 @@
         s3v: 'R$ 7.000',
       },
       gas: {
-        idx: 'SUBSISTEMA 02 / 04',
+        idx: 'SUBSISTEMA 02 / 03',
         title: 'Skid de filtragem H₂S e segurança térmica',
         desc: 'Coluna dessulfurizadora contra corrosão ácida nos trocadores de cobre e dreno condensador. Inclui manômetro, corta-chamas, válvula solenoide de CH₄ e booster para boilers.',
         s1l: 'Eficiência térmica',
@@ -389,7 +389,7 @@
         s3v: 'R$ 3.200',
       },
       pulmao: {
-        idx: 'SUBSISTEMA 03 / 04',
+        idx: 'SUBSISTEMA 03 / 03',
         title: 'Tanque pulmão 1.000 L + engate camlock',
         desc: 'Armazena cerca de 612 L por semana de biofertilizante em tanque vedado. A bomba e o engate camlock deixam a retirada semanal limpa para chácaras ou viveiros parceiros.',
         s1l: 'Armazenamento',
@@ -398,17 +398,6 @@
         s2v: '> R$ 3.300 vs filtro',
         s3l: 'Referência COGS',
         s3v: 'R$ 2.200',
-      },
-      iot: {
-        idx: 'SUBSISTEMA 04 / 04',
-        title: 'Central IoT IP65 e telemetria preditiva',
-        desc: 'Painel IP65 com sensores de pH/temperatura, saída de H₂S, vazamento de CH₄ com corte automático por solenoide e balança IoT para métricas ESG via QR Code.',
-        s1l: 'Sensores',
-        s1v: 'pH/T · H₂S · CH₄ · Peso',
-        s2l: 'Assinatura SaaS',
-        s2v: 'R$ 99 – 199 / mês',
-        s3l: 'Referência COGS',
-        s3v: 'R$ 600',
       },
     };
 
@@ -595,143 +584,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     5. LIVE IOT TELEMETRY CONSOLE
-     ------------------------------------------------------------------------ */
-  function initIoTConsole() {
-    const valPressure = document.getElementById('valPressure');
-    const valTemp = document.getElementById('valTemp');
-    const valLevel = document.getElementById('valLevel');
-    const stTemp = document.getElementById('stTemp');
-    const stLevel = document.getElementById('stLevel');
-    const tileTemp = document.getElementById('tileTemp');
-    const tileLevel = document.getElementById('tileLevel');
-    const alertBanner = document.getElementById('iotAlertBanner');
-    const alertMsg = document.getElementById('iotAlertMsg');
-    const alertTag = document.getElementById('iotAlertTag');
-    const btnSimAlert = document.getElementById('btnSimulateAlert');
-    const chartCanvas = document.getElementById('telemetryChart');
-    const guestKg = document.getElementById('guestKgCounter');
-    const guestBio = document.getElementById('guestBioCounter');
-
-    if (!chartCanvas) return;
-    const ctx = chartCanvas.getContext('2d');
-
-    let alertActive = false;
-    let guestTotal = 1050;
-    const series = [3.9, 4.1, 4.3, 4.2, 4.5, 4.7, 4.6, 4.8, 4.7, 4.9, 4.6, 4.7, 4.8, 4.6, 4.5, 4.7, 4.9, 4.8];
-
-    function drawChart() {
-      const w = chartCanvas.width;
-      const h = chartCanvas.height;
-      ctx.clearRect(0, 0, w, h);
-
-      ctx.strokeStyle = 'rgba(244, 242, 236, 0.08)';
-      ctx.lineWidth = 1;
-      for (let i = 1; i <= 3; i++) {
-        const y = (h / 4) * i;
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(w, y);
-        ctx.stroke();
-      }
-
-      const minV = 2.8;
-      const maxV = 5.4;
-      const stepX = w / (series.length - 1);
-
-      const points = series.map((v, idx) => ({
-        x: idx * stepX,
-        y: h - ((v - minV) / (maxV - minV)) * (h - 22) - 10,
-      }));
-
-      ctx.beginPath();
-      ctx.moveTo(points[0].x, h);
-      points.forEach((p) => ctx.lineTo(p.x, p.y));
-      ctx.lineTo(points[points.length - 1].x, h);
-      ctx.closePath();
-      ctx.fillStyle = alertActive ? 'rgba(255, 107, 43, 0.14)' : 'rgba(16, 240, 160, 0.12)';
-      ctx.fill();
-
-      ctx.beginPath();
-      points.forEach((p, idx) => (idx === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y)));
-      ctx.strokeStyle = alertActive ? '#ff6b2b' : '#10f0a0';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      const last = points[points.length - 1];
-      ctx.beginPath();
-      ctx.arc(last.x, last.y, 4, 0, Math.PI * 2);
-      ctx.fillStyle = alertActive ? '#ff6b2b' : '#10f0a0';
-      ctx.fill();
-    }
-
-    drawChart();
-
-    setInterval(() => {
-      if (alertActive) {
-        valPressure.textContent = `${74 + Math.floor(Math.random() * 14)} ppm`;
-        valTemp.textContent = `6.1 · ${(29.4 + (Math.random() - 0.5) * 0.3).toFixed(1)} °C`;
-        valLevel.textContent = 'FECHADA';
-        series.shift();
-        series.push(3.5 + Math.random() * 0.35);
-      } else {
-        valPressure.textContent = `${16 + Math.floor(Math.random() * 5)} ppm`;
-        valTemp.textContent = `7.1 · ${(35.6 + (Math.random() - 0.5) * 0.3).toFixed(1)} °C`;
-        valLevel.textContent = '0 ppm';
-        series.shift();
-        series.push(4.45 + Math.random() * 0.45);
-      }
-
-      guestTotal += 2;
-      if (guestKg) guestKg.textContent = `${guestTotal.toLocaleString('pt-BR')} kg`;
-      if (guestBio) guestBio.textContent = `${Math.round(guestTotal * 2.5).toLocaleString('pt-BR')} L`;
-      drawChart();
-    }, 2200);
-
-    const tilePressure = document.getElementById('tilePressure');
-    const stPressure = document.getElementById('stPressure');
-    const valFlowRate = document.getElementById('valFlowRate');
-
-    if (btnSimAlert) {
-      btnSimAlert.addEventListener('click', () => {
-        alertActive = !alertActive;
-        tilePressure?.classList.toggle('is-alert', alertActive);
-        tileTemp.classList.toggle('is-alert', alertActive);
-        tileLevel.classList.toggle('is-alert', alertActive);
-        alertBanner.classList.toggle('is-warning', alertActive);
-
-        if (alertActive) {
-          btnSimAlert.textContent = 'Restaurar operação normal';
-          if (stPressure) stPressure.textContent = 'Acima de 50 ppm · Trocar refil';
-          if (valFlowRate) {
-            valFlowRate.textContent = '3,6 m³/dia · Trocar refil H₂S';
-            valFlowRate.style.color = 'var(--flame-amber)';
-          }
-          stTemp.textContent = 'Alerta de acidificação (pH 6.1)';
-          stLevel.textContent = 'Solenoide fechada · Bloqueio ativo';
-          alertMsg.textContent =
-            'Alerta preditivo acionado: refil de H₂S acima de 50 ppm e queda de pH detectada. Válvula solenoide bloqueou a linha por segurança.';
-          alertTag.textContent = 'PREVENÇÃO';
-        } else {
-          btnSimAlert.textContent = 'Testar alerta preventivo';
-          if (stPressure) stPressure.textContent = 'Abaixo de 50 ppm';
-          if (valFlowRate) {
-            valFlowRate.textContent = '4,6 m³/dia · Filtro H₂S OK';
-            valFlowRate.style.color = 'var(--bio-emerald)';
-          }
-          stTemp.textContent = 'Biologia estável';
-          stLevel.textContent = 'Linha estanque';
-          alertMsg.textContent =
-            'Biologia estável. Todos os sensores dentro da faixa de operação.';
-          alertTag.textContent = 'NOMINAL';
-        }
-        drawChart();
-      });
-    }
-  }
-
-  /* ------------------------------------------------------------------------
-     6. DIAGNOSTIC FORM
+     5. DIAGNOSTIC FORM
      ------------------------------------------------------------------------ */
   function initDiagnosticForm() {
     const form = document.getElementById('diagForm');
@@ -774,7 +627,6 @@
     initMotionCraft();
     initArchitecture();
     initViabilityCalculator();
-    initIoTConsole();
     initDiagnosticForm();
   });
 })();

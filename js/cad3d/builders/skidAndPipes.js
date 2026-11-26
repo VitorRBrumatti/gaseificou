@@ -135,25 +135,6 @@ export function buildSkidAndPipes(mats) {
   addFlange(new THREE.Vector3(-0.66, 0.46, 0.22), 'z', Math.PI / 2);
   addFlange(new THREE.Vector3(1.5, 0.46, 0.14), 'z', Math.PI / 2);
 
-  // 5. Thin Telemetry Conduits from IoT Panel (0.92, 1.62, -0.22) -> Reactor & Gas Skid
-  const conduitReactor = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(0.84, 1.56, -0.22),
-    new THREE.Vector3(-0.25, 1.56, -0.58),
-    new THREE.Vector3(-0.78, 1.48, -0.45),
-  ]);
-  group.add(
-    new THREE.Mesh(new THREE.TubeGeometry(conduitReactor, 20, 0.015, 6, false), mats.solids.conduit)
-  );
-
-  const conduitGas = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(0.86, 1.6, -0.18),
-    new THREE.Vector3(0.56, 1.62, -0.08),
-    new THREE.Vector3(0.45, 1.55, 0.08),
-  ]);
-  group.add(
-    new THREE.Mesh(new THREE.TubeGeometry(conduitGas, 14, 0.015, 6, false), mats.solids.conduit)
-  );
-
   return {
     group,
     curves: {

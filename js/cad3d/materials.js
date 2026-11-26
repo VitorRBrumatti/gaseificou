@@ -71,19 +71,6 @@ export function createCadMaterials() {
       polygonOffsetFactor: 1,
       polygonOffsetUnits: 1,
     }),
-    iot: new THREE.MeshPhysicalMaterial({
-      color: 0x16221e,
-      emissive: 0x03140e,
-      emissiveIntensity: 0.3,
-      metalness: 0.35,
-      roughness: 0.28,
-      transparent: true,
-      opacity: 0.46,
-      depthWrite: true,
-      polygonOffset: true,
-      polygonOffsetFactor: 1,
-      polygonOffsetUnits: 1,
-    }),
   };
 
   const solids = {
@@ -185,11 +172,6 @@ export function createCadMaterials() {
       transparent: true,
       opacity: 0.66,
     }),
-    conduit: new THREE.MeshStandardMaterial({
-      color: 0x334155,
-      metalness: 0.7,
-      roughness: 0.35,
-    }),
     gaugeFace: new THREE.MeshBasicMaterial({
       color: 0x0a1110,
     }),
@@ -199,7 +181,6 @@ export function createCadMaterials() {
     reator: new THREE.LineBasicMaterial({ color: PALETTE.emerald, transparent: true, opacity: 0.78 }),
     gas: new THREE.LineBasicMaterial({ color: PALETTE.emerald, transparent: true, opacity: 0.52 }),
     pulmao: new THREE.LineBasicMaterial({ color: PALETTE.teal, transparent: true, opacity: 0.58 }),
-    iot: new THREE.LineBasicMaterial({ color: PALETTE.emerald, transparent: true, opacity: 0.62 }),
     amber: new THREE.LineBasicMaterial({ color: PALETTE.amber, transparent: true, opacity: 0.8 }),
     steel: new THREE.LineBasicMaterial({ color: 0x475569, transparent: true, opacity: 0.35 }),
   };
@@ -217,7 +198,7 @@ export function createCadMaterials() {
 
   function syncVisualState() {
     const isSolid = currentMode === 'solid';
-    ['reator', 'gas', 'pulmao', 'iot'].forEach((id) => {
+    ['reator', 'gas', 'pulmao'].forEach((id) => {
       const active = currentActive === id || currentActive === 'overview';
       const isHovered = hoveredId === id;
       const shell = xrayShells[id];
@@ -225,13 +206,13 @@ export function createCadMaterials() {
 
       if (shell) {
         if (isSolid) {
-          shell.opacity = id === 'iot' ? 0.96 : 0.9;
+          shell.opacity = 0.9;
           shell.depthWrite = true;
           shell.roughness = 0.32;
           shell.metalness = 0.52;
         } else {
-          shell.opacity = active ? (id === 'iot' ? 0.52 : 0.34) : 0.16;
-          shell.depthWrite = id === 'iot';
+          shell.opacity = active ? 0.34 : 0.16;
+          shell.depthWrite = false;
           shell.roughness = 0.22;
           shell.metalness = 0.18;
         }

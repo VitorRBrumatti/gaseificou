@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export function createFlowAnimations(curves, reactorMeta, gasMeta, iotMeta, mats) {
+export function createFlowAnimations(curves, reactorMeta, gasMeta, mats) {
   const group = new THREE.Group();
   group.name = 'FlowAnimations';
 
@@ -86,15 +86,9 @@ export function createFlowAnimations(curves, reactorMeta, gasMeta, iotMeta, mats
       reactorMeta.meniscus.position.y = reactorMeta.liquidHeight + 0.05 + Math.sin(elapsed * 2.2) * 0.012;
     }
 
-    // 4. Manometer micro-oscillation & IoT LED pulse
+    // 4. Manometer micro-oscillation
     if (gasMeta.needle) {
       gasMeta.needle.rotation.z = -0.65 + Math.sin(elapsed * 3.1) * 0.08;
-    }
-    if (iotMeta.leds) {
-      iotMeta.leds.forEach((led, idx) => {
-        const s = 0.85 + Math.sin(elapsed * 3.5 + idx * 1.4) * 0.25;
-        led.scale.setScalar(s);
-      });
     }
   }
 

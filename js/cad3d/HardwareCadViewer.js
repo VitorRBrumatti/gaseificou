@@ -7,7 +7,6 @@ import {
   buildReactorSubsystem,
   buildGasScrubberSubsystem,
   buildBufferTankSubsystem,
-  buildIoTSubsystem,
 } from './builders/subsystems.js';
 import { createFlowAnimations } from './flowAnimations.js';
 
@@ -31,7 +30,7 @@ export function initHardwareCad3D({
 
   if (!isWebGLAvailable()) {
     container.innerHTML =
-      '<div class="cad3d-fallback"><strong>Visualizador 3D indisponível neste navegador</strong><span>WebGL desativado. Utilize as abas superiores (01–04) para inspecionar as especificações técnicas do Kit Urbano 35 kg/dia.</span></div>';
+      '<div class="cad3d-fallback"><strong>Visualizador 3D indisponível neste navegador</strong><span>WebGL desativado. Utilize as abas superiores (01–03) para inspecionar as especificações técnicas do Kit Urbano 35 kg/dia.</span></div>';
     return null;
   }
 
@@ -117,15 +116,13 @@ export function initHardwareCad3D({
   const reactorMeta = buildReactorSubsystem(mats);
   const gasMeta = buildGasScrubberSubsystem(mats);
   const bufferMeta = buildBufferTankSubsystem(mats);
-  const iotMeta = buildIoTSubsystem(mats);
-  const flows = createFlowAnimations(curves, reactorMeta, gasMeta, iotMeta, mats);
+  const flows = createFlowAnimations(curves, reactorMeta, gasMeta, mats);
 
   rootAssembly.add(
     skidGroup,
     reactorMeta.group,
     gasMeta.group,
     bufferMeta.group,
-    iotMeta.group,
     flows.group
   );
 
@@ -135,7 +132,7 @@ export function initHardwareCad3D({
 
   // Collect clickable meshes for fast raycasting
   const pickTargets = [];
-  [reactorMeta.group, gasMeta.group, bufferMeta.group, iotMeta.group].forEach((grp) => {
+  [reactorMeta.group, gasMeta.group, bufferMeta.group].forEach((grp) => {
     grp.traverse((child) => {
       if (child.isMesh && child.userData.subsystemId) {
         pickTargets.push(child);
