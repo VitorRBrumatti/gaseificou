@@ -1,13 +1,13 @@
 # Gaseificou!
 
-Landing page do **Gaseificou!**, sistema turnkey de biodigestão compacta para hotéis, pousadas e restaurantes. Converte resíduos orgânicos em gás térmico próprio para aquecimento de água e substituição do GLP, com logística urbana de escoamento de biofertilizante e telemetria IoT.
+Landing page do **Gaseificou!**, sistema turnkey de biodigestão compacta para estabelecimentos geradores de resíduos orgânicos. Converte matéria orgânica em gás térmico próprio para aquecimento de água e substituição do GLP, com logística urbana de escoamento de biofertilizante e telemetria IoT.
 
 ## Estrutura
 
-- `index.html` — Página principal com as 7 seções, fluxograma SVG dos 4 módulos e maquete CAD isométrica.
-- `styles/tokens.css` — Variáveis de cores sólidas, tipografia e curvas de animação.
-- `styles/main.css` — Layout responsivo e componentes interativos.
-- `js/app.js` — Scroll suave (Lenis), animações cinéticas no scroll (GSAP + ScrollTrigger), simulador de ROI calibrado e painel IoT.
+- `index.html` — Página principal com corte técnico CAD interativo, fluxo de massa em 4 módulos e calculadora de viabilidade.
+- `styles/tokens.css` — Variáveis de cores sólidas, tipografia e linhas estruturais.
+- `styles/main.css` — Layout minimalista em grid arquitetônico (sem gradientes) e navbar flutuante.
+- `js/app.js` — Scroll suave (Lenis), animação cinética no scroll (GSAP + ScrollTrigger), inspetor CAD, calculadora de viabilidade e painel IoT.
 
 ## Como executar localmente
 
