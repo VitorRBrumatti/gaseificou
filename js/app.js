@@ -105,21 +105,42 @@
       delay: 0.22,
     });
 
-    // Centered Hero title starts 100% visible at y=0 and slides apart + fades OUT as user scrolls down
+    // Centered Hero title starts 100% visible at y=0 and splits wide + blurs + fades OUT intensely on scroll
     if (typeof ScrollTrigger !== 'undefined') {
       const heroTl = gsap.timeline({
         scrollTrigger: {
           trigger: '#heroSection',
           start: 'top top',
-          end: 'bottom top',
-          scrub: 0.6,
+          end: '72% top',
+          scrub: 0.45,
         },
       });
 
       heroTl
-        .fromTo('.hero-line-1', { xPercent: 0, opacity: 1 }, { xPercent: -28, opacity: 0, ease: 'none', immediateRender: false }, 0)
-        .fromTo('.hero-line-2', { xPercent: 0, opacity: 1 }, { xPercent: 28, opacity: 0, ease: 'none', immediateRender: false }, 0)
-        .fromTo('#heroTitle', { y: 0 }, { y: -50, ease: 'none', immediateRender: false }, 0);
+        .fromTo(
+          '.hero-line-1',
+          { xPercent: 0, scale: 1, opacity: 1, filter: 'blur(0px)' },
+          { xPercent: -68, scale: 1.1, opacity: 0, filter: 'blur(12px)', ease: 'power1.in', immediateRender: false },
+          0
+        )
+        .fromTo(
+          '.hero-line-2',
+          { xPercent: 0, scale: 1, opacity: 1, filter: 'blur(0px)' },
+          { xPercent: 68, scale: 1.1, opacity: 0, filter: 'blur(12px)', ease: 'power1.in', immediateRender: false },
+          0
+        )
+        .fromTo(
+          '#heroTitle',
+          { y: 0 },
+          { y: -95, ease: 'none', immediateRender: false },
+          0
+        )
+        .fromTo(
+          '.hero__cta-row',
+          { y: 0, scale: 1, opacity: 1 },
+          { y: -45, scale: 0.94, opacity: 0, ease: 'power1.in', immediateRender: false },
+          0.06
+        );
     }
 
     document.querySelectorAll('.reveal-up').forEach((el) => {
