@@ -683,22 +683,37 @@
       drawChart();
     }, 2200);
 
+    const tilePressure = document.getElementById('tilePressure');
+    const stPressure = document.getElementById('stPressure');
+    const valFlowRate = document.getElementById('valFlowRate');
+
     if (btnSimAlert) {
       btnSimAlert.addEventListener('click', () => {
         alertActive = !alertActive;
+        tilePressure?.classList.toggle('is-alert', alertActive);
         tileTemp.classList.toggle('is-alert', alertActive);
         tileLevel.classList.toggle('is-alert', alertActive);
         alertBanner.classList.toggle('is-warning', alertActive);
 
         if (alertActive) {
           btnSimAlert.textContent = 'Restaurar operação normal';
+          if (stPressure) stPressure.textContent = 'Acima de 50 ppm · Trocar refil';
+          if (valFlowRate) {
+            valFlowRate.textContent = '3,6 m³/dia · Trocar refil H₂S';
+            valFlowRate.style.color = 'var(--flame-amber)';
+          }
           stTemp.textContent = 'Alerta de acidificação (pH 6.1)';
-          stLevel.textContent = 'Solenoide fechada · H₂S > 50 ppm';
+          stLevel.textContent = 'Solenoide fechada · Bloqueio ativo';
           alertMsg.textContent =
             'Alerta preditivo acionado: refil de H₂S acima de 50 ppm e queda de pH detectada. Válvula solenoide bloqueou a linha por segurança.';
           alertTag.textContent = 'PREVENÇÃO';
         } else {
           btnSimAlert.textContent = 'Testar alerta preventivo';
+          if (stPressure) stPressure.textContent = 'Abaixo de 50 ppm';
+          if (valFlowRate) {
+            valFlowRate.textContent = '4,6 m³/dia · Filtro H₂S OK';
+            valFlowRate.style.color = 'var(--bio-emerald)';
+          }
           stTemp.textContent = 'Biologia estável';
           stLevel.textContent = 'Linha estanque';
           alertMsg.textContent =
