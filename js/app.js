@@ -43,14 +43,20 @@
     }
 
     const progressBar = document.getElementById('scrollProgress');
-    window.addEventListener('scroll', () => {
+    const navShell = document.getElementById('navShell');
+
+    function syncScrollUI() {
+      const y = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      const pct = docHeight > 0 ? (y / docHeight) * 100 : 0;
       if (progressBar) progressBar.style.width = `${pct}%`;
-    }, { passive: true });
+      if (navShell) navShell.classList.toggle('is-scrolled', y > 24);
+    }
+
+    syncScrollUI();
+    window.addEventListener('scroll', syncScrollUI, { passive: true });
 
     const navToggle = document.getElementById('navToggle');
-    const navShell = document.getElementById('navShell');
     if (navToggle && navShell) {
       navToggle.addEventListener('click', () => {
         const open = navShell.classList.toggle('is-open');
