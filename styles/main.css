@@ -311,51 +311,6 @@
   gap: 1rem;
 }
 
-/* Full-Bleed Architectural Metric Strip (Replaces Marquee + Rounded Box) */
-.hero__metrics-wrap {
-  border-top: 1px solid var(--line-dark);
-  background: var(--bg-obsidian);
-}
-
-.hero__metrics {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.metric-cell {
-  padding: 1.85rem 1.75rem 1.85rem 0;
-  border-right: 1px solid var(--line-dark);
-  display: grid;
-  gap: 0.45rem;
-}
-
-.metric-cell + .metric-cell {
-  padding-left: 1.75rem;
-}
-
-.metric-cell:last-child {
-  border-right: none;
-  padding-right: 0;
-}
-
-.metric-cell__value {
-  font-family: var(--font-display);
-  font-size: clamp(1.55rem, 2.3vw, 2.05rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--ink-primary);
-}
-
-.metric-cell__value span {
-  color: var(--bio-emerald);
-}
-
-.metric-cell__label {
-  font-size: 0.9rem;
-  color: var(--ink-secondary);
-  line-height: 1.45;
-}
-
 /* ==========================================================================
    SECTION 2: O PROBLEMA + DECISÃO DE ENERGIA
    ========================================================================== */

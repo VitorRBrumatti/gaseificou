@@ -105,22 +105,6 @@
       delay: 0.22,
     });
 
-    // Strong entrance for Hero top KPI numbers
-    gsap.fromTo(
-      '.metric-cell__value',
-      { y: 34, scale: 1.24, opacity: 0, filter: 'blur(8px)' },
-      {
-        y: 0,
-        scale: 1,
-        opacity: 1,
-        filter: 'blur(0px)',
-        duration: 0.95,
-        stagger: 0.1,
-        ease: 'expo.out',
-        delay: 0.3,
-      }
-    );
-
     // Centered Hero title starts 100% visible at y=0 and slides apart + fades OUT as user scrolls down
     if (typeof ScrollTrigger !== 'undefined') {
       const heroTl = gsap.timeline({
