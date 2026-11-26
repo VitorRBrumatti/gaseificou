@@ -590,7 +590,7 @@ select:focus-visible {
 }
 
 /* ==========================================================================
-   SECTION 3: ARQUITETURA (Refactored Process Rail + Precision Hardware CAD)
+   SECTION 3: ARQUITETURA (Clean Unified 2x2 Architectural Grid + 3D CAD)
    ========================================================================== */
 .section-dark {
   background: var(--bg-obsidian);
@@ -603,287 +603,198 @@ select:focus-visible {
   border-bottom: 1px solid var(--line-dark);
 }
 
-/* Refactored Swiss Process Rail (Replaces AI-slop SVG box diagram) */
-.process-rail {
-  border-top: 1px solid var(--line-dark);
-  border-bottom: 1px solid var(--line-dark);
-  margin-bottom: 4rem;
-}
-
-.process-rail__meta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.15rem 0;
-  border-bottom: 1px solid var(--line-dark);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--ink-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.process-rail__steps {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.rail-step {
-  position: relative;
-  text-align: left;
-  background: transparent;
-  border: none;
-  border-right: 1px solid var(--line-dark);
-  padding: 1.8rem 1.5rem;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.2rem;
-  transition: background-color 0.2s ease;
-}
-
-.rail-step:first-child {
-  padding-left: 0;
-}
-
-.rail-step:last-child {
-  border-right: none;
-  padding-right: 0;
-}
-
-.rail-step::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: transparent;
-  transition: background-color 0.2s ease;
-}
-
-.rail-step:hover {
-  background: rgba(244, 242, 236, 0.03);
-}
-
-.rail-step.is-active::before {
-  background: var(--bio-emerald);
-}
-
-.rail-step.is-active .rail-step__num {
-  color: var(--bio-emerald);
-}
-
-.rail-step__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-}
-
-.rail-step__num {
-  color: var(--ink-muted);
-  font-weight: 700;
-}
-
-.rail-step__metric {
-  color: var(--ink-secondary);
-}
-
-.rail-step h3 {
-  font-family: var(--font-display);
-  font-size: 1.32rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--ink-primary);
-  margin-bottom: 0.35rem;
-}
-
-.rail-step p {
-  font-size: 0.9rem;
-  color: var(--ink-secondary);
-  line-height: 1.5;
-}
-
-.process-rail__detail {
-  border-top: 1px solid var(--line-dark);
-  padding: 1.5rem 0;
-  display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
-  gap: 2rem;
-  align-items: center;
-}
-
-.process-rail__detail p {
-  color: var(--ink-primary);
-  font-size: 1.02rem;
-  line-height: 1.58;
-}
-
-.process-rail__stat {
-  text-align: right;
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  color: var(--bio-emerald);
-}
-
-/* 4 Modules: Clean Glassmorphism Data-First Grid */
-.modules-glass-wrap {
-  position: relative;
-  padding: 1.5rem;
-  border: 1px solid var(--line-dark);
-  background-color: #050907;
-  background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 0H0V32' fill='none' stroke='rgba(16,240,160,0.08)' stroke-width='1'/%3E%3C/svg%3E");
-  background-size: 32px 32px;
-}
-
-.modules-grid {
+.arch-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
+  border-top: 1px solid var(--line-dark-strong);
+  border-bottom: 1px solid var(--line-dark-strong);
 }
 
-.module-glass {
-  position: relative;
-  padding: 2.25rem;
-  border-radius: 6px;
-  background: rgba(12, 21, 17, 0.62);
-  backdrop-filter: blur(22px) saturate(140%);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
-  border: 1px solid rgba(244, 242, 236, 0.12);
-  box-shadow: inset 0 1px 0 rgba(244, 242, 236, 0.08);
+.arch-card {
+  padding: clamp(2rem, 3.2vw, 2.75rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 1.5rem;
-  transition: transform 0.35s var(--ease-expo), border-color 0.25s ease, background-color 0.25s ease;
+  border-bottom: 1px solid var(--line-dark);
+  border-right: 1px solid var(--line-dark);
+  transition: background-color 0.22s var(--ease-out);
 }
 
-.module-glass:hover {
-  transform: translateY(-3px);
-  background: rgba(15, 27, 22, 0.76);
-  border-color: rgba(244, 242, 236, 0.24);
+.arch-card:nth-child(odd) {
+  padding-left: 0;
 }
 
-.module-glass.is-highlighted {
-  border-color: rgba(16, 240, 160, 0.55);
-  background: rgba(14, 27, 21, 0.78);
+.arch-card:nth-child(even) {
+  padding-right: 0;
+  border-right: none;
 }
 
-.module-glass__top {
+.arch-card:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.arch-card:hover {
+  background: rgba(244, 242, 236, 0.02);
+}
+
+.arch-card__head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.arch-card__title-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.arch-card__num {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.module-glass__pill {
-  color: var(--ink-muted);
-  font-size: 0.72rem;
-}
-
-.module-tag {
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--bio-emerald);
+  letter-spacing: 0.06em;
 }
 
-.module-tag--amber {
+.arch-card__num--amber {
   color: var(--flame-amber);
 }
 
-.module-tag--teal {
+.arch-card__num--teal {
   color: var(--bio-teal);
 }
 
-.module-hero-stat {
-  display: grid;
-  gap: 0.45rem;
+.arch-card__title-group h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink-primary);
 }
 
-.module-hero-stat__num {
+.arch-card__jump {
+  background: transparent;
+  border: 1px solid var(--line-dark);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  min-height: 34px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease;
+}
+
+.arch-card__jump:hover {
+  border-color: var(--bio-emerald);
+  color: var(--bio-emerald);
+  background: rgba(16, 240, 160, 0.06);
+}
+
+.arch-card__badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--bio-emerald);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 240, 160, 0.28);
+  background: rgba(16, 240, 160, 0.07);
+}
+
+.arch-switch {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 999px;
+  border: 1px solid var(--line-dark-strong);
+  background: rgba(244, 242, 236, 0.03);
+}
+
+.arch-switch__btn {
+  min-height: 32px;
+  padding: 0 0.85rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.arch-switch__btn.is-active {
+  background: var(--bio-emerald);
+  color: #05110b;
+  font-weight: 700;
+}
+
+.arch-card__stat {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+}
+
+.arch-card__value {
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 5.2vw, 4.75rem);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.038em;
+  line-height: 1;
+  letter-spacing: -0.04em;
   color: var(--ink-primary);
   font-variant-numeric: tabular-nums;
-  transform-origin: left center;
-  will-change: transform, opacity, filter;
 }
 
-.module-hero-stat__num small {
-  font-size: clamp(1.25rem, 2vw, 1.7rem);
+.arch-card__value small {
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
   font-weight: 700;
   letter-spacing: 0;
   color: var(--bio-emerald);
-  margin-left: 0.28rem;
+  margin-left: 0.2rem;
 }
 
-.module-hero-stat__num--amber small {
+.arch-card__value--amber small {
   color: var(--flame-amber);
 }
 
-.module-hero-stat__num--teal small {
+.arch-card__value--teal small {
   color: var(--bio-teal);
 }
 
-.module-hero-stat__label {
+.arch-card__unit {
+  font-size: 0.94rem;
+  color: var(--ink-secondary);
+}
+
+.arch-card__desc {
   font-size: 0.98rem;
-  font-weight: 500;
-  color: var(--ink-primary);
+  line-height: 1.62;
+  color: #cdd8d1;
+  max-width: 50ch;
 }
 
-.module-data-row {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid rgba(244, 242, 236, 0.1);
-  border-bottom: 1px solid rgba(244, 242, 236, 0.1);
-}
-
-.module-datum {
-  padding: 0.9rem 0.75rem 0.9rem 0;
-  border-right: 1px solid rgba(244, 242, 236, 0.08);
-  display: grid;
-  gap: 0.2rem;
-}
-
-.module-datum + .module-datum {
-  padding-left: 0.85rem;
-}
-
-.module-datum:last-child {
-  border-right: none;
-  padding-right: 0;
-}
-
-.module-datum strong {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--ink-primary);
-  font-variant-numeric: tabular-nums;
-}
-
-.module-datum > span {
+.arch-card__specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.4rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line-dark);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 0.76rem;
   color: var(--ink-muted);
 }
 
-.module-glass__desc {
-  color: var(--ink-secondary);
-  font-size: 0.92rem;
-  line-height: 1.55;
+.arch-card__specs strong {
+  color: var(--ink-primary);
+  font-weight: 600;
+  margin-left: 0.2rem;
 }
 
 .spec-list {
@@ -905,47 +816,6 @@ select:focus-visible {
   font-family: var(--font-mono);
   font-weight: 700;
   flex: 0 0 auto;
-}
-
-/* Urban vs Rural Switch inside Module 3 */
-.mode-tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid rgba(244, 242, 236, 0.18);
-  background: rgba(6, 10, 8, 0.45);
-}
-
-.mode-tabs__btn {
-  min-height: 44px;
-  padding: 0.62rem 0.85rem;
-  border: none;
-  background: transparent;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--ink-secondary);
-  cursor: pointer;
-  transition: background-color 0.18s var(--ease-out), color 0.18s var(--ease-out), transform 0.15s var(--ease-out);
-}
-
-.mode-tabs__btn + .mode-tabs__btn {
-  border-left: 1px solid rgba(244, 242, 236, 0.16);
-}
-
-.mode-tabs__btn.is-active {
-  background: var(--bio-emerald);
-  color: #05110b;
-  font-weight: 700;
-}
-
-.mode-panel {
-  display: grid;
-  gap: 1.1rem;
-}
-
-.mode-panel[hidden] {
-  display: none;
 }
 
 /* Upgraded Precision Hardware CAD Blueprint (Zero Rounded Cards, Clean Leader Lines) */
@@ -1743,7 +1613,6 @@ select:focus-visible {
   }
   .section-header-split,
   .thermal-band,
-  .process-rail__detail,
   .hardware-cad__body,
   .calc-shell,
   .pricing-split,
@@ -1751,7 +1620,6 @@ select:focus-visible {
     grid-template-columns: 1fr;
   }
   .pain-strip,
-  .process-rail__steps,
   .xray-grid {
     grid-template-columns: 1fr;
   }
@@ -1760,7 +1628,6 @@ select:focus-visible {
   }
   .metric-cell,
   .pain-col,
-  .rail-step,
   .calc-inputs,
   .pricing-col,
   .xray-col {
@@ -1769,7 +1636,6 @@ select:focus-visible {
     padding-right: 0 !important;
   }
   .pain-col,
-  .rail-step,
   .calc-inputs,
   .pricing-col,
   .xray-col {
@@ -1784,9 +1650,6 @@ select:focus-visible {
   .pricing-col:last-child {
     border-left: none;
     padding-left: 0;
-  }
-  .process-rail__stat {
-    text-align: left;
   }
 }
 
@@ -1809,27 +1672,18 @@ select:focus-visible {
     padding-top: 0.75rem;
     align-items: stretch;
   }
-  .modules-grid,
+  .arch-grid,
   .form-row-2,
   .preset-list {
     grid-template-columns: 1fr;
   }
-  .modules-glass-wrap {
-    padding: 0.85rem;
-  }
-  .module-glass {
-    padding: 1.5rem;
-  }
-  .module-data-row {
-    grid-template-columns: 1fr;
-  }
-  .module-datum {
+  .arch-card {
+    padding: 1.75rem 0 !important;
     border-right: none;
-    border-bottom: 1px solid rgba(244, 242, 236, 0.08);
-    padding: 0.7rem 0 !important;
+    border-bottom: 1px solid var(--line-dark) !important;
   }
-  .module-datum:last-child {
-    border-bottom: none;
+  .arch-card:last-child {
+    border-bottom: none !important;
   }
   .hero__metrics {
     grid-template-columns: 1fr;

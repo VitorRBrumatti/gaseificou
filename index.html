@@ -198,7 +198,7 @@
     </section>
 
     <!-- ====================================================================
-         SECTION 3: ARQUITETURA (Refactored Process Rail + Precision Hardware CAD)
+         SECTION 3: ARQUITETURA (Clean Unified 4-Module Grid + 3D Hardware CAD)
          ==================================================================== -->
     <section class="section-dark" id="arquitetura">
       <div class="container">
@@ -209,236 +209,126 @@
             </h2>
           </div>
           <p class="section-lead">
-            Aqui está a solução ↓ Você recebe a planta inteira pronta: reator anaeróbico, linha de gás com filtro de H₂S, escoamento urbano e telemetria remota.
+            Planta chave na mão para 35 kg/dia: transforma orgânicos em gás térmico para os boilers, com escoamento urbano e telemetria inclusa no contrato.
           </p>
         </div>
 
-        <!-- Refactored Interactive Process Rail -->
-        <div class="process-rail reveal-up">
-          <div class="process-rail__meta">
-            <span>Fluxo de massa e energia · Kit Urbano 35 kg/dia</span>
-            <span>35 kg/dia orgânicos → 4–5 m³ gás + 612 L/sem digestato</span>
-          </div>
-
-          <div class="process-rail__steps" role="tablist" aria-label="Etapas do sistema">
-            <button class="rail-step is-active" data-module="1" role="tab" aria-selected="true">
-              <div class="rail-step__top">
-                <span class="rail-step__num">01</span>
-                <span class="rail-step__metric">3.000 L · 30d</span>
-              </div>
-              <div>
+        <!-- Unified Clean 2x2 Architectural Grid -->
+        <div class="arch-grid reveal-up" id="modulesGrid">
+          <!-- Module 01 -->
+          <article class="arch-card" data-module-card="1">
+            <div class="arch-card__head">
+              <div class="arch-card__title-group">
+                <span class="arch-card__num">01</span>
                 <h3>Core anaeróbico</h3>
-                <p>Reator 3.000 L + gasômetro 4–5 m³.</p>
               </div>
-            </button>
+              <button type="button" class="arch-card__jump" data-cad-jump="reator">Ver no 3D ↓</button>
+            </div>
 
-            <button class="rail-step" data-module="2" role="tab" aria-selected="false">
-              <div class="rail-step__top">
-                <span class="rail-step__num">02</span>
-                <span class="rail-step__metric">70%–85% efic.</span>
-              </div>
-              <div>
-                <h3>Gás e segurança</h3>
-                <p>Filtro de H₂S, dreno, corta-chamas e booster.</p>
-              </div>
-            </button>
+            <div class="arch-card__stat">
+              <strong class="arch-card__value">
+                <span class="stat-count" data-target="3000" data-format="int">3.000</span><small>L</small>
+              </strong>
+              <span class="arch-card__unit">reator fechado para ~35 kg/dia</span>
+            </div>
 
-            <button class="rail-step" data-module="3" role="tab" aria-selected="false">
-              <div class="rail-step__top">
-                <span class="rail-step__num">03</span>
-                <span class="rail-step__metric">~612 L/sem</span>
-              </div>
-              <div>
-                <h3>Escoamento físico</h3>
-                <p>Pulmão 1.000 L + bomba com engate camlock.</p>
-              </div>
-            </button>
-
-            <button class="rail-step" data-module="4" role="tab" aria-selected="false">
-              <div class="rail-step__top">
-                <span class="rail-step__num">04</span>
-                <span class="rail-step__metric">IoT 24/7</span>
-              </div>
-              <div>
-                <h3>Camada digital</h3>
-                <p>Sensores remotos + QR Code público no local.</p>
-              </div>
-            </button>
-          </div>
-
-          <div class="process-rail__detail">
-            <p id="railDetailText">
-              Reator de 3.000 L feito para ~35 kg/dia de orgânicos triados. Fica 30 dias em digestão, armazena 4 a 5 m³ no gasômetro e recebe a carga pelo funil misturador.
+            <p class="arch-card__desc">
+              Recebe os orgânicos triados pelo funil misturador em câmara vedada e sem cheiro, com 30 dias de digestão contínua.
             </p>
-            <div class="process-rail__stat" id="railDetailStat">RETENÇÃO: 30 DIAS · 3.000 L</div>
-          </div>
-        </div>
 
-        <!-- 4 Modules: Clean Glassmorphism Data-First Grid -->
-        <div class="modules-glass-wrap">
-          <div class="modules-grid" id="modulesGrid">
-            <!-- Module 01 -->
-            <article class="module-glass is-highlighted" data-module-card="1">
-              <div class="module-glass__top">
-                <span class="module-tag">01 / Core anaeróbico</span>
-                <span class="module-glass__pill">Biodigestão compacta</span>
+            <div class="arch-card__specs">
+              <span>Gasômetro <strong>4–5 m³</strong></span>
+              <span>Retenção <strong>30 dias</strong></span>
+              <span>Gordura máx. <strong>≤ 15%</strong></span>
+            </div>
+          </article>
+
+          <!-- Module 02 -->
+          <article class="arch-card" data-module-card="2">
+            <div class="arch-card__head">
+              <div class="arch-card__title-group">
+                <span class="arch-card__num arch-card__num--amber">02</span>
+                <h3>Gás e segurança</h3>
               </div>
+              <button type="button" class="arch-card__jump" data-cad-jump="gas">Ver no 3D ↓</button>
+            </div>
 
-              <div class="module-hero-stat">
-                <div class="module-hero-stat__num">
-                  <span class="stat-count" data-target="3000" data-format="int">3.000</span><small>L</small>
-                </div>
-                <span class="module-hero-stat__label">Reator fechado para ~35 kg/dia</span>
+            <div class="arch-card__stat">
+              <strong class="arch-card__value arch-card__value--amber">
+                80–<span class="stat-count" data-target="85" data-format="int">85</span><small>%</small>
+              </strong>
+              <span class="arch-card__unit">eficiência térmica nos boilers</span>
+            </div>
+
+            <p class="arch-card__desc">
+              Dreno condensador e filtro dessulfurizador de H₂S protegem os trocadores de cobre contra corrosão no pré-aquecimento de água.
+            </p>
+
+            <div class="arch-card__specs">
+              <span>Gatilho H₂S <strong>50–100 ppm</strong></span>
+              <span>Segurança <strong>CH₄ + solenoide</strong></span>
+              <span>Refil óxido Fe <strong>R$ 250–600</strong></span>
+            </div>
+          </article>
+
+          <!-- Module 03 -->
+          <article class="arch-card" data-module-card="3">
+            <div class="arch-card__head">
+              <div class="arch-card__title-group">
+                <span class="arch-card__num arch-card__num--teal">03</span>
+                <h3>Escoamento físico</h3>
               </div>
-
-              <div class="module-data-row">
-                <div class="module-datum">
-                  <strong><span class="stat-count" data-target="30" data-format="int">30</span> dias</strong>
-                  <span>Retenção</span>
-                </div>
-                <div class="module-datum">
-                  <strong>4–5 m³</strong>
-                  <span>Gasômetro</span>
-                </div>
-                <div class="module-datum">
-                  <strong>≤ 15%</strong>
-                  <span>Gordura máx.</span>
-                </div>
+              <div class="arch-switch" role="tablist" aria-label="Cenário de escoamento">
+                <button class="arch-switch__btn is-active" id="btnUrban" data-mode="urban" role="tab" aria-selected="true" type="button">Urbano</button>
+                <button class="arch-switch__btn" id="btnRural" data-mode="rural" role="tab" aria-selected="false" type="button">Área verde</button>
               </div>
+            </div>
 
-              <p class="module-glass__desc">
-                Funil com mistura e triagem simples no dia a dia. Só ficam fora plásticos, ossos grandes, cloro e excesso de gordura.
-              </p>
-            </article>
+            <div class="arch-card__stat">
+              <strong class="arch-card__value arch-card__value--teal">
+                <span class="stat-count" id="m3HeroNum" data-target="612" data-format="int">612</span><small id="m3HeroUnit">L/sem</small>
+              </strong>
+              <span class="arch-card__unit" id="m3HeroLabel">biofertilizante líquido (~87,5 L/dia · 2,5 L/kg)</span>
+            </div>
 
-            <!-- Module 02 -->
-            <article class="module-glass" data-module-card="2">
-              <div class="module-glass__top">
-                <span class="module-tag module-tag--amber">02 / Gás e segurança</span>
-                <span class="module-glass__pill">Rota térmica híbrida</span>
+            <p class="arch-card__desc" id="m3Desc">
+              Tanque pulmão vedado de 1.000 L com bomba e engate rápido camlock para retirada semanal sem custo por parceiros locais.
+            </p>
+
+            <div class="arch-card__specs" id="m3Specs">
+              <span>Pulmão <strong>1.000 L vedado</strong></span>
+              <span>Retirada <strong>Semanal grátis</strong></span>
+              <span>Economia <strong>&gt; R$ 3.300 vs. filtro</strong></span>
+            </div>
+          </article>
+
+          <!-- Module 04 -->
+          <article class="arch-card" data-module-card="4">
+            <div class="arch-card__head">
+              <div class="arch-card__title-group">
+                <span class="arch-card__num">04</span>
+                <h3>Telemetria e QR ESG</h3>
               </div>
+              <span class="arch-card__badge">Incluso no contrato</span>
+            </div>
 
-              <div class="module-hero-stat">
-                <div class="module-hero-stat__num module-hero-stat__num--amber">
-                  80–<span class="stat-count" data-target="85" data-format="int">85</span><small>%</small>
-                </div>
-                <span class="module-hero-stat__label">Eficiência térmica no pré-aquecimento de boilers</span>
-              </div>
+            <div class="arch-card__stat">
+              <strong class="arch-card__value">
+                <span class="stat-count" data-target="24" data-format="int">24</span>/7<small>IoT</small>
+              </strong>
+              <span class="arch-card__unit">monitoramento preditivo + balança por turno</span>
+            </div>
 
-              <div class="module-data-row">
-                <div class="module-datum">
-                  <strong>50–100 ppm</strong>
-                  <span>Gatilho H₂S</span>
-                </div>
-                <div class="module-datum">
-                  <strong>CH₄ + Solenoide</strong>
-                  <span>Corte vazamento</span>
-                </div>
-                <div class="module-datum">
-                  <strong>R$ 250–600</strong>
-                  <span>Refil óxido Fe</span>
-                </div>
-              </div>
+            <p class="arch-card__desc">
+              Sensores acompanham pH, temperatura, H₂S e CH₄ para evitar acidificação ou vazamentos e alimentam o painel público via QR Code.
+            </p>
 
-              <p class="module-glass__desc">
-                Dreno condensador e filtro dessulfurizador protegem os trocadores de calor de cobre contra corrosão ácida.
-              </p>
-            </article>
-
-            <!-- Module 03 -->
-            <article class="module-glass" data-module-card="3">
-              <div class="module-glass__top">
-                <span class="module-tag module-tag--teal">03 / Escoamento físico</span>
-                <span class="module-glass__pill">Logística urbana</span>
-              </div>
-
-              <div class="module-hero-stat">
-                <div class="module-hero-stat__num module-hero-stat__num--teal">
-                  <span class="stat-count" id="m3HeroNum" data-target="612" data-format="int">612</span><small id="m3HeroUnit">L/sem</small>
-                </div>
-                <span class="module-hero-stat__label" id="m3HeroLabel">Biofertilizante líquido (~87,5 L/dia · 2,5 L/kg)</span>
-              </div>
-
-              <div class="mode-tabs" role="tablist" aria-label="Cenário de escoamento">
-                <button class="mode-tabs__btn is-active" id="btnUrban" data-mode="urban" role="tab" aria-selected="true">Área urbana · Camlock</button>
-                <button class="mode-tabs__btn" id="btnRural" data-mode="rural" role="tab" aria-selected="false">Local com área verde</button>
-              </div>
-
-              <div class="mode-panel" id="panelUrban">
-                <div class="module-data-row">
-                  <div class="module-datum">
-                    <strong>1.000 L</strong>
-                    <span>Pulmão vedado</span>
-                  </div>
-                  <div class="module-datum">
-                    <strong>-R$ 3.300+</strong>
-                    <span>vs. filtro esgoto</span>
-                  </div>
-                  <div class="module-datum">
-                    <strong>Grátis</strong>
-                    <span>Retirada semanal</span>
-                  </div>
-                </div>
-                <p class="module-glass__desc">
-                  Bomba + engate rápido camlock com parceria local já fechada (chácaras ou viveiros) para retirada semanal sem custo.
-                </p>
-              </div>
-
-              <div class="mode-panel" id="panelRural" hidden>
-                <div class="module-data-row">
-                  <div class="module-datum">
-                    <strong>2,5 L/kg</strong>
-                    <span>Diluição direta</span>
-                  </div>
-                  <div class="module-datum">
-                    <strong>6–24 meses</strong>
-                    <span>Retirada lodo</span>
-                  </div>
-                  <div class="module-datum">
-                    <strong>100% local</strong>
-                    <span>Ciclo fechado</span>
-                  </div>
-                </div>
-                <p class="module-glass__desc">
-                  Aplicação diluída direto nos jardins e hortas do terreno. O lodo de fundo vai para compostagem só a cada 6 a 24 meses.
-                </p>
-              </div>
-            </article>
-
-            <!-- Module 04 -->
-            <article class="module-glass" data-module-card="4">
-              <div class="module-glass__top">
-                <span class="module-tag">04 / Camada digital</span>
-                <span class="module-glass__pill">4 sensores IoT + ESG</span>
-              </div>
-
-              <div class="module-hero-stat">
-                <div class="module-hero-stat__num">
-                  <span class="stat-count" data-target="24" data-format="int">24</span>/7<small>IoT</small>
-                </div>
-                <span class="module-hero-stat__label">Telemetria preditiva + balança IoT por turno</span>
-              </div>
-
-              <div class="module-data-row">
-                <div class="module-datum">
-                  <strong><span class="stat-count" data-target="4" data-format="int">4</span> sensores</strong>
-                  <span>pH/T · H₂S · CH₄ · Peso</span>
-                </div>
-                <div class="module-datum">
-                  <strong>Incluso</strong>
-                  <span>No contrato</span>
-                </div>
-                <div class="module-datum">
-                  <strong>Ao vivo</strong>
-                  <span>QR Code público</span>
-                </div>
-              </div>
-
-              <p class="module-glass__desc">
-                Previne acidificação (pH/temp), avisa troca do refil de H₂S, fecha a válvula em vazamento de CH₄ e pesa o desperdício por turno.
-              </p>
-            </article>
-          </div>
+            <div class="arch-card__specs">
+              <span>Sensores <strong>pH/T · H₂S · CH₄ · Peso</strong></span>
+              <span>Painel público <strong>QR Code ao vivo</strong></span>
+              <span>Custo <strong>Incluso</strong></span>
+            </div>
+          </article>
         </div>
 
         <!-- Upgraded Precision Hardware CAD Blueprint -->

@@ -175,64 +175,21 @@
       },
     });
 
-    // High-impact "data arriving big" choreography for the 4 Glassmorphism Modules
+    // Crisp tabular count-up choreography for the 4 Architectural Modules
     if (document.getElementById('modulesGrid')) {
       const intFmt = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 0 });
-      const cards = document.querySelectorAll('#modulesGrid .module-glass');
+      const cards = document.querySelectorAll('#modulesGrid .arch-card');
 
       cards.forEach((card, index) => {
-        const heroNum = card.querySelector('.module-hero-stat__num');
-        const heroLabel = card.querySelector('.module-hero-stat__label');
-        const datums = card.querySelectorAll('.module-datum');
         const counters = card.querySelectorAll('.stat-count');
-
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: card,
-            start: 'top 86%',
+            start: 'top 88%',
             once: true,
           },
-          delay: (index % 2) * 0.12,
+          delay: (index % 2) * 0.08,
         });
-
-        tl.from(card, {
-          y: 32,
-          opacity: 0,
-          duration: 0.7,
-          ease: 'power3.out',
-        });
-
-        if (heroNum) {
-          tl.fromTo(
-            heroNum,
-            { y: 52, scale: 1.32, opacity: 0, filter: 'blur(10px)' },
-            {
-              y: 0,
-              scale: 1,
-              opacity: 1,
-              filter: 'blur(0px)',
-              duration: 0.95,
-              ease: 'expo.out',
-            },
-            '-=0.52'
-          );
-        }
-
-        if (heroLabel) {
-          tl.from(
-            heroLabel,
-            { y: 16, opacity: 0, duration: 0.55, ease: 'power2.out' },
-            '-=0.65'
-          );
-        }
-
-        if (datums.length) {
-          tl.from(
-            datums,
-            { y: 20, opacity: 0, duration: 0.55, stagger: 0.08, ease: 'power3.out' },
-            '-=0.55'
-          );
-        }
 
         counters.forEach((el) => {
           const target = Number(el.dataset.target);
@@ -242,13 +199,13 @@
             obj,
             {
               val: target,
-              duration: 1.25,
+              duration: 1.0,
               ease: 'power3.out',
               onUpdate: () => {
                 el.textContent = intFmt.format(Math.round(obj.val));
               },
             },
-            0.12
+            0
           );
         });
       });
@@ -256,113 +213,85 @@
   }
 
   /* ------------------------------------------------------------------------
-     3. REFACTORED PROCESS RAIL, URBAN/RURAL SWITCH & HARDWARE CAD INSPECTOR
+     3. MODULE 3 SWITCH, 3D JUMP TRIGGERS & HARDWARE CAD INSPECTOR
      ------------------------------------------------------------------------ */
   function initArchitecture() {
-    const railSpecs = {
-      1: {
-        text: 'Reator de 3.000 L feito para ~35 kg/dia de orgânicos triados. Fica 30 dias em digestão, armazena 4 a 5 m³ no gasômetro e recebe a carga pelo funil misturador.',
-        stat: 'RETENÇÃO: 30 DIAS · 3.000 L',
-      },
-      2: {
-        text: 'Filtro obrigatório de H₂S contra corrosão e dreno de umidade. A linha ainda leva válvulas, corta-chamas, manômetro e booster de baixa pressão para aquecedores de água.',
-        stat: 'EFICIÊNCIA TÉRMICA: 70% – 85%',
-      },
-      3: {
-        text: 'Cada 1 kg de alimento vira ~2,5 L de digestato líquido (~87,5 L/dia ou ~612 L/semana em 35 kg/dia). O tanque pulmão de 1.000 L com camlock resolve a retirada semanal gratuita.',
-        stat: 'ECONOMIA > R$ 3.300 EM FILTROS',
-      },
-      4: {
-        text: 'Sensores acompanham o reator e o tanque pulmão à distância. Qualquer desvio gera alerta preventivo, e o QR Code abre o painel ao vivo para quem visita o local.',
-        stat: 'INCLUSO NO CONTRATO',
-      },
-    };
-
-    const railSteps = document.querySelectorAll('.rail-step');
-    const moduleCards = document.querySelectorAll('[data-module-card]');
-    const detailText = document.getElementById('railDetailText');
-    const detailStat = document.getElementById('railDetailStat');
-
-    railSteps.forEach((step) => {
-      step.addEventListener('click', () => {
-        const id = step.dataset.module;
-        const data = railSpecs[id];
-        if (!data) return;
-
-        railSteps.forEach((s) => {
-          const active = s.dataset.module === id;
-          s.classList.toggle('is-active', active);
-          s.setAttribute('aria-selected', String(active));
-        });
-        moduleCards.forEach((c) => {
-          c.classList.toggle('is-highlighted', c.dataset.moduleCard === id);
-        });
-
-        if (detailText) detailText.textContent = data.text;
-        if (detailStat) detailStat.textContent = data.stat;
-      });
-    });
-
-    // Urban vs Rural Mode Toggle inside Module 3 (with smooth stat transition)
+    // Urban vs Rural Mode Toggle inside Module 3 (zero layout shift)
     const btnUrban = document.getElementById('btnUrban');
     const btnRural = document.getElementById('btnRural');
-    const panelUrban = document.getElementById('panelUrban');
-    const panelRural = document.getElementById('panelRural');
     const m3HeroNum = document.getElementById('m3HeroNum');
     const m3HeroUnit = document.getElementById('m3HeroUnit');
     const m3HeroLabel = document.getElementById('m3HeroLabel');
+    const m3Desc = document.getElementById('m3Desc');
+    const m3Specs = document.getElementById('m3Specs');
 
-    function animateM3Hero(targetNum, unit, label, isDecimal) {
-      if (!m3HeroNum) return;
-      if (m3HeroUnit) m3HeroUnit.textContent = unit;
-      if (m3HeroLabel) m3HeroLabel.textContent = label;
-      const heroWrap = m3HeroNum.closest('.module-hero-stat__num');
+    const m3Modes = {
+      urban: {
+        num: 612,
+        isDecimal: false,
+        unit: 'L/sem',
+        label: 'biofertilizante líquido (~87,5 L/dia · 2,5 L/kg)',
+        desc: 'Tanque pulmão vedado de 1.000 L com bomba e engate rápido camlock para retirada semanal sem custo por parceiros locais.',
+        specs: '<span>Pulmão <strong>1.000 L vedado</strong></span><span>Retirada <strong>Semanal grátis</strong></span><span>Economia <strong>&gt; R$ 3.300 vs. filtro</strong></span>',
+      },
+      rural: {
+        num: 2.5,
+        isDecimal: true,
+        unit: 'L/kg',
+        label: 'aplicação diluída direto nos jardins e hortas',
+        desc: 'O biofertilizante líquido irriga áreas verdes do próprio terreno. O lodo de fundo vai para compostagem só a cada 6 a 24 meses.',
+        specs: '<span>Ciclo <strong>100% local</strong></span><span>Uso <strong>Diluição direta</strong></span><span>Retirada lodo <strong>6–24 meses</strong></span>',
+      },
+    };
+
+    function setM3Mode(mode) {
+      const cfg = m3Modes[mode];
+      if (!cfg || !m3HeroNum) return;
+
+      const isUrban = mode === 'urban';
+      btnUrban?.classList.toggle('is-active', isUrban);
+      btnRural?.classList.toggle('is-active', !isUrban);
+      btnUrban?.setAttribute('aria-selected', String(isUrban));
+      btnRural?.setAttribute('aria-selected', String(!isUrban));
+
+      if (m3HeroUnit) m3HeroUnit.textContent = cfg.unit;
+      if (m3HeroLabel) m3HeroLabel.textContent = cfg.label;
+      if (m3Desc) m3Desc.textContent = cfg.desc;
+      if (m3Specs) m3Specs.innerHTML = cfg.specs;
+
       if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
-        if (heroWrap) {
-          gsap.fromTo(
-            heroWrap,
-            { y: 24, scale: 1.22, opacity: 0.2, filter: 'blur(6px)' },
-            { y: 0, scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.65, ease: 'expo.out' }
-          );
-        }
         const obj = { v: 0 };
         gsap.to(obj, {
-          v: targetNum,
-          duration: 0.7,
+          v: cfg.num,
+          duration: 0.55,
           ease: 'power3.out',
           onUpdate: () => {
-            m3HeroNum.textContent = isDecimal
+            m3HeroNum.textContent = cfg.isDecimal
               ? obj.v.toFixed(1).replace('.', ',')
               : Math.round(obj.v).toLocaleString('pt-BR');
           },
         });
       } else {
-        m3HeroNum.textContent = isDecimal
-          ? targetNum.toFixed(1).replace('.', ',')
-          : targetNum.toLocaleString('pt-BR');
+        m3HeroNum.textContent = cfg.isDecimal
+          ? cfg.num.toFixed(1).replace('.', ',')
+          : cfg.num.toLocaleString('pt-BR');
       }
     }
 
-    if (btnUrban && btnRural && panelUrban && panelRural) {
-      btnUrban.addEventListener('click', () => {
-        btnUrban.classList.add('is-active');
-        btnRural.classList.remove('is-active');
-        btnUrban.setAttribute('aria-selected', 'true');
-        btnRural.setAttribute('aria-selected', 'false');
-        panelUrban.hidden = false;
-        panelRural.hidden = true;
-        animateM3Hero(612, 'L/sem', 'Biofertilizante líquido (~87,5 L/dia · 2,5 L/kg)', false);
+    btnUrban?.addEventListener('click', () => setM3Mode('urban'));
+    btnRural?.addEventListener('click', () => setM3Mode('rural'));
+
+    // "Ver no 3D" buttons scroll smoothly to CAD viewer and focus subsystem
+    document.querySelectorAll('[data-cad-jump]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetKey = btn.dataset.cadJump;
+        const cadEl = document.querySelector('.hardware-cad');
+        if (cadEl) {
+          cadEl.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
+        }
+        window.__gaseificouSelectCadPart?.(targetKey);
       });
-      btnRural.addEventListener('click', () => {
-        btnRural.classList.add('is-active');
-        btnUrban.classList.remove('is-active');
-        btnRural.setAttribute('aria-selected', 'true');
-        btnUrban.setAttribute('aria-selected', 'false');
-        panelRural.hidden = false;
-        panelUrban.hidden = true;
-        animateM3Hero(2.5, 'L/kg', 'Aplicação diluída direto nos jardins e hortas do terreno', true);
-      });
-    }
+    });
 
     // Precision Hardware CAD Inspector (bidirectional sync with Three.js 3D viewer)
     const cadSpecs = {
